@@ -1,0 +1,219 @@
+@misc{openmp-omtp,
+    author = {{OpenMP Architecture Review Board}},
+    title = {{OpenMP} Application Program Interface Version 5.1},
+    month = november,
+    year = 2020,
+    url = {https://www.openmp.org/wp-content/uploads/OpenMPRefCard-5.1-web.pdf}
+}
+
+@ARTICLE{OpenMP,
+  author={Dagum, L. and Menon, R.},
+  journal={IEEE Computational Science and Engineering},
+  title={OpenMP: an industry standard API for shared-memory programming},
+  year={1998},
+  volume={5},
+  number={1},
+  pages={46-55},
+  keywords={Message passing;Scalability;Hardware;Computer architecture;Power system modeling;ANSI standards;Parallel processing;Coherence;Software systems;Parallel programming},
+  doi={10.1109/99.660313}}
+
+@InProceedings{OpenMPTasks,
+author="LaGrone, James
+and Aribuki, Ayodunni
+and Addison, Cody
+and Chapman, Barbara",
+editor="Chapman, Barbara M.
+and Gropp, William D.
+and Kumaran, Kalyan
+and M{\"u}ller, Matthias S.",
+title="A Runtime Implementation of OpenMP Tasks",
+booktitle="OpenMP in the Petascale Era",
+year="2011",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="165--178",
+abstract="Many task-based programming models have been developed and refined in recent years to support application development for shared memory platforms. Asynchronous tasks are a powerful programming abstraction that offer flexibility in conjunction with great expressivity. Research involving standardized tasking models like OpenMP and non-standardized models like Cilk facilitate improvements in many tasking implementations. While the asynchronous task is arguably a fundamental element of parallel programming, it is the implementation, not the concept, that makes all the difference with respect to the performance that is obtained by a program that is parallelized using tasks. There are many approaches to implementing tasking constructs, but few have also given attention to providing the user with some capabilities for fine tuning the execution of their code. This paper provides an overview of one OpenMP implementation, highlights its main features, discusses the implementation, and demonstrates its performance with user controlled runtime variables.",
+isbn="978-3-642-21487-5"
+}
+
+@article{QR,
+  title={Scheduling dense linear algebra operations on multicore processors},
+  author={Kurzak, Jakub and Ltaief, Hatem and Dongarra, Jack and Badia, Rosa M},
+  journal={Concurrency and Computation: Practice and Experience},
+  volume={22},
+  number={1},
+  pages={15--44},
+  year={2010},
+  publisher={Wiley Online Library}
+}
+
+@article{dagviz,
+   abstract = {In task-based parallel programming, programmers can expose logical parallelism of their programs by creating fine-grained tasks at arbitrary places in their code. All other burdens in the parallel execution of these tasks such as thread management, task scheduling, and load balancing are handled automatically by runtime systems. This kind of parallel programming model has been conceived as a promising paradigm that brings intricate parallel programming techniques to a larger audience of programmers because of its high programmability. There have been many languages (e.g., OpenMP, Cilk Plus) and libraries (e.g, Intel TBB, Qthreads, MassiveThreads) supporting task parallelism. However , the nondeterministic nature of task parallel execution which hides runtime scheduling mechanisms from programmers has made it difficult for programmers to understand the cause of suboptimal performance of their programs. As an effort to tackle this problem, and also to clarify differences between task parallel runtime systems, we have developed a toolset that captures and visualizes the trace of an execution of a task parallel program in the form of a directed acyclic graph (DAG). A computation DAG of a task parallel program's run is extracted automatically by our lightweight portable wrapper around all five systems which incurs no intervention into the target systems' code. The DAG is stored in a file and then visualized to analyze performance. We leverage the hierarchical structure of the DAG to enhance the DAG file format and DAG visualization, and make them manageable even with a huge DAG of arbitrarily large numbers of nodes. This DAG visualization provides a task-centric view of the program, which is different from other popular visualizations such as thread-centric timeline Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. To copy otherwise, to republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Copyright 20XX ACM X-XXXXX-XX-X/XX/XX ...$15.00. visualization and code-centric hotspots analysis. Besides, DAGViz also provides an additional timeline visualization which is constructed by individual nodes of the DAG, and is useful in coordinating user attention to low-parallelism areas on the DAG. We demonstrate usefulness of our DAG visual-izations in some case studies. We expect to build other kinds of effective visualizations based on this computation DAG in future work, and make DAGViz an effective tool supporting the process of analyzing task parallel performance and developing scheduling algorithms for task parallel runtime schedulers.},
+   author = {An Huynh and Douglas Thain and Miquel Pericàs and Kenjiro Taura},
+   keywords = {DAG visualization,performance analysis,profiler,task parallel,tracer},
+   title = {DAGViz: A DAG Visualization Tool for Analyzing Task-Parallel Program Traces}
+}
+
+@Article{StarPU,
+author = {C{\'e}dric Augonnet and Samuel Thibault and Raymond Namyst and Pierre-Andr{\'e} Wacrenier},
+title = {{StarPU: A Unified Platform for Task Scheduling on Heterogeneous Multicore Architectures}},
+journal = {Conc. Comp.: Pract. Exp., SI:EuroPar'09},
+volume = 23,
+issue = 2,
+year = 2011,
+publisher = {John Wiley & Sons, Ltd.},
+KEYWORDS = {General Presentations;StarPU}
+}
+
+@article{garcia2018visual,
+author = {Vinícius G. Pinto and Schnorr, Lucas Mello and Stanisic, Luka and Legrand, Arnaud and Thibault, Samuel and Danjean, Vincent},
+title = {A visual performance analysis framework for task based parallel applications running on hybrid clusters},
+journal = {Concurrency and Computation: Practice and Experience},
+year = 2018,
+keywords = {Cholesky, heterogeneous platforms, high‐performance computing, task‐based applications, trace visualization},
+}
+
+@misc{nongnuFastUserKernel,
+  author = {},
+  title = {{F}ast {U}ser/{K}ernel {T}racing - {S}ummary [{S}avannah] --- savannah.nongnu.org},
+  howpublished = {\url{https://savannah.nongnu.org/projects/fkt}},
+  year = {},
+  note = {[Accessed 13-01-2025]},
+}
+
+@misc{dot,
+  author = {},
+  title = {{D}{O}{T} {L}anguage --- graphviz.org},
+  howpublished = {\url{https://graphviz.org/doc/info/lang.html}},
+  year = {},
+  note = {[Accessed 13-01-2025]},
+}
+
+@article{paje,
+title = {Pajé, an interactive visualization tool for tuning multi-threaded parallel applications},
+journal = {Parallel Computing},
+volume = {26},
+number = {10},
+pages = {1253-1274},
+year = {2000},
+issn = {0167-8191},
+doi = {https://doi.org/10.1016/S0167-8191(00)00010-7},
+url = {https://www.sciencedirect.com/science/article/pii/S0167819100000107},
+author = {J. {Chassin de Kergommeaux} and B. Stein and P.E. Bernard},
+keywords = {Performance and correctness debugging, Parallel program visualization, Threads, Interactivity, Scalability, Modularity},
+abstract = {This paper describes Pajé, an interactive visualization tool for displaying the execution of parallel applications where a potentially large number of communicating threads of various life-times execute on each node of a distributed memory parallel system. Pajé is capable of representing a wide variety of interactions between threads. The main characteristics of Pajé, interactivity and scalability, are exemplified by the performance tuning of a molecular dynamics application. In order to be easily extensible, the architecture of the system was based on components which are connected in a data flow graph to produce a given visualization tool. Innovative components were designed, in addition to “classical” components existing in similar visualization systems, to support scalability and interactivity.}
+}
+
+@article{qr-out-of-core,
+  title={Parallel out-of-core computation and updating of the QR factorization},
+  author={Gunter, Brian C and Van De Geijn, Robert A},
+  journal={ACM Transactions on Mathematical Software (TOMS)},
+  volume={31},
+  number={1},
+  pages={60--78},
+  year={2005},
+  publisher={ACM New York, NY, USA}
+}
+
+@techReport{vite,
+   abstract = {Modern supercomputers with multi-core nodes enhanced by accelerators, as well as hybrid programming models, introduce more complexity in modern applications. Efficiently Exploiting all of the available resources requires a complex performance analysis of applications in order to detect time-consuming or idle sections. This paper presents an open-source tool-chain for analyzing the performance of parallel applications. It is composed of a trace generation framework called EZTRACE, a generic interface for writing traces in multipe format called GTG, and a trace vi-sualizer called VITE. These tools cover the main steps of performance analysis-from the instrumentation of applications to the trace analysis-and are designed to maximize the compatibility with other performance analysis tools. Thus, these tools support multiple file formats and are not bound to a particular programming model. The evaluation of these tools show that they provide similar performance compared to other analysis tools, while being generic.},
+   author = {K Coulomb and A Degomme and M Faverge and F Trahay},
+   title = {An open-source tool-chain for performance analysis}
+}
+
+@techReport{vampir,
+   abstract = {This paper presents the Vampir tool-set for performance analysis of parallel applications. It consists of the run-time measurement system VampirTrace and the visualization tools Vampir and VampirServer. It describes the major features and outlines the underlying implementation that is necessary to provide low overhead and good scalability. Furthermore, it gives a short overview about the development history and future work as well as related work.},
+   author = {Andreas Knüpfer and Holger Brunst and Jens Doleschal and Matthias Jurenz and Matthias Lieber and Holger Mickler and Matthias S Müller and Wolfgang E Nagel},
+   title = {The Vampir Performance Analysis Tool-Set}
+}
+
+@article{ravel,
+   abstract = {With the continuous rise in complexity of modern supercomputers, optimizing the performance of large-scale parallel programs is becoming increasingly challenging. Simultaneously, the growth in scale magnifies the impact of even minor inefficiencies-potentially millions of compute hours and megawatts in power consumption can be wasted on avoidable mistakes or sub-optimal algorithms. This makes performance analysis and optimization critical elements in the software development process. One of the most common forms of performance analysis is to study execution traces, which record a history of per-process events and interprocess messages in a parallel application. Trace visualizations allow users to browse this event history and search for insights into the observed performance behavior. However, current visualizations are difficult to understand even for small process counts and do not scale gracefully beyond a few hundred processes. Organizing events in time leads to a virtually unintelligible conglomerate of interleaved events and moderately high process counts overtax even the largest display. As an alternative, we present a new trace visualization approach based on transforming the event history into logical time inferred directly from happened-before relationships. This emphasizes the code's structural behavior, which is much more familiar to the application developer. The original timing data, or other information, is then encoded through color, leading to a more intuitive visualization. Furthermore, we use the discrete nature of logical timelines to cluster processes according to their local behavior leading to a scalable visualization of even long traces on large process counts. We demonstrate our system using two case studies on large-scale parallel codes.},
+   author = {Katherine E. Isaacs and Peer Timo Bremer and Ilir Jusufi and Todd Gamblin and Abhinav Bhatele and Martin Schulz and Bernd Hamann},
+   doi = {10.1109/TVCG.2014.2346456},
+   issn = {10772626},
+   issue = {12},
+   journal = {IEEE Transactions on Visualization and Computer Graphics},
+   keywords = {Information visualization,performance analysis,software visualization,timelines,traces},
+   month = {12},
+   pages = {2349-2358},
+   publisher = {IEEE Computer Society},
+   title = {Combing the communication hairball: Visualizing parallel execution traces using logical time},
+   volume = {20},
+   year = {2014}
+}
+
+@article{grainGraphs,
+author = {Muddukrishna, Ananya and Jonsson, Peter A. and Podobas, Artur and Brorsson, Mats},
+title = {Grain graphs: OpenMP performance analysis made easy},
+year = {2016},
+issue_date = {August 2016},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {51},
+number = {8},
+issn = {0362-1340},
+url = {https://doi.org/10.1145/3016078.2851156},
+doi = {10.1145/3016078.2851156},
+abstract = {Average programmers struggle to solve performance problems in OpenMP programs with tasks and parallel for-loops. Existing performance analysis tools visualize OpenMP task performance from the runtime system's perspective where task execution is interleaved with other tasks in an unpredictable order. Problems with OpenMP parallel for-loops are similarly difficult to resolve since tools only visualize aggregate thread-level statistics such as load imbalance without zooming into a per-chunk granularity. The runtime system/threads oriented visualization provides poor support for understanding problems with task and chunk execution time, parallelism, and memory hierarchy utilization, forcing average programmers to rely on experts or use tedious trial-and-error tuning methods for performance. We present grain graphs, a new OpenMP performance analysis method that visualizes grains -- computation performed by a task or a parallel for-loop chunk instance -- and highlights problems such as low parallelism, work inflation and poor parallelization benefit at the grain level. We demonstrate that grain graphs can quickly reveal performance problems that are difficult to detect and characterize in fine detail using existing visualizations in standard OpenMP programs, simplifying OpenMP performance analysis. This enables average programmers to make portable optimizations for poor performing OpenMP programs, reducing pressure on experts and removing the need for tedious trial-and-error tuning.},
+journal = {SIGPLAN Not.},
+month = feb,
+articleno = {28},
+numpages = {13},
+keywords = {task-based programs, performance visualization, performance analysis, OpenMP}
+}
+
+@misc{temanejo,
+   author = {Holger Brunst and Matthias S. Müller and Wolfgang E. Nagel and Michael M. Resch},
+   doi = {10.1007/978-3-642-31476-6},
+   isbn = {9783642314759},
+   journal = {Proceedings of the 5th International Workshop on Parallel Tools for High Performance Computing 2011},
+   title = {Temanejo: Debugging of Thread-Based
+Task-Parallel Programs in StarSS},
+   year = {2012}
+}
+
+@inproceedings{haugen,
+   abstract = {Task-based scheduling has emerged as one method to reduce the complexity of parallel computing. When using task-based schedulers, developers must frame their computation as a series of tasks with various data dependencies. The scheduler can take these tasks, along with their input and output dependencies, and schedule the task in parallel across a node or cluster. While these schedulers simplify the process of parallel software development, they can obfuscate the performance characteristics of the execution of an algorithm. The execution trace has been used for many years to give developers a visual representation of how their computations are performed. These methods can be employed to visualize when and where each of the tasks in a task-based algorithm is scheduled. In addition, the task dependencies can be used to create a directed acyclic graph (DAG) that can also be visualized to demonstrate the dependencies of the various tasks that make up a workload. The work presented here aims to combine these two data sets and extend execution trace visualization to better suit task-based workloads. This paper presents a brief description of task-based schedulers and the performance data they produce. It will then describe an interactive extension to the current trace visualization methods that combines the trace and DAG data sets. This new tool allows users to gain a greater understanding of how their tasks are scheduled. It also provides a simplified way for developers to evaluate and debug the performance of their scheduler.},
+   author = {Blake Haugen and Stephen Richmond and Jakub Kurzak and Chad A. Steed and Jack Dongarra},
+   doi = {10.1145/2835238.2835240},
+   isbn = {9781450340137},
+   booktitle = {Proceedings of VPA 2015: 2nd Workshop on Visual Performance Analysis - Held in conjunction with SC 2015: The International Conference for High Performance Computing, Networking, Storage and Analysis},
+   keywords = {DAG,Data movement,Execution trace,Task-based scheduling},
+   month = {11},
+   publisher = {Association for Computing Machinery, Inc},
+   title = {Visualizing execution traces with task dependencies},
+   year = {2015}
+}
+
+@inproceedings{schulzTurb,
+   abstract = {To exploit the capabilities of current and future systems, developers must understand the interplay between onnode performance, domain decomposition, and an application's intrinsic communication patterns. While tools exist to gather and analyze data for each of these components individually, the resulting information is generally processed in isolation and presented in an abstract, categorical fashion unintuitive to most users. In this paper we present the HAC model, in which we identify the three domains of performance data most familiar to the user: (i) the application domain containing the application's working set, (ii) the hardware domain of the compute and network devices, and (iii) the communication domain of logical data transfers. We show that taking data from each of these domains and projecting, visualizing, and correlating it to the other domains can give valuable insights into the behavior of parallel application codes. The HAC abstraction opens the door for a new generation of tools that can help users more easily and intuitively associate performance data with root causes in the hardware system, the application's structure, and in its communication behavior, and by doing so leads to an improved understanding of the performance of their codes. © 2011 IEEE.},
+   author = {Martin Schulz and Joshua A. Levine and Peer Timo Bremer and Todd Gamblin and Valerio Pascucci},
+   doi = {10.1109/ICPP.2011.60},
+   isbn = {9780769545103},
+   issn = {01903918},
+   booktitle = {Proceedings of the International Conference on Parallel Processing},
+   keywords = {Performance analysis and visualization},
+   pages = {206-215},
+   title = {Interpreting performance data across intuitive domains},
+   year = {2011}
+}
+
+@techReport{WylieGeimer,
+   abstract = {The PFLOTRAN code for multiphase subsurface flow and reactive transport has featured prominently in US Department of Energy SciDAC and INCITE programmes, where is has been used to simulate migration of radionucleide contaminants in groundwater. As part of its ongoing development, execution performance with up to 128k processor cores on Cray XT and IBM BG/P systems has been investigated, and a variety of aspects have been identified to inhibit PFLOTRAN performance at larger scales using the open-source Scalasca toolset. Scalability of Scalasca measurements and analyses themselves, previously demonstrated with a range of applications and benchmarks, required re-engineering in key areas to handle the complexities of PFLOTRAN executions employing MPI within PETSc, LAPACK, BLAS and HDF5 libraries at large scale.},
+   author = {Brian J N Wylie and Markus Geimer},
+   keywords = {MPI,performance measurement and analysis,scalability},
+   title = {Large-scale performance analysis of PFLOTRAN with Scalasca}
+}
+
+@INPROCEEDINGS{starvz,
+  author={Pinto, Vinícius Garcia and Leandro Nesi, Lucas and Miletto, Marcelo Cogo and Mello Schnorr, Lucas},
+  booktitle={2021 IEEE International Parallel and Distributed Processing Symposium Workshops (IPDPSW)},
+  title={Providing In-depth Performance Analysis for Heterogeneous Task-based Applications with StarVZ},
+  year={2021},
+  volume={},
+  number={},
+  pages={16-25},
+  keywords={Performance evaluation;Visualization;Runtime;Scalability;Tools;Parallel processing;Supercomputers;task-based applications;performance analysis;trace visualization;hybrid platforms;CPU/GPU platforms},
+  doi={10.1109/IPDPSW52791.2021.00013}
+}

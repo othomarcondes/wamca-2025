@@ -1,0 +1,311 @@
+# -*- org-export-babel-evaluate: nil -*-
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+TITLE: LU-factor
+#+AUTHOR: Otho José Sirtoli Marcondes, Lucas Mello Schnorr
+#+EMAIL: ojsmarcondes@inf.ufrgs.br, schnorr@inf.ufrgs.br
+#+DATE: September 5, 2018
+#+STARTUP: overview indent
+#+LANGUAGE: pt-br
+#+OPTIONS: H:3 creator:nil timestamp:nil skip:nil toc:nil num:t ^:nil ~:~
+#+OPTIONS: author:nil title:nil date:nil
+#+TAGS: noexport(n) deprecated(d) ignore(i)
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+
+#+LATEX_CLASS: IEEEtran
+#+LATEX_CLASS_OPTIONS: [conference, 10pt, final]
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{xspace}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage[font=footnotesize]{subfig}
+#+LATEX_HEADER: \newcommand{\prettysmall}{\fontsize{4}{6}\selectfont}
+#+LATEX_HEADER: \newcommand{\pstwo}{\fontsize{8}{8}\selectfont}
+#+LATEX_HEADER: \usepackage{color,colortbl,xcolor}
+#+LATEX_HEADER: \definecolor{dgeqrtC}{HTML}{e41a1c}
+#+LATEX_HEADER: \definecolor{dlarfbC}{HTML}{377eb8}
+#+LATEX_HEADER: \definecolor{dtpqrtC}{HTML}{4daf4a}
+#+LATEX_HEADER: \definecolor{dtpmqrtC}{HTML}{984ea3}
+#+LATEX_HEADER: \newcommand{\dgeqrtcolor}{red}
+#+LATEX_HEADER: \newcommand{\dlarfbcolor}{blue}
+#+LATEX_HEADER: \newcommand{\dtpqrtcolor}{green}
+#+LATEX_HEADER: \newcommand{\dtpmqrtcolor}{purple}
+#+LATEX_HEADER: \lstdefinestyle{customc}{morekeywords={DGEQRT },keywordstyle=\color{dgeqrtC},morekeywords=[2]{DLARFB},keywordstyle=[2]\color{dlarfbC},morekeywords=[3]{DTPQRT},keywordstyle=[3]\color{dtpqrtC},morekeywords=[4]{DTPMQRT},keywordstyle=[4]\color{dtpmqrtC}, numbers=left, breakatwhitespace=false,        breaklines=true,captionpos=b,keepspaces=true,numbersep=5pt,showspaces=false,showstringspaces=false,showtabs=false,tabsize=2}
+#+LATEX_HEADER: \lstset{ basicstyle=\ttfamily\small, breaklines=true, columns=fullflexible,numbers=left,numberstyle=\tiny\color{gray}, xleftmargin=10pt,flexiblecolumns=false}
+
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{caption}
+#+LATEX_HEADER: \usepackage{subcaption}
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usetikzlibrary{automata,arrows,positioning,calc}
+
+#+LATEX_HEADER: \usepackage{subfig}
+
+#+LATEX_HEADER: \newcommand{\subfigureautorefname}{Figure} % allows autoref to find subimages.
+
+* TODOS :noexport:
+- [ ] Abstract
+- [x] Conclusion
+- [ ] Use StarVZ/OpenMP DAG
+- [x] Put the hyperthreading experiment setup
+- [x] Make the code snip better
+- [x] Adds the OpenMP wihtout hyperthreading data
+  - [x] Initial analisys
+- [x] Fix charts
+- [x] Ajustar a introdução conforme o Lucas pediu
+- [x] Adds prio OpenMP
+  - [x] Run the experiments again
+- [x] Redo the StarPU schedulers description
+- [x] Introduction
+  - [x] Representative cases
+  - [x] Shows one case where hyperthreading is better for dense linear algebra
+  - [x] Presents an idea for a priority equation for the tile qr factorization
+* *Paper* :ignore:
+** Latex configurations                                             :ignore:
+
+#+BEGIN_EXPORT latex
+#+END_EXPORT
+
+** Frontpage                                                        :ignore:
+#+BEGIN_EXPORT latex 
+\title{???}
+% Let's keep the next title for the official post-WSPPD publication
+% Visual Performance Analysis of Memory Operations in Heterogeneous Task-Based Applications}
+
+\author{
+\IEEEauthorblockN{Otho José Sirtoli Marcondes\IEEEauthorrefmark{1},
+                  Lucas Mello Schnorr\IEEEauthorrefmark{1}}
+\IEEEauthorblockN{\IEEEauthorrefmark{1} Institute of Informatics/PPGC/UFRGS, Porto Alegre, Brazil}
+}
+#+END_EXPORT
+
+#+LaTeX: \maketitle
+
+\newcommand{\kiter}{K Iteration}
+
+** TODO Abstract :ignore:
+
+#+LaTeX: \begin{abstract}
+#+LaTeX: \end{abstract}
+
+** Introduction
+High-Performance Computing (HPC) systems, particularly computing clusters, are essential for solving large-scale scientific and engineering problems. These clusters consist of multiple interconnected nodes, each with its own processor units and memory. In order to maximize application performance on clusters, it is essential to consider both inter-node communication efficiency and workload balance across the computing nodes.
+
+A crucial aspect of achieving efficient parallel performance is data partitioning, which determines how data is divided and distributed across the computing nodes. Among various strategies, static data partitioning is commonly used due to its simplicity and low runtime overhead. One of the examples of static data distribution is the block-cyclic (BC) distribution, a method that was popularized by the ScaLAPACK \cite{blackford1997scalapack} library.
+
+This paper focuses on a scenario that combines static data partitioning with dynamic task scheduling. By leveraging task-based runtimes, we aim to dynamically schedule tasks at runtime while maintaining a static block layout of data. This approach enables better adaptability to runtime variations, such as load imbalance and communication delays, while preserving the advantages of a static data map.
+
+As a case study, we explore the LU factorization, a fundamental operation in linear algebra widely used in scientific computing. We adopt a block cyclic distribution scheme for the input matrix, a method that balances the computational load and spreads data evenly across processes. Our goal is to evaluate how dynamic scheduling of tasks can improve the performance of LU factorization in clusters.
+
+Throughout the development of this work, several challenges were encountered related to the use of MPI for executing applications across multiple nodes. These included: configuration challenges with Guix for package management across distributed nodes; issues related to the TCP interface in the MPI NewMadeleine implementation; and errors when using StarVZ \cite{pinto2021providing} visualization framework with the traces collected from the executions (still not resolved).
+
+The paper is structured as follows. Section~\ref{sec:related} presents some related work on matrix distribution and modern task-based runtimes. Section~\ref{sec:methodology} details our methodology and explains how we conducted the experiments in our investigation. Section~\ref{sec:results} presents the experiments and their results. Section~\ref{sec:conclusion} concludes this work with some considerations.
+
+
+** Related Work
+:PROPERTIES:
+:CUSTOM_ID: sec:related
+:END:
+** Experimental Methodology
+:PROPERTIES:
+:CUSTOM_ID: sec:methodology
+:END:
+** Results
+:PROPERTIES:
+:CUSTOM_ID: sec:results
+:END:
+** Conclusion
+:PROPERTIES:
+:CUSTOM_ID: sec:conclusion
+:END:
+
+** Acknowledgments :ignore:
+
+#+LATEX:\section*{Acknowledgements}
+
+The experiments in this work used the PCAD infrastructure, http://gppd-hpc.inf.ufrgs.br, at INF/UFRGS.
+
+
+** References                                                        :ignore:
+
+\clearpage
+# See next section to understand how refs.bib file is created.
+#+LATEX: \bibliographystyle{IEEEtran}
+#+LATEX: \bibliography{refs}
+
+* Charts :noexport:
+#+NAME: fig:qr-dag
+#+CAPTION: DAG
+#+BEGIN_SRC R :exports none :results graphics file :file img.pdf
+hist(rnorm(100))
+print("hello")
+#+END_SRC
+
+#+RESULTS: fig:qr-dag
+[[file:img.pdf]]
+
+* Bibtex                                                           :noexport:
+
+Tangle this file with C-c C-v t
+
+#+begin_src bib :tangle refs.bib
+@book{blackford1997scalapack,
+  title={ScaLAPACK users' guide},
+  author={Blackford, L Susan and Choi, Jaeyoung and Cleary, Andy and D'Azevedo, Eduardo and Demmel, James and Dhillon, Inderjit and Dongarra, Jack and Hammarling, Sven and Henry, Greg and Petitet, Antoine and others},
+  year={1997},
+  publisher={SIAM}
+}
+
+@inproceedings{augonnet2009starpu,
+  title={StarPU: a unified platform for task scheduling on heterogeneous multicore architectures},
+  author={Augonnet, C{\'e}dric and Thibault, Samuel and Namyst, Raymond and Wacrenier, Pierre-Andr{\'e}},
+  booktitle={European Conference on Parallel Processing},
+  pages={863--874},
+  year={2009},
+  organization={Springer}
+}
+
+@inproceedings{augonnet2012starpu,
+  title={StarPU-MPI: Task programming over clusters of machines enhanced with accelerators},
+  author={Augonnet, C{\'e}dric and Aumage, Olivier and Furmento, Nathalie and Namyst, Raymond and Thibault, Samuel},
+  booktitle={European MPI Users' Group Meeting},
+  pages={298--299},
+  year={2012},
+  organization={Springer}
+}
+
+@incollection{agullo:inria-00547847,
+  TITLE = {{Faster, Cheaper, Better -- a Hybridization Methodology to Develop Linear Algebra Software for GPUs}},
+  AUTHOR = {Agullo, Emmanuel and Augonnet, C{\'e}dric and Dongarra, Jack and Ltaief, Hatem and Namyst, Raymond and Thibault, Samuel and Tomov, Stanimire},
+  URL = {https://inria.hal.science/inria-00547847},
+  BOOKTITLE = {{GPU Computing Gems}},
+  EDITOR = {Wen-mei W. Hwu},
+  PUBLISHER = {{Morgan Kaufmann}},
+  VOLUME = {2},
+  YEAR = {2010},
+  MONTH = Sep,
+  PDF = {https://inria.hal.science/inria-00547847v1/file/gpucomputinggems_plagma.pdf},
+  HAL_ID = {inria-00547847},
+  HAL_VERSION = {v1},
+}
+
+@book{kennedy2001optimizing,
+  title={Optimizing compilers for modern architectures: a dependence-based approach},
+  author={Kennedy, Ken and Allen, John R},
+  year={2001},
+  publisher={Morgan Kaufmann Publishers Inc.}
+}
+
+@inproceedings{aumage2007new,
+  title={New madeleine: A fast communication scheduling engine for high performance networks},
+  author={Aumage, Olivier and Brunet, Elisabeth and Furmento, Nathalie and Namyst, Raymond},
+  booktitle={2007 IEEE International Parallel and Distributed Processing Symposium},
+  pages={1--8},
+  year={2007},
+  organization={IEEE}
+}
+@inproceedings{gabriel2004open,
+  title={Open MPI: Goals, concept, and design of a next generation MPI implementation},
+  author={Gabriel, Edgar and Fagg, Graham E and Bosilca, George and Angskun, Thara and Dongarra, Jack J and Squyres, Jeffrey M and Sahay, Vishal and Kambadur, Prabhanjan and Barrett, Brian and Lumsdaine, Andrew and others},
+  booktitle={European Parallel Virtual Machine/Message Passing Interface Users’ Group Meeting},
+  pages={97--104},
+  year={2004},
+  organization={Springer}
+}
+
+@inproceedings{nesi2020communication,
+  title={Communication-aware load balancing of the LU factorization over heterogeneous clusters},
+  author={Nesi, Lucas Leandro and Schnorr, Lucas Mello and Legrand, Arnaud},
+  booktitle={2020 IEEE 26th International Conference on Parallel and Distributed Systems (ICPADS)},
+  pages={54--63},
+  year={2020},
+  organization={IEEE}
+}
+
+@article{garcia2018visual,
+  title={A visual performance analysis framework for task-based parallel applications running on hybrid clusters},
+  author={Garcia Pinto, Vin{\'\i}cius and Mello Schnorr, Lucas and Stanisic, Luka and Legrand, Arnaud and Thibault, Samuel and Danjean, Vincent},
+  journal={Concurrency and Computation: Practice and Experience},
+  volume={30},
+  number={18},
+  pages={e4472},
+  year={2018},
+  publisher={Wiley Online Library}
+}
+
+@article{faverge2023programming,
+  title={Programming heterogeneous architectures using hierarchical tasks},
+  author={Faverge, Mathieu and Furmento, Nathalie and Guermouche, Abdou and Lucas, Gwenol{\'e} and Namyst, Raymond and Thibault, Samuel and Wacrenier, Pierre-andr{\'e}},
+  journal={Concurrency and Computation: Practice and Experience},
+  volume={35},
+  number={25},
+  pages={e7811},
+  year={2023},
+  publisher={Wiley Online Library}
+}
+
+@inproceedings{bosilca2011flexible,
+  title={Flexible development of dense linear algebra algorithms on massively parallel architectures with DPLASMA},
+  author={Bosilca, George and Bouteiller, Aurelien and Danalis, Anthony and Faverge, Mathieu and Haidar, Azzam and Herault, Thomas and Kurzak, Jakub and Langou, Julien and Lemarinier, Pierre and Ltaief, Hatem and others},
+  booktitle={2011 IEEE International Symposium on Parallel and Distributed Processing Workshops and Phd Forum},
+  pages={1432--1441},
+  year={2011},
+  organization={IEEE}
+}
+
+@book{anderson1999lapack,
+  title={LAPACK users' guide},
+  author={Anderson, Edward and Bai, Zhaojun and Bischof, Christian and Blackford, L Susan and Demmel, James and Dongarra, Jack and Du Croz, Jeremy and Greenbaum, Anne and Hammarling, Sven and McKenney, Alan and others},
+  year={1999},
+  publisher={SIAM}
+}
+
+@inproceedings{pinto2021providing,
+  title={Providing in-depth performance analysis for heterogeneous task-based applications with starvz},
+  author={Pinto, Vin{\'\i}cius Garcia and Nesi, Lucas Leandro and Miletto, Marcelo Cogo and Schnorr, Lucas Mello},
+  booktitle={2021 IEEE International Parallel and Distributed Processing Symposium Workshops (IPDPSW)},
+  pages={16--25},
+  year={2021},
+  organization={IEEE}
+}
+
+@article{CASANOVA2025103125,
+  title = {{Lowering entry barriers to developing custom simulators of distributed applications and platforms with SimGrid}},
+  journal = {Parallel Computing},
+  volume = {123},
+  pages = {103-125},
+  year = {2025},
+  issn = {0167-8191},
+  doi = {https://doi.org/10.1016/j.parco.2025.103125},
+  author = {Casanova, Henri and Giersch, Arnaud and Legrand, Arnaud and Quinson, Martin and Suter, Fr{\'e}d{\'e}ric},
+  keywords = {Simulation of distributed computing systems, SimGrid},
+  pdf = {https://hal.science/hal-04909441/file/paper.pdf}
+}
+#+end_src
+* Emacs setup                                                      :noexport:
+
+#+BEGIN_SRC elisp
+(setq org-export-global-macros
+      '((section-name . "(eval (car (org-get-outline-path t)))")
+        (subsection-name . "(eval (car (last (org-get-outline-path t))))")))
+#+END_SRC
+
+#+RESULTS:
+: ((section-name . (eval (car (org-get-outline-path t)))) (subsection-name . (eval (car (last (org-get-outline-path t))))))
+
+
+# Local Variables:
+# eval: (add-to-list 'load-path ".")
+# eval: (require 'ox-extra)
+# eval: (require 'org-inlinetask)
+# eval: (ox-extras-activate '(ignore-headlines))
+# eval: (setq ispell-local-dictionary "american")
+# eval: (eval (flyspell-mode t))
+# eval: (add-to-list 'org-latex-classes '("IEEEtran"
+# "\\documentclass{IEEEtran}" ("\\section{%s}" . "\\section*{%s}")
+# ("\\subsection{%s}" . "\\subsection*{%s}") ("\\subsubsection{%s}"
+# . "\\subsubsection*{%s}") ("\\paragraph{%s}" . "\\paragraph*{%s}")  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+# End:
+
+
