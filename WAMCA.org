@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 # -*- mode: org -*-
 #+TITLE: LU-factor
-#+AUTHOR: Otho José Sirtoli Marcondes, Lucas Mello Schnorr
-#+EMAIL: ojsmarcondes@inf.ufrgs.br, schnorr@inf.ufrgs.br
 #+DATE: September 5, 2018
+#+AUTHOR: Otho José Sirtoli Marcondes, Philippe O. A. Navaux, Lucas Mello Schnorr
+#+EMAIL: ojsmarcondes@inf.ufrgs.br, navaux@inf.ufrgs.br, schnorr@inf.ufrgs.br
 #+STARTUP: overview indent
 #+LANGUAGE: pt-br
 #+OPTIONS: H:3 creator:nil timestamp:nil skip:nil toc:nil num:t ^:nil ~:~
