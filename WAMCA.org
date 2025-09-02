@@ -198,8 +198,13 @@ The study examines the impact of data distribution using Block cyclic and also t
 
 #+LATEX:\section*{Acknowledgements}
 
-The experiments in this work used the PCAD infrastructure, http://gppd-hpc.inf.ufrgs.br, at INF/UFRGS.
-
+The experiments in this work used the PCAD infrastructure,
+http://gppd-hpc.inf.ufrgs.br, at INF/UFRGS.  We also acknowledge the
+Brazilian National Council for Scientific Technological Development
+(CNPq) for their financial scholarship support. This study was
+financed in part by the Coordenação de Aperfeiçoamento de Pessoal de
+Nível Superior - Brasil (CAPES) - Finance Code 001, the FAPERGS
+(16/354-8, 16/348-8), and Petrobras (2020/00182-5).
 
 ** References                                                        :ignore:
 
