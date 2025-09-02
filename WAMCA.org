@@ -53,6 +53,7 @@
 
 \author{
 \IEEEauthorblockN{Otho José Sirtoli Marcondes\IEEEauthorrefmark{1},
+                  Philippe O. A. Navaux\IEEEauthorrefmark{1},
                   Lucas Mello Schnorr\IEEEauthorrefmark{1}}
 \IEEEauthorblockN{\IEEEauthorrefmark{1} Institute of Informatics/PPGC/UFRGS, Porto Alegre, Brazil}
 }
