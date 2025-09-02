@@ -213,17 +213,6 @@ Nível Superior - Brasil (CAPES) - Finance Code 001, the FAPERGS
 #+LATEX: \bibliographystyle{IEEEtran}
 #+LATEX: \bibliography{refs}
 
-* Charts :noexport:
-#+NAME: fig:qr-dag
-#+CAPTION: DAG
-#+BEGIN_SRC R :exports none :results graphics file :file img.pdf
-hist(rnorm(100))
-print("hello")
-#+END_SRC
-
-#+RESULTS: fig:qr-dag
-[[file:img.pdf]]
-
 * Bibtex                                                           :noexport:
 
 Tangle this file with C-c C-v t
