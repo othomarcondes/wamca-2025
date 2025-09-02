@@ -378,6 +378,8 @@ Tangle this file with C-c C-v t
 # eval: (add-to-list 'load-path ".")
 # eval: (require 'ox-extra)
 # eval: (require 'org-inlinetask)
+# eval: (require 'org-ref)
+# eval: (require 'doi-utils)
 # eval: (ox-extras-activate '(ignore-headlines))
 # eval: (setq ispell-local-dictionary "american")
 # eval: (eval (flyspell-mode t))
