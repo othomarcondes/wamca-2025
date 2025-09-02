@@ -16,35 +16,8 @@
 #+LATEX_CLASS: IEEEtran
 #+LATEX_CLASS_OPTIONS: [conference, 10pt, final]
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
-#+LATEX_HEADER: \usepackage{breakurl}
-#+LATEX_HEADER: \usepackage{xspace}
-#+LATEX_HEADER: \usepackage{listings}
-#+LATEX_HEADER: \usepackage[font=footnotesize]{subfig}
-#+LATEX_HEADER: \newcommand{\prettysmall}{\fontsize{4}{6}\selectfont}
-#+LATEX_HEADER: \newcommand{\pstwo}{\fontsize{8}{8}\selectfont}
-#+LATEX_HEADER: \usepackage{color,colortbl,xcolor}
-#+LATEX_HEADER: \definecolor{dgeqrtC}{HTML}{e41a1c}
-#+LATEX_HEADER: \definecolor{dlarfbC}{HTML}{377eb8}
-#+LATEX_HEADER: \definecolor{dtpqrtC}{HTML}{4daf4a}
-#+LATEX_HEADER: \definecolor{dtpmqrtC}{HTML}{984ea3}
-#+LATEX_HEADER: \newcommand{\dgeqrtcolor}{red}
-#+LATEX_HEADER: \newcommand{\dlarfbcolor}{blue}
-#+LATEX_HEADER: \newcommand{\dtpqrtcolor}{green}
-#+LATEX_HEADER: \newcommand{\dtpmqrtcolor}{purple}
-#+LATEX_HEADER: \lstdefinestyle{customc}{morekeywords={DGEQRT },keywordstyle=\color{dgeqrtC},morekeywords=[2]{DLARFB},keywordstyle=[2]\color{dlarfbC},morekeywords=[3]{DTPQRT},keywordstyle=[3]\color{dtpqrtC},morekeywords=[4]{DTPMQRT},keywordstyle=[4]\color{dtpmqrtC}, numbers=left, breakatwhitespace=false,        breaklines=true,captionpos=b,keepspaces=true,numbersep=5pt,showspaces=false,showstringspaces=false,showtabs=false,tabsize=2}
-#+LATEX_HEADER: \lstset{ basicstyle=\ttfamily\small, breaklines=true, columns=fullflexible,numbers=left,numberstyle=\tiny\color{gray}, xleftmargin=10pt,flexiblecolumns=false}
 
-#+LATEX_HEADER: \usepackage{graphicx}
-#+LATEX_HEADER: \usepackage{caption}
-#+LATEX_HEADER: \usepackage{subcaption}
-#+LATEX_HEADER: \usepackage{tikz}
-#+LATEX_HEADER: \usetikzlibrary{automata,arrows,positioning,calc}
-
-#+LATEX_HEADER: \usepackage{subfig}
-
-#+LATEX_HEADER: \newcommand{\subfigureautorefname}{Figure} % allows autoref to find subimages.
-
-* *Paper* :ignore:
+* *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
 \title{Impact of Data Distribution and Schedulers for the LU Factorization on Multi-Core Clusters}
@@ -59,7 +32,7 @@
 
 #+LaTeX: \maketitle
 
-** TODO Abstract :ignore:
+** TODO Abstract                                                    :ignore:
 
 #+LaTeX: \begin{abstract}
 As the demand for more computational resources grows, the usage of clusters has become one of the main options to satisfy this need. In order to exploit these resources efficiently, the distribution of data between nodes must be considered as an important factor in application performance. This study aims to analyze the impact of the static block-cyclic data distribution and different dynamic schedulers of the linear algebra LU factorization on clusters. The analysis focuses on the execution time to explain how the application's behavior is influenced by the data distribution and scheduling strategy.
@@ -80,9 +53,7 @@ Throughout the development of this work, several challenges were encountered rel
 The paper is structured as follows. Section~\ref{sec:related} presents some related work on matrix distribution and modern task-based runtimes. Section~\ref{sec:methodology} details our methodology and explains how we conducted the experiments in our investigation. Section~\ref{sec:results} presents the experiments and their results. Section~\ref{sec:conclusion} concludes this work with some considerations.
 
 ** Related Work
-:PROPERTIES:
-:CUSTOM_ID: sec:related
-:END:
+<<sec:related>>
 *** Matrix distribution
 ScaLAPACK \cite{blackford1997scalapack} is the message passing version of LAPACK \cite{anderson1999lapack}, and also the standard library for linear algebra operations over parallel distributed platforms. In this paper, the LU factorization will be the focus, as its parallelization strategy is similar to others.
 
@@ -120,12 +91,10 @@ As the computers used in HPC environments became more complex, adapting and expl
 
 \end{itemize}
 ** TODO Experimental Methodology
-:PROPERTIES:
-:CUSTOM_ID: sec:methodology
-:END:
 To enable execution on multiple nodes, we employed StarPU \cite{augonnet2009starpu}, which provides a variety of scheduling policies and built-in support for application tracing.
 
 StarPU is a task-based runtime system for heterogeneous platforms, being multicore or multinode. The StarPU uses the Sequential Task-Flow (STF) \cite{kennedy2001optimizing}, where the tasks are sequentially submitted to the runtime that is responsible for their scheduling. Each task can have one implementation for a respective computational resource (CPU, GPU) called worker, and the scheduler must assign a task to one of the available workers during the program execution. To enable multi-node execution, the StarPU-MPI extension was used \cite{augonnet2012starpu}.
+<<sec:methodology>>
 
 # NEEDS TO BE REDONE (64 HAD TOO MUCH IDLE TIME WITH TRACES)
 We utilized Chameleon \cite{agullo:inria-00547847} implementation of the LU factorization, with a matrix size of 16000x16000 block size for all experiments. This value was taken from a preliminary execution only varying the block size as shown in Figure~\ref{fig:timeBlocks}, that depicts different blocks dimensions and their respective execution times. It is possible to observe that the 360 block size had the best performance among the other values.
@@ -144,17 +113,14 @@ We utilized Chameleon \cite{agullo:inria-00547847} implementation of the LU fact
 \label{fig:block-size}
 \end{figure}
 
-
 # IMAGE OF BLOCK SIZE
 
 The executions were performed in the PCAD from UFRGS using the \verb|Cei| partition. \verb|Cei| comprises six nodes, each one with two Intel Xeon Silver 4116 (24 cores/CPU). We used the 1.4.7 StarPU and 1.3.0 Chameleon version. We also used NewMadeleine \cite{aumage2007new} MPI implementation as OpenMPI \cite{gabriel2004open} presented significant idle times during the executions. The NewMadeleine version used was from commit \verb|6e1a64d0| from June 2025, which resolved a TCP interface issue that we reported. For the execution time evaluation, each execution was run 10 times and the standard deviation was lower than 5\%.
 
 ** TODO Results
-:PROPERTIES:
-:CUSTOM_ID: sec:results
-:END:
 Figure~\ref{fig:timePQ} depicts four panels, aligned in the X dimension (time), each showing the execution time of a different scheduler (\verb|random|, \verb|lws|, \verb|dmdas|, \verb|dmda|) with a fixed PxQ configuration. The standard deviation is represented by the black error bars on each bar. We can see that the \verb|lws| and \verb|random| schedulers did not present much variation when changing the PxQ configuration. As for the \verb|dmdas| and \verb|dmda|, both of them showed significantly better performance when utilizing the $P=2$ $Q=3$ and $P=3$ $Q=2$ configurations.
 
+<<sec:results>>
 
 # NEEDS TO BE REDONE (DONE WITH THE 64 BLOCK SIZE)
 \begin{figure}[ht]
@@ -173,6 +139,7 @@ Figure~\ref{fig:timeSched} depicts four panels, aligned in the X dimension (time
 \label{fig:timeSched}
 \end{figure}
 
+** More                                                           :noexport:
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{719424.pdf}
@@ -188,16 +155,14 @@ Figure~\ref{fig:timeSched} depicts four panels, aligned in the X dimension (time
 \end{figure}
 
 ** TODO Conclusion
-:PROPERTIES:
-:CUSTOM_ID: sec:conclusion
-:END:
 The study examines the impact of data distribution using Block cyclic and also the impact of different scheduler heuristics in the context of task-based runtime in clusters. The linear algebra LU factorization application provided by Chameleon was used as a means to analyze how these configurations impact performance. The \verb|dmda| and \verb|dmdas| heuristics presented similar behavior in their execution times, showing performance gains when the P and Q were interleaved. The \verb|lws| heuristic presented the best results in terms of performance, although the P and Q parameters did not have significant impact in it. The \verb|random| heuristic also showed no significant impact on its performance based on the P and Q parameters.
 
 # The various issues encountered during the development of this work caused the executions utilizing NewMadeleine implementation of MPI were only conducted toward the end of the available time. Also, to build a stronger argument about why a given scheduler or distribution outperformed the others, the use of execution traces would be necessary. These traces would make possible to visualize the behavior of the application during its execution. As previously mentioned, there are still ongoing problems in the utilization of the FxT traces with the StarVZ framework. The next steps would consist of: resolve the issues preventing StarVZ usage and use SimGrid \cite{CASANOVA2025103125} to run simulations and scale the number of nodes.
-** Acknowledgments :ignore:
+<<sec:conclusion>>
 
-#+LATEX:\section*{Acknowledgements}
-
+#+latex: \noindent
+*Acknowledgements*.
+#+latex: %
 The experiments in this work used the PCAD infrastructure,
 http://gppd-hpc.inf.ufrgs.br, at INF/UFRGS.  We also acknowledge the
 Brazilian National Council for Scientific Technological Development
@@ -206,10 +171,8 @@ financed in part by the Coordenação de Aperfeiçoamento de Pessoal de
 Nível Superior - Brasil (CAPES) - Finance Code 001, the FAPERGS
 (16/354-8, 16/348-8), and Petrobras (2020/00182-5).
 
-** References                                                        :ignore:
+** References                                                       :ignore:
 
-\clearpage
-# See next section to understand how refs.bib file is created.
 #+LATEX: \bibliographystyle{IEEEtran}
 #+LATEX: \bibliography{refs}
 
