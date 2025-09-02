@@ -1,7 +1,6 @@
 # -*- org-export-babel-evaluate: nil -*-
 # -*- coding: utf-8 -*-
 # -*- mode: org -*-
-#+TITLE: LU-factor
 #+AUTHOR: Otho José Sirtoli Marcondes, Philippe O. A. Navaux, Lucas Mello Schnorr
 #+EMAIL: ojsmarcondes@inf.ufrgs.br, navaux@inf.ufrgs.br, schnorr@inf.ufrgs.br
 #+DATE: September 2025
