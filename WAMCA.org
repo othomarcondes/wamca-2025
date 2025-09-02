@@ -44,23 +44,6 @@
 
 #+LATEX_HEADER: \newcommand{\subfigureautorefname}{Figure} % allows autoref to find subimages.
 
-* TODOS :noexport:
-- [ ] Abstract
-- [x] Conclusion
-- [ ] Use StarVZ/OpenMP DAG
-- [x] Put the hyperthreading experiment setup
-- [x] Make the code snip better
-- [x] Adds the OpenMP wihtout hyperthreading data
-  - [x] Initial analisys
-- [x] Fix charts
-- [x] Ajustar a introdução conforme o Lucas pediu
-- [x] Adds prio OpenMP
-  - [x] Run the experiments again
-- [x] Redo the StarPU schedulers description
-- [x] Introduction
-  - [x] Representative cases
-  - [x] Shows one case where hyperthreading is better for dense linear algebra
-  - [x] Presents an idea for a priority equation for the tile qr factorization
 * *Paper* :ignore:
 ** Latex configurations                                             :ignore:
 
