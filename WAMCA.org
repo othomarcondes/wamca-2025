@@ -45,11 +45,6 @@
 #+LATEX_HEADER: \newcommand{\subfigureautorefname}{Figure} % allows autoref to find subimages.
 
 * *Paper* :ignore:
-** Latex configurations                                             :ignore:
-
-#+BEGIN_EXPORT latex
-#+END_EXPORT
-
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
 \title{Impact of Data Distribution and Schedulers for LU Factorization on Clusters}
