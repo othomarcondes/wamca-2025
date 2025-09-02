@@ -47,9 +47,9 @@
 * *Paper* :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
-\title{Impact of Data Distribution and Schedulers for LU Factorization on Clusters}
 % Let's keep the next title for the official post-WSPPD publication
 % Visual Performance Analysis of Memory Operations in Heterogeneous Task-Based Applications}
+\title{Impact of Data Distribution and Schedulers for the LU Factorization on Multi-Core Clusters}
 
 \author{
 \IEEEauthorblockN{Otho José Sirtoli Marcondes\IEEEauthorrefmark{1},
