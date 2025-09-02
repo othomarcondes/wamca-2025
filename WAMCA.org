@@ -229,6 +229,17 @@ print("hello")
 Tangle this file with C-c C-v t
 
 #+begin_src bib :tangle refs.bib
+@article{dongarra2024co,
+  title={The co-evolution of computational physics and high-performance computing},
+  author={Dongarra, Jack and Keyes, David},
+  journal={Nature Reviews Physics},
+  volume={6},
+  number={10},
+  pages={621--627},
+  year={2024},
+  publisher={Nature Publishing Group UK London}
+}
+
 @book{blackford1997scalapack,
   title={ScaLAPACK users' guide},
   author={Blackford, L Susan and Choi, Jaeyoung and Cleary, Andy and D'Azevedo, Eduardo and Demmel, James and Dhillon, Inderjit and Dongarra, Jack and Hammarling, Sven and Henry, Greg and Petitet, Antoine and others},
