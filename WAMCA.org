@@ -65,8 +65,6 @@
 
 #+LaTeX: \maketitle
 
-\newcommand{\kiter}{K Iteration}
-
 ** TODO Abstract :ignore:
 
 #+LaTeX: \begin{abstract}
