@@ -66,7 +66,7 @@ As the demand for more computational resources grows, the usage of clusters has 
 
 \end{abstract}
 \section{Introduction}
-\label{sec:orgf1ade28}
+\label{sec:org70a3955}
 High-Performance Computing (HPC) systems, particularly computing clusters, are essential for solving large-scale scientific and engineering problems. These clusters consist of multiple interconnected nodes, each with its own processor units and memory. In order to maximize application performance on clusters, it is essential to consider both inter-node communication efficiency and workload balance across the computing nodes.
 
 A crucial aspect of achieving efficient parallel performance is data partitioning, which determines how data is divided and distributed across the computing nodes. Among various strategies, static data partitioning is commonly used due to its simplicity and low runtime overhead. One of the examples of static data distribution is the block-cyclic (BC) distribution, a method that was popularized by the ScaLAPACK \cite{blackford1997scalapack} library.
@@ -81,7 +81,7 @@ The paper is structured as follows. Section\textasciitilde{}\ref{sec:related} pr
 \section{Related Work}
 \label{sec:related}
 \subsection{Matrix distribution}
-\label{sec:org83081f3}
+\label{sec:org82d7908}
 ScaLAPACK \cite{blackford1997scalapack} is the message passing version of LAPACK \cite{anderson1999lapack}, and also the standard library for linear algebra operations over parallel distributed platforms. In this paper, the LU factorization will be the focus, as its parallelization strategy is similar to others.
 
 As shown in the Figure\textasciitilde{}\ref{fig:LU-factor}, the LU factorization of a given matrix \(A\) is defined as \(A=LU\), where \(L\) is a lower triangular matrix and \(U\) is an upper triangular matrix. The LU algorithm relies on three different LAPACK kernels: \verb|DGTRF-NOPIV|, \verb|DTRSM| and \verb|DGEMM|. This application has a tendency to be dominated by \verb|DGEMM| kernels when \(N\) is large, which makes it mandatory to have well distributed sub-matrixes between the nodes.
@@ -102,7 +102,7 @@ The block cyclic distribution, popularized by the ScaLAPACK \cite{blackford1997s
 \label{fig:BC}
 \end{figure}
 \subsection{Task-based paradigm}
-\label{sec:org8f285cd}
+\label{sec:orgd5bb6cb}
 
 As the computers used in HPC environments became more complex, adapting and exploiting them to their full potential has become increasingly challenging. The task-based paradigm was designed to solve these new challenges. It relies on a DAG (Directed Acyclic Graph) to represent the relation between tasks and their dependencies (edges). The scheduler then can dynamically allocate these tasks during execution time, according to the dependencies of the graph and the scheduler heuristic \cite{faverge2023programming}. Chameleon \cite{agullo:inria-00547847}, as other linear algebra libraries such as DPLASMA \cite{bosilca2011flexible} are built on task-based runtimes, which allows them to efficiently exploit their computational resources of clusters. The scheduler heuristics studied in this work are the following:
 
@@ -122,16 +122,22 @@ To enable execution on multiple nodes, we employed StarPU \cite{augonnet2009star
 
 StarPU is a task-based runtime system for heterogeneous platforms, being multicore or multinode. The StarPU uses the Sequential Task-Flow (STF) \cite{kennedy2001optimizing}, where the tasks are sequentially submitted to the runtime that is responsible for their scheduling. Each task can have one implementation for a respective computational resource (CPU, GPU) called worker, and the scheduler must assign a task to one of the available workers during the program execution. To enable multi-node execution, the StarPU-MPI extension was used \cite{augonnet2012starpu}.
 
-We utilized Chameleon \cite{agullo:inria-00547847} implementation of the LU factorization, with 64x64 block size for all experiments. This value was taken from a preliminary execution only varying the block size as shown in Figure\textasciitilde{}\ref{fig:timeBlocks}, that depicts different blocks dimensions and their respective execution times. It is possible to observe that the 64x64 block size had the best performance among the other values.
+We utilized Chameleon \cite{agullo:inria-00547847} implementation of the LU factorization, with 360x360 block size for all experiments. This value was taken from a preliminary execution only varying the block size as shown in Figure\textasciitilde{}\ref{fig:timeBlocks}, that depicts different blocks dimensions and their respective execution times. It is possible to observe that the 360 block size had the best performance among the other values.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.5\textwidth]{boxplot_tempo_por_nb.png}
+\includegraphics[width=0.5\textwidth]{block-def.pdf}
 \caption{Execution times per block dimension}
 \label{fig:timeBlocks}
 \end{figure}
 
-\% IMAGE OF BLOCK SIZE
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{block-size.pdf}
+\caption{Execution times per block dimension}
+\label{fig:block-size}
+\end{figure}
+
 
 The executions were performed in the PCAD from UFRGS using the \verb|Cei| partition. \verb|Cei| comprises six nodes, each one with two Intel Xeon Silver 4116 (24 cores/CPU). We used the 1.4.7 StarPU and 1.3.0 Chameleon version. We also used NewMadeleine \cite{aumage2007new} MPI implementation as OpenMPI \cite{gabriel2004open} presented significant idle times during the executions. The NewMadeleine version used was from commit \verb|6e1a64d0| from June 2025, which resolved a TCP interface issue that we reported. For the execution time evaluation, each execution was run 10 times and the standard deviation was lower than 5$\backslash$%.
 \section{{\bfseries\sffamily TODO} Results}
@@ -152,6 +158,13 @@ Figure\textasciitilde{}\ref{fig:timeSched} depicts four panels, aligned in the X
 \includegraphics[width=0.5\textwidth]{tempo_medio_com_desvio_padrao_por_scheduler.png}
 \caption{Execution times based on the scheduler heuristic}
 \label{fig:timeSched}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{719424.pdf}
+\caption{Trace of an execution of LU-Factor at cei machine}
+\label{fig:trace}
 \end{figure}
 \section{{\bfseries\sffamily TODO} Conclusion}
 \label{sec:conclusion}
