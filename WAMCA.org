@@ -199,89 +199,160 @@ As the demand for more computational resources grows, the usage of clusters has 
     cite:pinto2021providing visualization framework with the traces
     collected from the executions (still not resolved).
 
-** Introduction                                                   :noexport:
+** Introduction
 
-The computational demands of modern scientific and engineering
-applications continue to grow exponentially, driving the need for
-increasingly efficient parallel algorithms on High-Performance
-Computing (HPC) systems cite:dongarra2017. These HPC systems plays a
-major role in all research and engineering fields today, from the
-execution of simulations of large-scale scientific problems to train
-Large Language Models (LLMs) for general AI utilization. These systems
-consists mainly by computing clusters equipped with multi-core nodes
-interconnected by a fast network.
+High-Performance Computing (HPC) is the backbone for groundbreaking
+research and innovation across numerous scientific and engineering
+disciplines cite:dongarra2017. From computation physics
+cite:dongarra2024co, climate modeling and weather prediction to drug
+discovery and artificial intelligence, HPC systems enable researchers
+to tackle computationally intensive problems that would be impossible
+to solve through other ways. The most prevalent architecture in the
+HPC domain consists of clusters of nodes, each one equipped with
+multi-core processors and accelerators. Together, hundreds or
+thousands of interconnected computing nodes work in concert to deliver
+unprecedented computational power and memory capacity for large-scale
+scientific applications and large language models training.  Dense
+linear algebra operations are typical workloads for such large-scale
+clusters, with the LU factorization of large systems of linear
+equations cite:lu2023 playing a particularly crucial role across
+diverse fields.
 
-Dense linear algebra operations form the computational backbone of
-numerous scientific domains, from climate modeling and computational
-fluid dynamics to quantum chemistry and machine learning. Among these
-operations, the LU factorization stands as a fundamental building
-block, appearing in the solution of linear systems, matrix inversion,
-and determinant computation across countless scientific applications
-cite:lu2023.
+Achieving optimal load balance among the nodes of a cluster becomes a
+critical challenge that directly impacts overall performance of the LU
+factorization. The computational workload can be distributed using
+three primary approaches, each with distinct advantages and
+disadvantages. Static partitioning pre-determines the data
+distribution before execution, offering predictable communication
+patterns and excellent data locality, but suffers from inability to
+adapt to runtime variations and potential load imbalances as the
+computation progresses. Dynamic partitioning makes distribution
+decisions at runtime based on current system conditions, providing
+excellent adaptability and load balancing capabilities, but incurs
+significant overhead from frequent communication and scheduling
+decisions. Hybrid approaches attempt to combine the benefits of both
+methods by using static distribution for data placement while
+employing dynamic scheduling for task execution, potentially achieving
+both predictable communication patterns and runtime adaptability,
+though at the cost of increased implementation complexity.
 
-High-Performance Computing (HPC) systems
+The block-cyclic static partitioning scheme implemented in the
+ScaLAPACK library cite:blackford1997scalapack has established itself
+as the de facto standard method for dense linear algebra computations
+in HPC. This approach has gained widespread adoption and recognition
+through its use in prestigious benchmarks such as the High Performance
+LINPACK (HPL) benchmark cite:dongarra1979linpack, which serves as the
+basis for ranking supercomputers in the TOP500 list cite:top500. The
+robustness, predictability, and extensive optimization of the
+block-cyclic distribution have made it a good solution for scientific
+computing applications, despite its inherent limitations in adapting
+to modern heterogeneous and dynamic computing environments.
 
+The block-cyclic distribution operates by organizing processors in a
+two-dimensional grid and cyclically distributing matrix blocks across
+this processor grid to achieve balanced workload distribution. Figure
+[[fig:bc-new]] demonstrates a concrete example with six computing nodes to
+data partitioning a 16\times16 matrix. There are four different
+partitioning strategies (1\times6, 2\times3, 3\times2, and 6\times1) represented by the
+facets while the colors represent the six different nodes. The four
+strategies represent different communication boundaries trade-offs as
+communication operations occur between nearby processors in the grid
+according the tiled LU factorization. A significant limitation emerges
+when the number of available nodes is a prime number, as it becomes
+impossible to create an optimal rectangular processor grid that fully
+utilizes all machines while minimizing communication overhead. For
+instance, with six nodes, the choice between a 2×3 or 3×2 processor
+grid represents a compromise, as neither configuration perfectly
+balances computation and communication requirements. For this example,
+one would employ only four nodes if solely synchronization costs would
+be taken into account.
 
+#+name: fig:bc-new
+#+caption: Considering a 16\times16 matrix (the X and Y-axis), the four different block-cyclic distributions (facets) with six nodes (colors).
+#+attr_latex: :width \linewidth
+[[./img/BC.pdf]]
 
+Alternative approaches to block-cyclic distribution, such as the 1D-1D
+cite:beaumont2001static cite:nesi2020communication distribution
+method, offer sophisticated solutions that are less sensitive to the
+total number of processors and can potentially achieve better
+communication patterns for certain problem configurations. Despite
+these theoretical advantages and their mathematical elegance in
+handling arbitrary processor counts, these methods face significant
+practical barriers in typical MPI+X programming environments. The
+primary obstacle lies in their implementation complexity, as they
+require programmers to explicitly manage intricate communication
+patterns, memory layouts, and synchronization protocols that are
+automatically handled in block-cyclic schemes. This implementation
+burden, combined with the lack of mature software libraries supporting
+these alternative distributions, has limited their adoption in
+production scientific computing environments where development time
+and code reliability are paramount concerns.
 
-To maximize application performance
-on these types of systems, it is essential to consider both inter-node
-communication efficiency and workload balance across the computing
-nodes.
+With the ever-increasing scale of modern HPC clusters, now composed of
+thousands or even hundreds of thousands of computing nodes, static
+partitioning approaches have revealed fundamental limitations that
+significantly impact performance and scalability. The primary issue
+stems from their inability to adapt to the numerous runtime variations
+that characterize large-scale distributed computing environments,
+including heterogeneous node performance due to manufacturing
+variations and thermal throttling, dynamic network congestion caused
+by competing applications and system services, and varying
+computational loads that emerge during the factorization process as
+different parts of the algorithm exhibit different computational
+complexities. These dynamic factors can lead to severe load imbalances
+that static partitioning cannot address, resulting in idle processors
+and suboptimal resource utilization that becomes increasingly
+pronounced as cluster sizes grow.
 
+In response to these challenges, hybrid data partitioning strategies
+have emerged as a modern solution that attempts to capture the
+benefits of both static and dynamic approaches while mitigating their
+respective drawbacks. This methodology combines static partitioning
+among the nodes of the cluster, typically implemented through manual
+programmer decisions, with dynamic intra-node scheduling that employs
+automatic runtime heuristics to manage tasks assigned to individual
+CPU cores or GPU accelerators. This dual-level approach has been
+pioneered and popularized by advanced runtime systems such as
+StarPU-MPI cite:augonnet2012starpu, which demonstrated the feasibility
+of combining MPI-based inter-node communication with dynamic task
+scheduling. Subsequently, this concept has been refined and extended
+by other prominent solutions including PaRSEC cite:bosilca2013parsec,
+Specx cite:cardosi2025specx, TaskTorrent cite:cambier2020tasktorrent,
+and CHAMELEON cite:klinkenberg2020chameleon.
 
-To maximize application performance on clusters, it
-is essential to consider both inter-node communication efficiency and
-workload balance across the computing nodes.
-
-** Introduction                                                   :noexport:
-
-High-Performance Computing (HPC) systems, particularly computing
-clusters, are essential for solving large-scale scientific and
-engineering problems. These clusters consist of multiple
-interconnected nodes, each with its own processor units and memory. In
-order 
-
-A crucial aspect of achieving efficient parallel performance is data
-partitioning, which determines how data is divided and distributed
-across the computing nodes. Among various strategies, static data
-partitioning is commonly used due to its simplicity and low runtime
-overhead. One of the examples of static data distribution is the
-block-cyclic (BC) distribution, a method that was popularized by the
-ScaLAPACK cite:blackford1997scalapack library.
-
-This paper focuses on a scenario that combines static data
-partitioning with dynamic task scheduling. By leveraging task-based
-runtimes, we aim to dynamically schedule tasks at runtime while
-maintaining a static block layout of data. This approach enables
-better adaptability to runtime variations, such as load imbalance and
-communication delays, while preserving the advantages of a static data
-map.
-
-As a case study, we explore the LU factorization, a fundamental
-operation in linear algebra widely used in scientific computing. We
-adopt a block cyclic distribution scheme for the input matrix, a
-method that balances the computational load and spreads data evenly
-across processes. Our goal is to evaluate how dynamic scheduling of
-tasks can improve the performance of LU factorization in clusters.
-
-Throughout the development of this work, several challenges were
-encountered related to the use of MPI for executing applications
-across multiple nodes. These included: configuration challenges with
-Guix for package management across distributed nodes; issues related
-to the TCP interface in the MPI NewMadeleine implementation; and
-errors when using StarVZ cite:pinto2021providing visualization
-framework with the traces collected from the executions (still not
-resolved).
+In this paper, we investigate the trade-offs of different data
+partitioning strategies, such as the ones of Figure [[fig:bc-new]], in a
+small-scale cluster composed of 144 cores -- six nodes of 2\times12 cores
+each. We are interested particularly in the combination of 1/ the
+communication cost imposed by different MPI middlewares (OpenMPI
+cite:gabriel2004open and MadMPI cite:denis2019scalability), and 2/ the
+different intra-node task scheduling heuristics, specifically on how
+together these factors influence the overall execution time of the
+application.  As a realistic case study, we explore the tiled LU
+factorization as implemented by the dense linear algebra library
+Chameleon cite:chameleon and the traditional block cyclic distribution
+scheme for the input matrix. We carry out experiments using
+StarPU-MPI, a runtime that possesses many scheduling heuristics for
+intra-node resources. The contributions of this article include *(a)* a
+preliminary investigation of the best tile size for our target
+architecture; *(b)* an overview comparison correlating data partitioning
+strategies and scheduling heuristics; *(c)* a detailed analysis with the
+StarVZ cite:pinto2021providing visualization framework using gathered
+traces from representative executions; and *(d)* a methodological
+strategy that includes reproducible tools such as Guix, and
+contributions for the MPI NewMadeleine implementation.
 
 The paper is structured as follows. Section [[sec:related]] presents some
-related work on matrix distribution and modern task-based
-runtimes. Section [[sec:methodology]] details our methodology and explains
-how we conducted the experiments in our investigation. Section
-[[sec:results]] presents the experiments and their results. Section
-[[sec:conclusion]] concludes this work with some considerations.
+basic concepts on matrix distribution, modern task-based runtimes and
+related work. Section [[sec:methodology]] details our methodology and
+explains how we conducted the experiments in our
+investigation. Section [[sec:results]] presents experimental results and
+their interpretation, focusing on the performance overview and
+comparison of different MPI layers. Section [[sec:conclusion]] concludes
+this work with some considerations and future work.
 
-** Related Work
+** Basic Concepts and Related Work
 <<sec:related>>
 *** Matrix distribution
 
@@ -472,6 +543,16 @@ Nível Superior - Brasil (CAPES) - Finance Code 001, the FAPERGS
 Tangle this file with C-c C-v t
 
 #+begin_src bib :tangle refs.bib
+@inproceedings{denis2019scalability,
+  title={Scalability of the NewMadeleine communication library for large numbers of MPI point-to-point requests},
+  author={Denis, Alexandre},
+  booktitle={2019 19th IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing (CCGRID)},
+  pages={371--380},
+  year={2019},
+  organization={IEEE}
+}
+
+
 @article{dongarra2024co,
   title={The co-evolution of computational physics and high-performance computing},
   author={Dongarra, Jack and Keyes, David},
