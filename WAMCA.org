@@ -647,39 +647,37 @@ adapting and exploiting them to their full potential has become
 increasingly challenging. The task-based paradigm was designed to
 solve these new challenges. It relies on a DAG (Directed Acyclic
 Graph) to represent the relation between tasks and their dependencies
-(edges). The scheduler then can dynamically allocate these tasks
-during execution time, according to the dependencies of the graph and
-the scheduler heuristic cite:faverge2023programming.
+(edges). The runtime scheduler can dynamically allocate these tasks in
+execution time, according to the dependencies of the graph and the
+scheduler heuristic cite:faverge2023programming.
 
-StarPU is a task-based runtime system for heterogeneous platforms,
-being multicore or multinode. The StarPU uses the Sequential Task-Flow
-(STF) cite:kennedy2001optimizing, where the tasks are sequentially
-submitted to the runtime that is responsible for their
-scheduling. Each task can have one implementation for a respective
-computational resource (CPU, GPU) called worker, and the scheduler
-must assign a task to one of the available workers during the program
-execution. To enable multi-node execution, the StarPU-MPI extension
-was used cite:augonnet2012starpu.
+StarPU cite:augonnet2009starpu is a task-based runtime system for
+heterogeneous platforms, being multicore or multinode. The StarPU uses
+the Sequential Task-Flow (STF) cite:kennedy2001optimizing, where the
+tasks are sequentially submitted to the runtime that is responsible
+for their scheduling. Each task can have one or more implementations
+for each type of computational resources (CPU, GPU), so that the
+scheduler assigns to them a task as soon it becomes ready for the
+execution when all its dependencies have been satisfied.  The
+scheduler heuristics studied in this work are the following:
+\verb|lws|: stands for locality work stealing. When a worker becomes
+idle, it steals a task from a neighboring worker; \verb|random|: tasks
+are distributed randomly according the assumed worker overall
+performance; \verb|dmda|: takes task execution performance models and
+data transfer time into account; \verb|dmdas|: same as \verb|dmda|,
+but also take into account task priorities and data buffer
+availability on the target device. The StarPU-MPI extension
+cite:augonnet2012starpu enables the the multi-node execution, allowing
+the application programmer to mark to which node each task belongs. By
+doing so, the runtime infers all the inter-node communication
+dependencies for which it employs asynchronous MPI point-to-point
+operations using any MPI implementation.
 
-To enable execution on multiple nodes, we employed StarPU
-cite:augonnet2009starpu, which provides a variety of scheduling
-policies and built-in support for application tracing.
-
-
-
-Chameleon cite:agullo:inria-00547847, as other linear algebra
-libraries such as DPLASMA cite:bosilca2011flexible are built on
-task-based runtimes, which allows them to efficiently exploit their
-computational resources of clusters. The scheduler heuristics studied
-in this work are the following:
-- \verb|lws|: stands for locality work stealing. When a worker becomes
-  idle, it steals a task from a neighboring worker;
-- \verb|random|: tasks are distributed randomly according the assumed
-  worker overall performance;
-- \verb|dmda|: takes task execution performance models and data
-  transfer time into account;
-- \verb|dmdas|: same as \verb|dmda|, but also take into account task
-  priorities and data buffer availability on the target device.
+# The Chameleon cite:agullo:inria-00547847 library with. The Chameleon
+# code as other linear algebra libraries such as DPLASMA
+# cite:bosilca2011flexible are built on task-based runtimes, which
+# allows them to efficiently exploit their computational resources of
+# clusters.
 
 *** Application: the LU Factorization
 
