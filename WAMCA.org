@@ -694,8 +694,8 @@ compliance makes it a natural baseline for comparative studies.
 
 *** Application: the LU Factorization
 
-We use the LU factorization cite:lu2023 implementation of the Chameleon dense
-linear algebra suite cite:chameleon.  As shown in the Figure
+We use the Chameleon dense linear algebra cite:chameleon
+implementation of the LU factorization cite:lu2023. As shown in the Figure
 [[fig:LU-factor]], the LU factorization of a given matrix $A$ is defined
 as $A=LU$, where $L$ is a lower triangular matrix and $U$ is an upper
 triangular matrix. The LU algorithm relies on three different LAPACK
@@ -855,21 +855,16 @@ problems to better elucidate our previously overview of observations.
 Our focus here is to illustrate the differences between the two MPI
 implementations.
 
-*** To be integrated                                             :noexport:
-
-We utilized Chameleon cite:agullo:inria-00547847 implementation of the
-LU factorization, with a matrix size of 16000x16000 block size for all
-experiments. This value was taken from a preliminary execution only
-varying the block size as shown in Figure~\ref{fig:timeBlocks}, that
-depicts different blocks dimensions and their respective execution
-times. It is possible to observe that the 360 block size had the best
-performance among the other values.
-
 ** TODO Results
 <<sec:results>>
 
 *** Ideal block size setup
 
+This value was taken from a preliminary execution only varying the
+block size as shown in Figure~\ref{fig:timeBlocks}, that depicts
+different blocks dimensions and their respective execution times. It
+is possible to observe that the 360 block size had the best
+performance among the other values.
 
 *** To be integrated                                             :noexport:
 Figure~\ref{fig:timePQ} depicts four panels, aligned in the X
