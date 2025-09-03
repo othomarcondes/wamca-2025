@@ -650,7 +650,7 @@ objective of this work.
 
 *** Application: the LU Factorization
 
-We use the LU factorization implementation of the Chameleon dense
+We use the LU factorization cite:lu2023 implementation of the Chameleon dense
 linear algebra suite cite:chameleon.  As shown in the Figure
 [[fig:LU-factor]], the LU factorization of a given matrix $A$ is defined
 as $A=LU$, where $L$ is a lower triangular matrix and $U$ is an upper
