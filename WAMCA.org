@@ -641,6 +641,13 @@ following:
 ** Methods and Materials
 <<sec:methodology>>
 
+We describe 1/ the LU factorization case study and the details
+regarding the task-based implementation and the corresponding
+block-cyclic setup; 2/ the hardware and software configuration,
+including the GUIX mechanism to have a fully reproducible software
+stack; and 3/ the Design of Experiments so we can assess the main
+objective of this work.
+
 *** Application: the LU Factorization
 
 We use the LU factorization implementation of the Chameleon dense
