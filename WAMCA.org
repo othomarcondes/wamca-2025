@@ -17,7 +17,7 @@
 #+LATEX_CLASS_OPTIONS: [conference, 10pt, final]
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 
-* Experiments
+* Experiments                                                      :noexport:
 ** Step 1: Block size fixed to 360, matrix size fixed to 14400
 Changing
 - Two MPI implementations
