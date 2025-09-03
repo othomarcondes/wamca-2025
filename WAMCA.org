@@ -614,23 +614,19 @@ this work with some considerations and future work.
 ** Methods and Materials
 <<sec:methodology>>
 
-Our experimental investigation follows a systematic three-phase
-approach designed to comprehensively evaluate the performance
-characteristics of tiled LU factorization under different
-computational configurations. First, we conduct a preliminary study to
-determine the optimal block size for our target platform,
-systematically varying tile dimensions to identify the configuration
-that minimize the makespan. Second, we implement a full-factorial
-experimental design to investigate the complex interplay between
-static data distribution strategies, intra-node scheduling heuristics,
-and two different MPI implementations. This factorial approach allows
-us to quantify the individual and combined effects of these factors on
-overall execution performance, providing insights into their
-interplay.  Finally, we employ detailed event trace analysis using
-execution traces collected during representative runs to gain deeper
+Our experimental investigation has three phases to evaluate the
+performance characteristics of the tiled LU factorization under
+different setups. We describe the methods involved in these three
+phrases. We describe the preliminary study to determine the optimal
+block size for our target platform, systematically varying tile
+dimensions to identify the configuration that minimize the makespan.
+Second, we describe the full-factorial experimental design to
+investigate the complex interplay between static data distribution
+strategies, intra-node scheduling heuristics, and two different MPI
+implementations. Third, we detail how we obtain detailed execution
+traces collected during representative runs to gain deeper
 understanding of the performance differences observed between OpenMPI
-and MadMPI implementations, examining many response variables to
-explain the performance measured in our factorial experiments.
+and MadMPI implementations.
 #+latex: %
 We describe 1/ the StarPU-MPI runtime together with the two MPI
 implementations (OpenMPI and MadMPI); 2/ the task-based multi-node
