@@ -659,16 +659,16 @@ kernels cite:anderson1999lapack: \verb|DGTRF-NOPIV|, \verb|DTRSM| and
 \verb|DGEMM|. This application has a tendency to be dominated by
 \verb|DGEMM| kernels when $N$ is large.  The LU parallelization
 strategy of Chameleon is very similar to that of ScaLAPACK
-cite:blackford1997scalapack, but follows the task-based
-paradigm. Consequently, function calls are task submissions for a
-runtime system. When programming for StarPU-MPI, the application code
-must contain the static data partitioning decision, typically
-following the block-cyclic distribution by default. The StarPU
-heuristics carry out the task scheduling within a compute node
-dynamically. Because of this hybrid mechanism, and the fact that
-\verb|DGEMM| tasks are the most common kernel, it becomes mandatory to
-have well distributed sub-matrixes between the nodes using a good tile
-distribution.
+cite:blackford1997scalapack, following the task-based paradigm, with
+built-in support for block-cyclic data distribution. As typical for
+task-based applications, function calls represent task submissions for
+a runtime system that handles all scheduling activities. When
+programming for StarPU-MPI, the application code must contain the
+configuration of the block-cyclic method.  The StarPU heuristics carry
+out the task scheduling within a compute node dynamically. Because of
+this hybrid mechanism, and the fact that \verb|DGEMM| tasks are the
+most common kernel, it becomes mandatory to have well distributed
+sub-matrixes between the nodes using a good tile distribution.
 
 #+name: fig:LU-factor
 #+caption: The task-based tiled LU algorithm (left) without pivoting, and the regions of A updated at a given iteration k (right) cite:nesi2020communication.
