@@ -644,20 +644,24 @@ following:
 *** Application: the LU Factorization
 
 We use the LU factorization implementation of the Chameleon dense
-linear algebra suite cite:chameleon. Its parallelization strategy is
-very similar to that of ScaLAPACK cite:blackford1997scalapack (the
-message passing version of LAPACK cite:anderson1999lapack), but
-following the task-based paradigm where function calls are in fact
-task submissions for a runtime system.  As shown in the Figure
+linear algebra suite cite:chameleon.  As shown in the Figure
 [[fig:LU-factor]], the LU factorization of a given matrix $A$ is defined
 as $A=LU$, where $L$ is a lower triangular matrix and $U$ is an upper
 triangular matrix. The LU algorithm relies on three different LAPACK
-kernels: \verb|DGTRF-NOPIV|, \verb|DTRSM| and \verb|DGEMM|. This
-application has a tendency to be dominated by \verb|DGEMM| kernels
-when $N$ is large, which makes it mandatory to have well distributed
-sub-matrixes between the nodes. When programming for StarPU-MPI, the
-application code carries out the data partititioning following the
-block-cyclic distribution by default.
+kernels cite:anderson1999lapack: \verb|DGTRF-NOPIV|, \verb|DTRSM| and
+\verb|DGEMM|. This application has a tendency to be dominated by
+\verb|DGEMM| kernels when $N$ is large.  The LU parallelization
+strategy of Chameleon is very similar to that of ScaLAPACK
+cite:blackford1997scalapack, but follows the task-based
+paradigm. Consequently, function calls are task submissions for a
+runtime system. When programming for StarPU-MPI, the application code
+must contain the static data partitioning decision, typically
+following the block-cyclic distribution by default. The StarPU
+heuristics carry out the task scheduling within a compute node
+dynamically. Because of this hybrid mechanism, and the fact that
+\verb|DGEMM| tasks are the most common kernel, it becomes mandatory to
+have well distributed sub-matrixes between the nodes using a good tile
+distribution.
 
 #+name: fig:LU-factor
 #+caption: The task-based tiled LU algorithm (left) without pivoting, and the regions of A updated at a given iteration k (right) cite:nesi2020communication.
