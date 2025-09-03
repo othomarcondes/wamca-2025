@@ -612,8 +612,6 @@ this work with some considerations and future work.
 
 ** Basic Concepts and Related Work
 <<sec:related>>
-*** Matrix distribution
-
 *** Task-based paradigm
 
 As the computers used in HPC environments became more complex,
@@ -688,6 +686,7 @@ distribution is cyclic.
 *** Design of Experiments (DoE)
 
 *** To be integrated                                             :noexport:
+
 To enable execution on multiple nodes, we employed StarPU
 cite:augonnet2009starpu, which provides a variety of scheduling
 policies and built-in support for application tracing.
