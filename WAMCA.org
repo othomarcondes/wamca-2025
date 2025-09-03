@@ -303,6 +303,49 @@ ggsave("img/distrib-scheduler.pdf", width=13, height=5)
 
 #+RESULTS:
 
+** 4\times NMAD LWS traces, changing data distribution
+*** Read
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+library(starvz)
+library(arrow)
+library(tidyverse)
+library(fs)
+library(patchwork)
+tibble(DIR = dir_ls("nmad")) |>
+  separate(DIR, into=c("XX0", "KEY", "JOBID"), remove=FALSE) |>
+  mutate(STARVZ = map(DIR, starvz_read)) |>
+  mutate(STARVZ = map2(STARVZ, KEY, function(svz, key) {
+    svz$Application |> mutate(KEY = key) -> svz$Application
+    return(svz)
+  })) |>
+  mutate(STARVZ = map(STARVZ, function(svz) {
+    svz$config$st$aggregation$step <- 100
+#    svz$config$st$idleness <- TRUE
+    svz$config$st$outliers <- FALSE
+    svz$config$st$labels <- "NODES_only"
+#    svz$config$st$aggregation$active <- TRUE
+    svz$config$st$aggregation$method <- "nodes"
+    return(svz) })) |>
+  mutate(GC = map(STARVZ, panel_st)) |>
+  mutate(GC = map(GC, function(p) { p + coord_cartesian(xlim=c(0, 48000)) } )) |>
+  pull(GC) -> p
+#wrap_plots(p, ncol=1)
+p[[2]]
+#p[[1]] + facet_wrap(~KEY)
+#+end_src
+
+#+RESULTS:
+: Coordinate system already present. Adding new coordinate system, which will
+: replace the existing one.
+: Coordinate system already present. Adding new coordinate system, which will
+: replace the existing one.
+: Coordinate system already present. Adding new coordinate system, which will
+: replace the existing one.
+: Coordinate system already present. Adding new coordinate system, which will
+: replace the existing one.
+
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
