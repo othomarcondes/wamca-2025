@@ -671,7 +671,7 @@ following:
 - \verb|dmdas|: same as \verb|dmda|, but also take into account task
   priorities and data buffer availability on the target device.
 
-** TODO Experimental Methodology
+** Methods and Materials
 <<sec:methodology>>
 
 To enable execution on multiple nodes, we employed StarPU
