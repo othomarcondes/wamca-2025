@@ -109,6 +109,80 @@ ggsave("img/bc.pdf", width=13, height=4.5)
 #+RESULTS:
 
 ** Block size
+*** Read
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+library(tidyverse)
+bind_rows(
+  read_delim("data/block-size.csv", show_col_types=FALSE, progress=FALSE, delim=";"),
+  read_delim("data/block-def.csv", show_col_types=FALSE, progress=FALSE, delim=";")
+) -> df
+df
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 110 × 16
+      Id Function     threads  gpus     P     Q mtxfmt    nb     m     n   lda
+   <dbl> <chr>          <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1     0 dgetrf_nopiv      23     0     1     6      0   128 16000 16000 16000
+ 2     0 dgetrf_nopiv      23     0     1     6      0   256 16000 16000 16000
+ 3     0 dgetrf_nopiv      23     0     1     6      0   512 16000 16000 16000
+ 4     0 dgetrf_nopiv      23     0     1     6      0   320 16000 16000 16000
+ 5     0 dgetrf_nopiv      23     0     1     6      0  1600 16000 16000 16000
+ 6     0 dgetrf_nopiv      23     0     1     6      0   960 16000 16000 16000
+ 7     0 dgetrf_nopiv      23     0     1     6      0  1600 16000 16000 16000
+ 8     0 dgetrf_nopiv      23     0     1     6      0   512 16000 16000 16000
+ 9     0 dgetrf_nopiv      23     0     1     6      0   320 16000 16000 16000
+10     0 dgetrf_nopiv      23     0     1     6      0   256 16000 16000 16000
+# ℹ 100 more rows
+# ℹ 5 more variables: seedA <dbl>, bump <dbl>, tsub <dbl>, time <dbl>,
+#   gflops <dbl>
+# ℹ Use `print(n = ...)` to see more rows
+#+end_example
+
+*** Theme
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, skip_x = FALSE) {
+  ret <- list()
+
+  ret[[length(ret) + 1]] <- theme_bw(base_size = base_size)
+  ret[[length(ret) + 1]] <- theme(
+    plot.margin = unit(c(0, 0, 0, 0), "cm"),
+    legend.spacing = unit(3, "cm"),
+    legend.position = "top",
+    legend.justification = "left",
+    legend.box.spacing = unit(0, "pt"),
+    legend.box.margin = margin(0, 0, 0, 0)
+  )
+  ret[[length(ret) + 1]] <- guides(color = guide_legend(nrow = 1))
+  if (!legend_title) {
+    ret[[length(ret) + 1]] <- theme(legend.title = element_blank())
+  }
+  return(ret)
+}
+#+end_src
+
+#+RESULTS:
+
+*** Plot
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df |>
+  ggplot(aes(x = factor(nb), y = time)) +
+  geom_violin() +
+  labs(x = "Block Size [order]",
+       y = "Time (seconds)") +
+  default_theme() +
+  ylim(0, NA) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))# +
+#  facet_wrap(~scheduler)
+#+end_src
+
+#+RESULTS:
+
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
