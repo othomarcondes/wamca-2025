@@ -674,6 +674,12 @@ following:
 ** Methods and Materials
 <<sec:methodology>>
 
+*** Application: the LU Factorization
+*** Hardware & Software configuration
+
+*** Design of Experiments (DoE)
+
+*** To be integrated                                             :noexport:
 To enable execution on multiple nodes, we employed StarPU
 cite:augonnet2009starpu, which provides a variety of scheduling
 policies and built-in support for application tracing.
