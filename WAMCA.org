@@ -688,7 +688,6 @@ must assign a task to one of the available workers during the program
 execution. To enable multi-node execution, the StarPU-MPI extension
 was used cite:augonnet2012starpu.
 
-# NEEDS TO BE REDONE (64 HAD TOO MUCH IDLE TIME WITH TRACES)
 We utilized Chameleon cite:agullo:inria-00547847 implementation of the
 LU factorization, with a matrix size of 16000x16000 block size for all
 experiments. This value was taken from a preliminary execution only
