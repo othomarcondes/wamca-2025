@@ -114,20 +114,16 @@ have well distributed sub-matrixes between the nodes.
 The block cyclic distribution, popularized by the ScaLAPACK
 cite:blackford1997scalapack depends on the $P x Q$ parameters and the
 number of available nodes. Based on the P value, the matrix will be
-partitioned differently across the nodes. In the Figure~\ref{fig:BC}
+partitioned differently across the nodes. In the Figure [[fig:BC]]
 we can visualize that while P is 1 (each panel show a PxQ
 distribution), there is only one node per row, as in reverse of the
 8x1 distribution, where there is only one node per column. For the 2x4
 and 4x2 cases, the distribution is interleaved.
 
-#+begin_export latex
-\begin{figure}[ht]
-\centering
-\includegraphics[width=.5\textwidth]{BC.png}
-\caption{ Example of a block cyclic distribution across 8 nodes cite:garcia2018visual}
-\label{fig:BC}
-\end{figure}
-#+end_export
+#+name: fig:BC
+#+caption: Example of a block cyclic distribution across 8 nodes cite:garcia2018visual
+#+attr_latex: :width .5\textwidth
+[[./BC.png]]
 
 *** Task-based paradigm
 
