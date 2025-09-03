@@ -756,8 +756,104 @@ cite:pinto2021providing.
 
 *** Design of Experiments (DoE) and Workload
 
-For the execution time evaluation, each execution was run 10 times and
-the standard deviation was lower than 5\%.
+We have three experimental designs to carry out this investigation on
+the influence of static data partitioning and intra-node scheduling
+heuristics in the makespan.
+
+# Preliminary study (optimal block size)
+# - Using the six nodes, the =lws= scheduler, and the MadMPI layer, an
+#   input matrix of order 16K.
+# - We vary the block size using tiles of orders 128, 256, 300, 320,
+#   460, 400, 420, 512, 960, and 1600.
+
+Our preliminary study focuses on determining the optimal tile size for
+LU factorization on our target platform by systematically evaluating
+performance across a range of block dimensions. Using all six
+available computing nodes with the Locality Work Stealing (LWS)
+scheduler and the MadMPI communication layer, we perform tiled LU
+factorization on a fixed input matrix of order 16000 (16K). We vary
+the tile size across ten different configurations: 128×128, 256×256,
+300×300, 320×320, 400×400, 420×420, 460×460, 512×512, 960×960, and
+1600×1600. This range encompasses both standard power-of-two
+dimensions commonly used in linear algebra libraries and intermediate
+sizes that may better exploit the specific memory hierarchy and
+computational characteristics of our multi-core cluster
+architecture. The selection of tile sizes balances the trade-off
+between computational granularity and communication overhead, allowing
+us to identify the configuration that maximizes arithmetic intensity
+while minimizing synchronization costs for subsequent experiments.
+
+# Full-factorial experimental design
+# - Using the six nodes, and an input matrix of order 14.4K
+# - We vary three factors:
+#   - Two MPI implementations: MadMPI (NMAD), and OpenMPI (OMPI)
+#   - Four intra-node schedulers: =lws=, =random=, =dmda=, and =dmdas=
+#  - Four inter-node static data partition, considering six nodes: 1\times6, 2\times3, 3\times2, and 6\times1.
+
+Our full-factorial experimental design systematically investigates the
+interaction effects between multiple factors influencing LU
+factorization performance by evaluating all possible combinations of
+three key variables. Using all six computing nodes and a fixed input
+matrix of order 14400 (14.4K), we manipulate three factors across
+their complete range of values. The first factor consists of two MPI
+implementations: MadMPI (NMAD) and OpenMPI (OMPI), allowing us to
+assess the impact of different communication middleware on overall
+performance. The second factor varies four intra-node scheduling
+heuristics available in StarPU-MPI: =lws=, =random=, =dmda=, and =dmdas=.  The
+third factor explores the four inter-node static data partitioning
+strategies that organize the six available nodes into different
+processor grid configurations: 1×6, 2×3, 3×2, and 6×1, corresponding
+to the block-cyclic distribution schemes illustrated in our earlier
+analysis. This 2×4×4 factorial design yields 32 unique experimental
+conditions, enabling comprehensive analysis of main effects and
+interaction patterns between communication layers, scheduling
+policies, and data distribution strategies.
+
+# We run each configuration a number of times in a random order
+# to quantify variability. As response variables, we observe the
+# makespan metric, which represents the total execution time.
+
+For both the preliminary study and the full-factorial experimental
+design, we execute each configuration multiple times in randomized
+order to quantify performance variability and ensure statistical
+reliability of our results. The randomization of execution order helps
+mitigate potential systematic biases introduced by temporal factors
+such as system load variations, thermal effects, or network congestion
+that could influence performance measurements. As our primary response
+variable, we measure the makespan metric, which represents the total
+execution time from the initiation of the LU factorization algorithm
+until its completion, providing a comprehensive measure of overall
+computational efficiency that encompasses both computation and
+communication costs across all participating nodes.
+
+# Third, we detail how we obtain detailed execution traces collected
+# during representative runs to gain deeper understanding of the
+# performance differences observed between OpenMPI and MadMPI
+# implementations.
+
+# Finally, our third phases encompasses the built-in trace collection
+# mechanism of StarPU. We collect eight representative executions (no
+# replications) with these configurations.
+
+# Changing
+# - Two MPI implementations
+# - Four data partitions
+# Fixed
+# - LWS scheduler
+# - Block size fixed to 360, matrix size fixed to 14400
+# No replications
+
+Finally, our third phase employs StarPU's built-in trace collection
+mechanism to conduct detailed performance analysis through eight
+representative executions without replications. We fix the LWS
+scheduler, block size at 360×360 tiles, and matrix size at 14,400,
+while varying two factors: the MPI implementation (MadMPI and OpenMPI)
+and the four data partitioning strategies (1×6, 2×3, 3×2, and 6×1). We
+leverage on these cases to enable in-depth examination of delays
+induced by longer communication operations and other task scheduling
+problems to better elucidate our previously overview of observations.
+Our focus here is to illustrate the differences between the two MPI
+implementations.
 
 *** To be integrated                                             :noexport:
 
