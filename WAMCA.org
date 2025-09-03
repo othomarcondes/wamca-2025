@@ -17,8 +17,10 @@
 #+LATEX_CLASS_OPTIONS: [conference, 10pt, final]
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 
-* BC                                                               :noexport:
-** Compute the distributions
+* Analysis                                                         :noexport:
+** Block size
+** BC
+*** Compute the distributions
 
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 options(crayon.enabled=FALSE)
@@ -54,7 +56,7 @@ tribble(~P, ~Q,
 #+end_src
 
 #+RESULTS:
-** Theme
+*** Theme
 
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, skip_x = FALSE) {
@@ -79,7 +81,7 @@ default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, sk
 
 #+RESULTS:
 
-** Plot
+*** Plot
 
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 options(crayon.enabled=FALSE)
