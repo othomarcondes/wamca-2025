@@ -177,8 +177,12 @@ df |>
        y = "Makespan [seconds]") +
   default_theme() +
   ylim(0, NA) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))# +
-#  facet_wrap(~scheduler)
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  facet_wrap(~m, strip.position = "right")
+#+end_src
+
+#+RESULTS:
+
 ** Data distribution and scheduler
 *** Read
 
