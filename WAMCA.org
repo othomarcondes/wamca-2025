@@ -621,7 +621,7 @@ including the GUIX mechanism to have a fully reproducible software
 stack; and 3/ the Design of Experiments so we can assess the main
 objective of this work.
 
-*** Runtime: StarPU-MPI with the task-based paradigm
+*** Runtime and MPI layer: StarPU-MPI with the task-based paradigm
 
 As the computers used in HPC environments became more complex,
 adapting and exploiting them to their full potential has become
