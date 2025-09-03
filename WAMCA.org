@@ -125,8 +125,26 @@ ggsave("img/bc.pdf", width=13, height=4.5)
 ** TODO Abstract                                                    :ignore:
 
 #+LaTeX: \begin{abstract}
-As the demand for more computational resources grows, the usage of clusters has become one of the main options to satisfy this need. In order to exploit these resources efficiently, the distribution of data between nodes must be considered as an important factor in application performance. This study aims to analyze the impact of the static block-cyclic data distribution and different dynamic schedulers of the linear algebra LU factorization on clusters. The analysis focuses on the execution time to explain how the application's behavior is influenced by the data distribution and scheduling strategy.
-
+The performance of dense linear algebra operations on multi-core
+clusters depends critically on the interaction between data
+distribution strategies and task scheduling policies. This paper
+investigates the trade-offs between different block-cyclic data
+partitioning configurations and intra-node scheduling heuristics for
+tiled LU factorization on small-scale HPC clusters. We conduct
+experiments on a 144-core cluster (six nodes with 2×12 cores each)
+using the CHAMELEON dense linear algebra library with StarPU-MPI
+runtime system. Our study examines how communication costs imposed by
+different MPI middlewares (OpenMPI and MadMPI) interact with various
+scheduling heuristics to influence overall execution time. Through
+systematic evaluation of data partitioning configurations (1×6, 2×3,
+3×2, and 6×1) and comprehensive trace analysis using the StarVZ
+visualization framework, we provide insights into optimal tile sizing,
+correlations between data partitioning and scheduling strategies, and
+methodological considerations for reproducible HPC
+experimentation. Our findings demonstrate the complex interplay
+between static data distribution choices and dynamic scheduling
+decisions, offering practical guidance for optimizing dense linear
+algebra computations on modern multi-core cluster architectures.
 #+LaTeX: \end{abstract}
 
 ** Introduction Plan                                              :noexport:
