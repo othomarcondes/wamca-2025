@@ -17,6 +17,23 @@
 #+LATEX_CLASS_OPTIONS: [conference, 10pt, final]
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 
+* Experiments
+** Step 1: Block size fixed to 360, matrix size fixed to 14400
+Changing
+- Two MPI implementations
+- Four schedulers
+- Four data paritition
+Replications
+- 10 repetitions (~4 hours)
+** Step 2: 1x traces of 8 configurations
+Changing
+- Two MPI implementations
+- Four data partitions
+Fixed
+- LWS scheduler
+- Block size fixed to 360, matrix size fixed to 14400
+No replications
+** Step 3: Repeat step 1 to have more at least 20 replications
 * Analysis                                                         :noexport:
 ** Block-cyclic
 *** Compute the distributions
