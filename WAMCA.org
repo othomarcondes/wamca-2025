@@ -16,6 +16,7 @@
 #+LATEX_CLASS: IEEEtran
 #+LATEX_CLASS_OPTIONS: [conference, 10pt, final]
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage{booktabs}
 
 * Experiments                                                      :noexport:
 ** Step 1: Block size fixed to 360, matrix size fixed to 14400
@@ -636,7 +637,7 @@ the GUIX mechanism to have a fully reproducible software stack; and 4/
 the Design of Experiments so we can assess the main objective of this
 work.
 
-*** Runtime and MPI layer: StarPU-MPI with the task-based paradigm
+*** Runtime: task-based StarPU-MPI and the MPI layers
 
 As the computers used in HPC environments became more complex,
 adapting and exploiting them to their full potential has become
@@ -647,6 +648,8 @@ Graph) to represent the relation between tasks and their dependencies
 execution time, according to the dependencies of the graph and the
 scheduler heuristic cite:faverge2023programming.
 
+#+latex: \noindent
+*The Runtime*. 
 StarPU cite:augonnet2009starpu is a task-based runtime system for
 heterogeneous platforms, being multicore or multinode. The StarPU uses
 the Sequential Task-Flow (STF) cite:kennedy2001optimizing, where the
@@ -674,6 +677,21 @@ operations using any MPI implementation.
 # cite:bosilca2011flexible are built on task-based runtimes, which
 # allows them to efficiently exploit their computational resources of
 # clusters.
+
+#+latex: \noindent
+*MPI Layers*. In our study, we employ NewMadeleine and OpenMPI as MPI
+transport layers for the StarPU-MPI runtime. NewMadeleine
+cite:aumage2007new is a high-performance communication library that
+provides MPI functionality through its MadMPI interface. Its design
+addresses scalability challenges with irregular communication patterns
+and high message volumes.  The library is multi-threaded and supports
+the MPI_THREAD_MULTIPLE threading level, making it particularly
+well-suited for task-based runtime systems like StarPU-MPI that rely
+on concurrent communication operations from multiple threads.  OpenMPI
+is a widely-adopted, open-source implementation of the Message Passing
+Interface (MPI) standard that provides portable, high-performance
+parallel communication capabilities.  The comprehensive multi-threaded
+compliance makes it a natural baseline for comparative studies.
 
 *** Application: the LU Factorization
 
@@ -712,18 +730,35 @@ distribution is cyclic.
 
 *** Hardware & Software configuration
 
-The executions were performed in the PCAD from UFRGS using the
-\verb|Cei| partition. \verb|Cei| comprises six nodes, each one with
-two Intel Xeon Silver 4116 (24 cores/CPU). We used the 1.4.7 StarPU
-and 1.3.0 Chameleon version. We also used NewMadeleine
-cite:aumage2007new MPI implementation as OpenMPI cite:gabriel2004open
-presented significant idle times during the executions. The
-NewMadeleine version used was from commit \verb|6e1a64d0| from June
-2025, which resolved a TCP interface issue that we reported. For the
-execution time evaluation, each execution was run 10 times and the
-standard deviation was lower than 5\%.
+We employ one partition of the PCAD cluster at INF/UFRGS in the
+experiments. Table [[tab:hardware]] specifies the hardware of one node.
+The \verb|Cei| partition comprises six nodes, where each node uses a
+10-Gigabit X540-AT2 network interface connected to a dedicated switch
+with sufficient aggregated capacity. From the software perspective, we
+use the 1.4.7 StarPU and 1.3.0 Chameleon versions. We also used
+NewMadeleine, with the commit =6e1a64d0= (June 2025, after fixes in the
+TCP interface reported by us) and the MPI implementation from OpenMPI
+5.0.7 cite:gabriel2004open. The complete software stack is kept stable
+by the Guix package manager, with two manifest files one for each MPI
+layer while sharing the remaining software configurations.
 
-*** Design of Experiments (DoE)
+#+CAPTION: Hardware specification of the cei partition.
+#+NAME: tab:hardware
+#+ATTR_LATEX: :booktabs t
+| *Nome* | *CPU*                              | *RAM*        | *Network* |
+| <l>  | <l>                              | <l>        | <l>     |
+|------+----------------------------------+------------+---------|
+| Cei  | 2 x Intel(R) Xeon(R) Silver 4116 | 96 GB DDR4 | 10G     |
+|      | 2.10 GHz, 24 physical cores      |            |         |
+
+The data analysis is carried out in a post-mortem fashion by scripts
+written in the R language when using the StarVZ library framework
+cite:pinto2021providing.
+
+*** Design of Experiments (DoE) and Workload
+
+For the execution time evaluation, each execution was run 10 times and
+the standard deviation was lower than 5\%.
 
 *** To be integrated                                             :noexport:
 
