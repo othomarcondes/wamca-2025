@@ -181,7 +181,8 @@ As the demand for more computational resources grows, the usage of clusters has 
    runtime while maintaining a static block layout of data. This
    approach enables better adaptability to runtime variations, such
    as load imbalance and communication delays, while preserving the
-   advantages of a static data map.
+   advantages of a static data distribution.
+
 10. As a case study, we explore the LU factorization, a fundamental
     operation in linear algebra widely used in scientific
     computing. We adopt a block cyclic distribution scheme for the
