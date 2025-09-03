@@ -865,7 +865,6 @@ depicts different blocks dimensions and their respective execution
 times. It is possible to observe that the 360 block size had the best
 performance among the other values.
 
-
 ** TODO Results
 <<sec:results>>
 
