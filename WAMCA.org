@@ -18,8 +18,7 @@
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 
 * Analysis                                                         :noexport:
-** Block size
-** BC
+** Block-cyclic
 *** Compute the distributions
 
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
@@ -109,6 +108,7 @@ ggsave("img/bc.pdf", width=13, height=4.5)
 
 #+RESULTS:
 
+** Block size
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
