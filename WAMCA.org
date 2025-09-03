@@ -266,6 +266,11 @@ block-cyclic distribution have made it a good solution for scientific
 computing applications, despite its inherent limitations in adapting
 to modern heterogeneous and dynamic computing environments.
 
+#+name: fig:bc-new
+#+caption: Considering a 16\times16 matrix (the X and Y-axis), the four different block-cyclic distributions (facets) with six nodes (colors).
+#+attr_latex: :width \linewidth :placement  [!htb]
+[[./img/BC.pdf]]
+
 The block-cyclic distribution operates by organizing processors in a
 two-dimensional grid and cyclically distributing matrix blocks across
 this processor grid to achieve balanced workload distribution. Figure
@@ -285,10 +290,6 @@ balances computation and communication requirements. For this example,
 one would employ only four nodes if solely synchronization costs would
 be taken into account.
 
-#+name: fig:bc-new
-#+caption: Considering a 16\times16 matrix (the X and Y-axis), the four different block-cyclic distributions (facets) with six nodes (colors).
-#+attr_latex: :width \linewidth
-[[./img/BC.pdf]]
 
 Alternative approaches to block-cyclic distribution, such as the 1D-1D
 cite:beaumont2001static cite:nesi2020communication distribution
