@@ -129,15 +129,117 @@ As the demand for more computational resources grows, the usage of clusters has 
 
 #+LaTeX: \end{abstract}
 
-** Introduction
+** Introduction Plan                                              :noexport:
+
+1. HPC is paramount today, important for so many fields, the more
+   frequent platform in this field is clusters equipped with
+   multi-core nodes.
+2. Dense linear algebra is the basis of so many applications, LU dense
+   factorization of large systems of linear equations is part of so
+   many applications in so different fields (provide example)
+3. To compute the LU factorization in HPC clusters, composed of so
+   many nodes, we need to carry out the load balance among the
+   machines. Among the many methods that exist, we can use static
+   partitioning of the problem, dynamic, and hybrid. Each of them has
+   advantages and disatdanvagens. Explain them.
+4. The BLock-cyclic static partintionng of the Scalapack package is
+   the method that has been used for so much time, it is the de-facto
+   method in popularized benchmarks such as the Linpack.
+5. Explain how Block-cyclic works, perhaps with an example of 6 nodes
+   and a 16x16 tiled matrix. The goal is to use a static partitioning
+   that minimizes the communication frontiers thereby reducing
+   synchronization costs. Explain the limitation for cases where the
+   number of machines are a prime number. This leads to cases where
+   not the total number of machines can be used adequately. For
+   example, with 6 nodes, there is no ideal solution that truly
+   minimizes communications as you can either use 2x3 or 3x2.
+6. There exists alternatives for the Block-Cyclic approach such as the
+   1D1D, that despite the sophystication and insentitive for the
+   number of machines, are much harder to implement for typical pure
+   MPI+X cases, because communications need to be take care
+   explicitely. Because of this reason, methods such as the 1D1D and
+   variants are not widely used.
+7. With the ever scalability of large clusters, composed with an
+   increasing number of nodes, static partitioning have become an
+   permanent issue because of it cannot adapt to runtime variations
+   such as heterogeneous node performance, network congestion, or
+   varying computational loads that emerge during the factorization
+   process.
+8. Because of this, hybrid data partitioning have become a modern
+   solution. The method combines static partitioning among the nodes
+   of the cluster, very frequently done manually by the programmer,
+   while dynamic intra-node scheduling automatic heuristics take care
+   of tasks attributed to a node. This method has been popularized
+   first by runtimes such as StarPU-MPI cite:augonnet2012starpu, and
+   then continued in other solutions such as PaRSEC
+   cite:bosilca2013parsec, Specx cite:cardosi2025specx, TaskTorrent
+   cite:cambier2020tasktorrent, and CHAMELEON
+   cite:klinkenberg2020chameleon.
+9. This paper focuses on a scenario that combines static data
+   partitioning with dynamic task scheduling. By leveraging
+   task-based runtimes, we aim to dynamically schedule tasks at
+   runtime while maintaining a static block layout of data. This
+   approach enables better adaptability to runtime variations, such
+   as load imbalance and communication delays, while preserving the
+   advantages of a static data map.
+10. As a case study, we explore the LU factorization, a fundamental
+    operation in linear algebra widely used in scientific
+    computing. We adopt a block cyclic distribution scheme for the
+    input matrix, a method that balances the computational load and
+    spreads data evenly across processes. Our goal is to evaluate how
+    dynamic scheduling of tasks can improve the performance of LU
+    factorization in clusters.
+11. Throughout the development of this work, several challenges were
+    encountered related to the use of MPI for executing applications
+    across multiple nodes. These included: configuration challenges
+    with Guix for package management across distributed nodes; issues
+    related to the TCP interface in the MPI NewMadeleine
+    implementation; and errors when using StarVZ
+    cite:pinto2021providing visualization framework with the traces
+    collected from the executions (still not resolved).
+
+** Introduction                                                   :noexport:
+
+The computational demands of modern scientific and engineering
+applications continue to grow exponentially, driving the need for
+increasingly efficient parallel algorithms on High-Performance
+Computing (HPC) systems cite:dongarra2017. These HPC systems plays a
+major role in all research and engineering fields today, from the
+execution of simulations of large-scale scientific problems to train
+Large Language Models (LLMs) for general AI utilization. These systems
+consists mainly by computing clusters equipped with multi-core nodes
+interconnected by a fast network.
+
+Dense linear algebra operations form the computational backbone of
+numerous scientific domains, from climate modeling and computational
+fluid dynamics to quantum chemistry and machine learning. Among these
+operations, the LU factorization stands as a fundamental building
+block, appearing in the solution of linear systems, matrix inversion,
+and determinant computation across countless scientific applications
+cite:lu2023.
+
+High-Performance Computing (HPC) systems
+
+
+
+
+To maximize application performance
+on these types of systems, it is essential to consider both inter-node
+communication efficiency and workload balance across the computing
+nodes.
+
+
+To maximize application performance on clusters, it
+is essential to consider both inter-node communication efficiency and
+workload balance across the computing nodes.
+
+** Introduction                                                   :noexport:
 
 High-Performance Computing (HPC) systems, particularly computing
 clusters, are essential for solving large-scale scientific and
 engineering problems. These clusters consist of multiple
 interconnected nodes, each with its own processor units and memory. In
-order to maximize application performance on clusters, it is essential
-to consider both inter-node communication efficiency and workload
-balance across the computing nodes.
+order 
 
 A crucial aspect of achieving efficient parallel performance is data
 partitioning, which determines how data is divided and distributed
