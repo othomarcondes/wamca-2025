@@ -253,7 +253,7 @@ df |>
   default_theme() +
   ylim(0, NA) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-  facet_grid(m~scheduler)
+  facet_grid(m~scheduler) -> p1
 #+end_src
 
 #+RESULTS:
@@ -264,12 +264,23 @@ df |>
 df |>
   ggplot(aes(x = factor(scheduler), y = time)) +
   geom_violin() +
-  labs(x = "Scheduler [name]",
-       y = "Makespan [seconds]") +
+  labs(x = "Scheduler [name]") +
   default_theme() +
   ylim(0, NA) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-  facet_grid(m~KEY)
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        axis.title.y = element_blank()) +
+  facet_grid(m~KEY) -> p2
+#+end_src
+
+#+RESULTS:
+
+*** Make then together
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+library(patchwork)
+p1 + plot_spacer() + p2 +
+  plot_layout(ncol=3, widths=c(1, 0.01, 1)) -> p
+ggsave("img/distrib-scheduler.pdf", width=13, height=5)
 #+end_src
 
 #+RESULTS:
