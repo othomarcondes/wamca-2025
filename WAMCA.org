@@ -649,12 +649,29 @@ solve these new challenges. It relies on a DAG (Directed Acyclic
 Graph) to represent the relation between tasks and their dependencies
 (edges). The scheduler then can dynamically allocate these tasks
 during execution time, according to the dependencies of the graph and
-the scheduler heuristic cite:faverge2023programming. Chameleon
-cite:agullo:inria-00547847, as other linear algebra libraries such as
-DPLASMA cite:bosilca2011flexible are built on task-based runtimes,
-which allows them to efficiently exploit their computational resources
-of clusters. The scheduler heuristics studied in this work are the
-following:
+the scheduler heuristic cite:faverge2023programming.
+
+StarPU is a task-based runtime system for heterogeneous platforms,
+being multicore or multinode. The StarPU uses the Sequential Task-Flow
+(STF) cite:kennedy2001optimizing, where the tasks are sequentially
+submitted to the runtime that is responsible for their
+scheduling. Each task can have one implementation for a respective
+computational resource (CPU, GPU) called worker, and the scheduler
+must assign a task to one of the available workers during the program
+execution. To enable multi-node execution, the StarPU-MPI extension
+was used cite:augonnet2012starpu.
+
+To enable execution on multiple nodes, we employed StarPU
+cite:augonnet2009starpu, which provides a variety of scheduling
+policies and built-in support for application tracing.
+
+
+
+Chameleon cite:agullo:inria-00547847, as other linear algebra
+libraries such as DPLASMA cite:bosilca2011flexible are built on
+task-based runtimes, which allows them to efficiently exploit their
+computational resources of clusters. The scheduler heuristics studied
+in this work are the following:
 - \verb|lws|: stands for locality work stealing. When a worker becomes
   idle, it steals a task from a neighboring worker;
 - \verb|random|: tasks are distributed randomly according the assumed
@@ -701,48 +718,6 @@ distribution is cyclic.
 
 *** Hardware & Software configuration
 
-*** Design of Experiments (DoE)
-
-*** To be integrated                                             :noexport:
-
-To enable execution on multiple nodes, we employed StarPU
-cite:augonnet2009starpu, which provides a variety of scheduling
-policies and built-in support for application tracing.
-
-StarPU is a task-based runtime system for heterogeneous platforms,
-being multicore or multinode. The StarPU uses the Sequential Task-Flow
-(STF) cite:kennedy2001optimizing, where the tasks are sequentially
-submitted to the runtime that is responsible for their
-scheduling. Each task can have one implementation for a respective
-computational resource (CPU, GPU) called worker, and the scheduler
-must assign a task to one of the available workers during the program
-execution. To enable multi-node execution, the StarPU-MPI extension
-was used cite:augonnet2012starpu.
-
-We utilized Chameleon cite:agullo:inria-00547847 implementation of the
-LU factorization, with a matrix size of 16000x16000 block size for all
-experiments. This value was taken from a preliminary execution only
-varying the block size as shown in Figure~\ref{fig:timeBlocks}, that
-depicts different blocks dimensions and their respective execution
-times. It is possible to observe that the 360 block size had the best
-performance among the other values.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{block-def.pdf}
-\caption{Execution times per block dimension}
-\label{fig:timeBlocks}
-\end{figure}
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{block-size.pdf}
-\caption{Execution times per block dimension}
-\label{fig:block-size}
-\end{figure}
-
-# IMAGE OF BLOCK SIZE
-
 The executions were performed in the PCAD from UFRGS using the
 \verb|Cei| partition. \verb|Cei| comprises six nodes, each one with
 two Intel Xeon Silver 4116 (24 cores/CPU). We used the 1.4.7 StarPU
@@ -754,9 +729,26 @@ NewMadeleine version used was from commit \verb|6e1a64d0| from June
 execution time evaluation, each execution was run 10 times and the
 standard deviation was lower than 5\%.
 
+*** Design of Experiments (DoE)
+
+*** To be integrated                                             :noexport:
+
+We utilized Chameleon cite:agullo:inria-00547847 implementation of the
+LU factorization, with a matrix size of 16000x16000 block size for all
+experiments. This value was taken from a preliminary execution only
+varying the block size as shown in Figure~\ref{fig:timeBlocks}, that
+depicts different blocks dimensions and their respective execution
+times. It is possible to observe that the 360 block size had the best
+performance among the other values.
+
+
 ** TODO Results
 <<sec:results>>
 
+*** Ideal block size setup
+
+
+*** To be integrated                                             :noexport:
 Figure~\ref{fig:timePQ} depicts four panels, aligned in the X
 dimension (time), each showing the execution time of a different
 scheduler (\verb|random|, \verb|lws|, \verb|dmdas|, \verb|dmda|) with
