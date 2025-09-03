@@ -1,3 +1,14 @@
+@article{dongarra2024co,
+  title={The co-evolution of computational physics and high-performance computing},
+  author={Dongarra, Jack and Keyes, David},
+  journal={Nature Reviews Physics},
+  volume={6},
+  number={10},
+  pages={621--627},
+  year={2024},
+  publisher={Nature Publishing Group UK London}
+}
+
 @book{blackford1997scalapack,
   title={ScaLAPACK users' guide},
   author={Blackford, L Susan and Choi, Jaeyoung and Cleary, Andy and D'Azevedo, Eduardo and Demmel, James and Dhillon, Inderjit and Dongarra, Jack and Hammarling, Sven and Henry, Greg and Petitet, Antoine and others},
@@ -129,4 +140,35 @@
   author = {Casanova, Henri and Giersch, Arnaud and Legrand, Arnaud and Quinson, Martin and Suter, Fr{\'e}d{\'e}ric},
   keywords = {Simulation of distributed computing systems, SimGrid},
   pdf = {https://hal.science/hal-04909441/file/paper.pdf}
+}
+
+
+@ARTICLE{dongarra2017,
+  author={Dongarra, Jack and Tomov, Stanimire and Luszczek, Piotr and Kurzak, Jakub and Gates, Mark and Yamazaki, Ichitaro and Anzt, Hartwig and Haidar, Azzam and Abdelfattah, Ahmad},
+  journal={Computing in Science \& Engineering},
+  title={With Extreme Computing, the Rules Have Changed},
+  year={2017},
+  volume={19},
+  number={3},
+  pages={52-62},
+  keywords={Program processors;High performance computing;Symmetric matrices;Parallel processing;Computational modeling;Market research;High-performance computing;exascale;algorithms;scheduling;autotuning;scientific computing},
+  doi={10.1109/MCSE.2017.48}
+}
+
+@inproceedings{lu2023,
+author = {Xia, Yang and Jiang, Peng and Agrawal, Gagan and Ramnath, Rajiv},
+title = {End-to-End LU Factorization of Large Matrices on GPUs},
+year = {2023},
+isbn = {9798400700156},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3572848.3577486},
+doi = {10.1145/3572848.3577486},
+abstract = {LU factorization for sparse matrices is an important computing step for many engineering and scientific problems such as circuit simulation. There have been many efforts toward parallelizing and scaling this algorithm, which include the recent efforts targeting the GPUs. However, it is still challenging to deploy a complete sparse LU factorization workflow on a GPU due to high memory requirements and data dependencies. In this paper, we propose the first complete GPU solution for sparse LU factorization. To achieve this goal, we propose an out-of-core implementation of the symbolic execution phase, thus removing the bottleneck due to large intermediate data structures. Next, we propose a dynamic parallelism implementation of Kahn's algorithm for topological sort on the GPUs. Finally, for the numeric factorization phase, we increase the parallelism degree by removing the memory limits for large matrices as compared to the existing implementation approaches. Experimental results show that compared with an implementation modified from GLU 3.0, our out-of-core version achieves speedups of 1.13--32.65X. Further, our out-of-core implementation achieves a speedup of 1.2--2.2 over an optimized unified memory implementation on the GPU. Finally, we show that the optimizations we introduce for numeric factorization turn out to be effective.},
+booktitle = {Proceedings of the 28th ACM SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming},
+pages = {288–300},
+numpages = {13},
+keywords = {GPU acceleration, LU factorization, memory limits},
+location = {Montreal, QC, Canada},
+series = {PPoPP '23}
 }
