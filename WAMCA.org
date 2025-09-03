@@ -614,12 +614,31 @@ this work with some considerations and future work.
 ** Methods and Materials
 <<sec:methodology>>
 
-We describe 1/ the LU factorization case study and the details
-regarding the task-based implementation and the corresponding
-block-cyclic setup; 2/ the hardware and software configuration,
-including the GUIX mechanism to have a fully reproducible software
-stack; and 3/ the Design of Experiments so we can assess the main
-objective of this work.
+Our experimental investigation follows a systematic three-phase
+approach designed to comprehensively evaluate the performance
+characteristics of tiled LU factorization under different
+computational configurations. First, we conduct a preliminary study to
+determine the optimal block size for our target platform,
+systematically varying tile dimensions to identify the configuration
+that minimize the makespan. Second, we implement a full-factorial
+experimental design to investigate the complex interplay between
+static data distribution strategies, intra-node scheduling heuristics,
+and two different MPI implementations. This factorial approach allows
+us to quantify the individual and combined effects of these factors on
+overall execution performance, providing insights into their
+interplay.  Finally, we employ detailed event trace analysis using
+execution traces collected during representative runs to gain deeper
+understanding of the performance differences observed between OpenMPI
+and MadMPI implementations, examining many response variables to
+explain the performance measured in our factorial experiments.
+#+latex: %
+We describe 1/ the StarPU-MPI runtime together with the two MPI
+implementations (OpenMPI and MadMPI); 2/ the task-based multi-node
+implementation of the LU factorization application as available in the
+Chameleon suite; 3/ the hardware and software configuration, including
+the GUIX mechanism to have a fully reproducible software stack; and 4/
+the Design of Experiments so we can assess the main objective of this
+work.
 
 *** Runtime and MPI layer: StarPU-MPI with the task-based paradigm
 
