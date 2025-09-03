@@ -655,6 +655,119 @@ series = {PPoPP '23}
   organization={Springer}
 }
 
+@ARTICLE{top500,
+  author={Strohmaier, Erich and Meuer, Hans W. and Dongarra, Jack and Simon, Horst D.},
+  journal={Computer}, 
+  title={The TOP500 List and Progress in High-Performance Computing}, 
+  year={2015},
+  volume={48},
+  number={11},
+  pages={42-49},
+  keywords={High performance computing;scientific computing;high-performance computing;parallel computing;supercomputers;TOP500;Linpack;benchmarks;application performance},
+  doi={10.1109/MC.2015.338}}
+
+@book{dongarra1979linpack,
+  title={LINPACK users' guide},
+  author={Dongarra, Jack J and Moler, Cleve Barry and Bunch, James R and Stewart, Gilbert W},
+  year={1979},
+  publisher={SIAM}
+}
+
+@article{beaumont2001static,
+  title={Static LU decomposition on heterogeneous platforms},
+  author={Beaumont, Olivier and Legrand, Arnaud and Rastello, Fabrice and Robert, Yves},
+  journal={The International Journal of High Performance Computing Applications},
+  volume={15},
+  number={3},
+  pages={310--323},
+  year={2001},
+  publisher={Sage Publications Sage CA: Thousand Oaks, CA}
+}
+
+@inproceedings{nesi2020communication,
+  title={Communication-aware load balancing of the LU factorization over heterogeneous clusters},
+  author={Nesi, Lucas Leandro and Schnorr, Lucas Mello and Legrand, Arnaud},
+  booktitle={2020 IEEE 26th International Conference on Parallel and Distributed Systems (ICPADS)},
+  pages={54--63},
+  year={2020},
+  organization={IEEE}
+}
+
+
+@inproceedings{augonnet2009starpu,
+  title={StarPU: a unified platform for task scheduling on heterogeneous multicore architectures},
+  author={Augonnet, C{\'e}dric and Thibault, Samuel and Namyst, Raymond and Wacrenier, Pierre-Andr{\'e}},
+  booktitle={European Conference on Parallel Processing},
+  pages={863--874},
+  year={2009},
+  organization={Springer}
+}
+
+@article{bosilca2013parsec,
+  title={Parsec: Exploiting heterogeneity to enhance scalability},
+  author={Bosilca, George and Bouteiller, Aurelien and Danalis, Anthony and Faverge, Mathieu and H{\'e}rault, Thomas and Dongarra, Jack J},
+  journal={Computing in Science \& Engineering},
+  volume={15},
+  number={6},
+  pages={36--45},
+  year={2013},
+  publisher={IEEE}
+}
+
+@article{cardosi2025specx,
+  title={Specx: a C++ task-based runtime system for heterogeneous distributed architectures},
+  author={Cardosi, Paul and Bramas, B{\'e}renger},
+  journal={PeerJ Computer Science},
+  volume={11},
+  pages={e2966},
+  year={2025},
+  publisher={PeerJ Inc.}
+}
+
+
+@inproceedings{cambier2020tasktorrent,
+  title={TaskTorrent: a lightweight distributed task-based runtime system in C++},
+  author={Cambier, L{\'e}opold and Qian, Yizhou and Darve, Eric},
+  booktitle={2020 IEEE/ACM 3rd Annual Parallel Applications Workshop: Alternatives To MPI+ X (PAW-ATM)},
+  pages={16--26},
+  year={2020},
+  organization={IEEE}
+}
+
+
+@article{klinkenberg2020chameleon,
+  title={CHAMELEON: reactive load balancing for hybrid MPI+ OpenMP task-parallel applications},
+  author={Klinkenberg, Jannis and Samfass, Philipp and Bader, Michael and Terboven, Christian and M{\"u}ller, Matthias S},
+  journal={Journal of Parallel and Distributed Computing},
+  volume={138},
+  pages={55--64},
+  year={2020},
+  publisher={Elsevier}
+}
+
+@incollection{chameleon,
+  TITLE = {{Faster, Cheaper, Better -- a Hybridization Methodology to Develop Linear Algebra Software for GPUs}},
+  AUTHOR = {Agullo, Emmanuel and Augonnet, C{\'e}dric and Dongarra, Jack and Ltaief, Hatem and Namyst, Raymond and Thibault, Samuel and Tomov, Stanimire},
+  URL = {https://inria.hal.science/inria-00547847},
+  BOOKTITLE = {{GPU Computing Gems}},
+  PUBLISHER = {{Morgan Kaufmann}},
+  VOLUME = {2},
+  YEAR = {2010},
+  MONTH = Sep,
+  PDF = {https://inria.hal.science/inria-00547847/file/gpucomputinggems_plagma.pdf},
+  HAL_ID = {inria-00547847},
+  HAL_VERSION = {v1},
+}
+
+@inproceedings{gabriel2004open,
+  title={Open MPI: Goals, concept, and design of a next generation MPI implementation},
+  author={Gabriel, Edgar and Fagg, Graham E and Bosilca, George and Angskun, Thara and Dongarra, Jack J and Squyres, Jeffrey M and Sahay, Vishal and Kambadur, Prabhanjan and Barrett, Brian and Lumsdaine, Andrew and others},
+  booktitle={European Parallel Virtual Machine/Message Passing Interface Users’ Group Meeting},
+  pages={97--104},
+  year={2004},
+  organization={Springer}
+}
+
 #+end_src
 * Emacs setup                                                      :noexport:
 
