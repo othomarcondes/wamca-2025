@@ -601,18 +601,27 @@ traces from representative executions; and *(d)* a methodological
 strategy that includes reproducible tools such as Guix, and
 contributions for the MPI NewMadeleine implementation.
 
-The paper is structured as follows. Section [[sec:related]] presents some
-basic concepts on matrix distribution, modern task-based runtimes and
-related work. Section [[sec:methodology]] details our methodology and
-explains how we conducted the experiments in our
+
+# Section [[sec:related]] presents some basic concepts on matrix
+# distribution, modern task-based runtimes and related work.
+The paper is structured as follows.  Section [[sec:methodology]] details
+our methodology and explains how we conducted the experiments in our
 investigation. Section [[sec:results]] presents experimental results and
 their interpretation, focusing on the performance overview and
 comparison of different MPI layers. Section [[sec:conclusion]] concludes
 this work with some considerations and future work.
 
-** Basic Concepts and Related Work
-<<sec:related>>
-*** Task-based paradigm
+** Methods and Materials
+<<sec:methodology>>
+
+We describe 1/ the LU factorization case study and the details
+regarding the task-based implementation and the corresponding
+block-cyclic setup; 2/ the hardware and software configuration,
+including the GUIX mechanism to have a fully reproducible software
+stack; and 3/ the Design of Experiments so we can assess the main
+objective of this work.
+
+*** Runtime: StarPU-MPI with the task-based paradigm
 
 As the computers used in HPC environments became more complex,
 adapting and exploiting them to their full potential has become
