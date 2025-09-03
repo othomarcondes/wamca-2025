@@ -614,39 +614,6 @@ this work with some considerations and future work.
 <<sec:related>>
 *** Matrix distribution
 
-ScaLAPACK cite:blackford1997scalapack is the message passing version
-of LAPACK cite:anderson1999lapack, and also the standard library for
-linear algebra operations over parallel distributed platforms. In this
-paper, the LU factorization will be the focus, as its parallelization
-strategy is similar to others.
-
-As shown in the Figure [[fig:LU-factor]], the LU factorization of a given
-matrix $A$ is defined as $A=LU$, where $L$ is a lower triangular
-matrix and $U$ is an upper triangular matrix. The LU algorithm relies
-on three different LAPACK kernels: \verb|DGTRF-NOPIV|, \verb|DTRSM|
-and \verb|DGEMM|. This application has a tendency to be dominated by
-\verb|DGEMM| kernels when $N$ is large, which makes it mandatory to
-have well distributed sub-matrixes between the nodes.
-
-#+name: fig:LU-factor
-#+caption: The LU algorithm (left) without pivoting, and the regions of A updated at iteration k (right). cite:nesi2020communication
-#+attr_latex: :width .5\textwidth
-[[./LU-factor.png]]
-
-The block cyclic distribution, popularized by the ScaLAPACK
-cite:blackford1997scalapack depends on the $P x Q$ parameters and the
-number of available nodes. Based on the P value, the matrix will be
-partitioned differently across the nodes. In the Figure [[fig:BC]]
-we can visualize that while P is 1 (each panel show a PxQ
-distribution), there is only one node per row, as in reverse of the
-8x1 distribution, where there is only one node per column. For the 2x4
-and 4x2 cases, the distribution is interleaved.
-
-#+name: fig:BC
-#+caption: Example of a block cyclic distribution across 8 nodes cite:garcia2018visual
-#+attr_latex: :width .5\textwidth
-[[./BC.png]]
-
 *** Task-based paradigm
 
 As the computers used in HPC environments became more complex,
@@ -675,6 +642,36 @@ following:
 <<sec:methodology>>
 
 *** Application: the LU Factorization
+
+We use the LU factorization implementation of the Chameleon dense
+linear algebra suite cite:chameleon. Its parallelization strategy is
+very similar to that of ScaLAPACK cite:blackford1997scalapack (the
+message passing version of LAPACK cite:anderson1999lapack), but
+following the task-based paradigm where function calls are in fact
+task submissions for a runtime system.  As shown in the Figure
+[[fig:LU-factor]], the LU factorization of a given matrix $A$ is defined
+as $A=LU$, where $L$ is a lower triangular matrix and $U$ is an upper
+triangular matrix. The LU algorithm relies on three different LAPACK
+kernels: \verb|DGTRF-NOPIV|, \verb|DTRSM| and \verb|DGEMM|. This
+application has a tendency to be dominated by \verb|DGEMM| kernels
+when $N$ is large, which makes it mandatory to have well distributed
+sub-matrixes between the nodes. When programming for StarPU-MPI, the
+application code carries out the data partititioning following the
+block-cyclic distribution by default.
+
+#+name: fig:LU-factor
+#+caption: The task-based tiled LU algorithm (left) without pivoting, and the regions of A updated at a given iteration k (right) cite:nesi2020communication.
+#+attr_latex: :width .5\textwidth
+[[./LU-factor.png]]
+
+The block cyclic distribution, also popularized by the ScaLAPACK,
+depends on the P \times Q parameters and the number of available
+nodes. Based on these configurations, nodes receive tiles of the input
+matrix. In the Figure [[fig:bc-new]] we can visualize that while 1\times6,
+there is only one node per row, as in reverse of the 6\times1 distribution,
+there is only one node per column. For the 2\times4 and 4\times2 cases, the
+distribution is cyclic.
+
 *** Hardware & Software configuration
 
 *** Design of Experiments (DoE)
