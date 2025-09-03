@@ -634,8 +634,7 @@ implementations (OpenMPI and MadMPI); 2/ the task-based multi-node
 implementation of the LU factorization application as available in the
 Chameleon suite; 3/ the hardware and software configuration, including
 the GUIX mechanism to have a fully reproducible software stack; and 4/
-the Design of Experiments so we can assess the main objective of this
-work.
+the Design of Experiments of the three phrases described previously.
 
 *** Runtime: task-based StarPU-MPI and the MPI layers
 
