@@ -174,7 +174,7 @@ df |>
   ggplot(aes(x = factor(nb), y = time)) +
   geom_violin() +
   labs(x = "Block Size [order]",
-       y = "Time (seconds)") +
+       y = "Makespan [seconds]") +
   default_theme() +
   ylim(0, NA) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))# +
