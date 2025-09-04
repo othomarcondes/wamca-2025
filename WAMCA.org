@@ -793,21 +793,22 @@ while minimizing synchronization costs for subsequent experiments.
 Our full-factorial experimental design systematically investigates the
 interaction effects between multiple factors influencing LU
 factorization performance by evaluating all possible combinations of
-three key variables. Using all six computing nodes and a fixed input
-matrix of order 14400 (14.4K), we manipulate three factors across
-their complete range of values. The first factor consists of two MPI
-implementations: MadMPI (NMAD) and OpenMPI (OMPI), allowing us to
-assess the impact of different communication middleware on overall
-performance. The second factor varies four intra-node scheduling
-heuristics available in StarPU-MPI: =lws=, =random=, =dmda=, and =dmdas=.  The
-third factor explores the four inter-node static data partitioning
-strategies that organize the six available nodes into different
-processor grid configurations: 1×6, 2×3, 3×2, and 6×1, corresponding
-to the block-cyclic distribution schemes illustrated in our earlier
-analysis. This 2×4×4 factorial design yields 32 unique experimental
-conditions, enabling comprehensive analysis of main effects and
-interaction patterns between communication layers, scheduling
-policies, and data distribution strategies.
+three key variables. Using all six computing nodes, a fixed input
+matrix of order 14400 (14.4K), and a fixed block size (360\times360), we
+manipulate three factors across their complete range of values. The
+first factor consists of two MPI implementations: MadMPI (NMAD) and
+OpenMPI (OMPI), allowing us to assess the impact of different
+communication middleware on overall performance. The second factor
+varies four intra-node scheduling heuristics available in StarPU-MPI:
+=lws=, =random=, =dmda=, and =dmdas=.  The third factor explores the four
+inter-node static data partitioning strategies that organize the six
+available nodes into different processor grid configurations: 1×6,
+2×3, 3×2, and 6×1, corresponding to the block-cyclic distribution
+schemes illustrated in our earlier analysis. This 2×4×4 factorial
+design yields 32 unique experimental conditions, enabling
+comprehensive analysis of main effects and interaction patterns
+between communication layers, scheduling policies, and data
+distribution strategies.
 
 # We run each configuration a number of times in a random order
 # to quantify variability. As response variables, we observe the
