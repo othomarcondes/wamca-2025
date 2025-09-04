@@ -602,7 +602,6 @@ traces from representative executions; and *(d)* a methodological
 strategy that includes reproducible tools such as Guix, and
 contributions for the MPI NewMadeleine implementation.
 
-
 # Section [[sec:related]] presents some basic concepts on matrix
 # distribution, modern task-based runtimes and related work.
 The paper is structured as follows.  Section [[sec:methodology]] details
