@@ -879,6 +879,7 @@ performance among the other values.
 #+attr_latex: :width .9\linewidth :float multicolumn
 [[./img/distrib-scheduler.pdf]]
 
+*** NMAD /versus/ OMPI analysis with traces
 *** To be integrated                                             :noexport:
 
 Figure~\ref{fig:timePQ} depicts four panels, aligned in the X
