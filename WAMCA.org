@@ -347,6 +347,51 @@ p[[2]]
 : Coordinate system already present. Adding new coordinate system, which will
 : replace the existing one.
 
+** 2025-09-04 "data/nmad-times.csv"
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+library(tidyverse)
+bind_rows(
+  read_delim("data/nmad-times.csv", show_col_types=FALSE, progress=FALSE, delim=";")
+) |>
+  mutate(
+  mutate(KEY = as.factor(paste0(P, "x", Q))) -> df
+df |> summary()
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Id      Function            threads        gpus         P       
+ Min.   :0   Length:160         Min.   :22   Min.   :0   Min.   :1.00  
+ 1st Qu.:0   Class :character   1st Qu.:22   1st Qu.:0   1st Qu.:1.75  
+ Median :0   Mode  :character   Median :22   Median :0   Median :2.50  
+ Mean   :0                      Mean   :22   Mean   :0   Mean   :3.00  
+ 3rd Qu.:0                      3rd Qu.:22   3rd Qu.:0   3rd Qu.:3.75  
+ Max.   :0                      Max.   :22   Max.   :0   Max.   :6.00  
+       Q            mtxfmt        nb            m               n        
+ Min.   :1.00   Min.   :0   Min.   :360   Min.   :14400   Min.   :14400  
+ 1st Qu.:1.75   1st Qu.:0   1st Qu.:360   1st Qu.:14400   1st Qu.:14400  
+ Median :2.50   Median :0   Median :360   Median :14400   Median :14400  
+ Mean   :3.00   Mean   :0   Mean   :360   Mean   :14400   Mean   :14400  
+ 3rd Qu.:3.75   3rd Qu.:0   3rd Qu.:360   3rd Qu.:14400   3rd Qu.:14400  
+ Max.   :6.00   Max.   :0   Max.   :360   Max.   :14400   Max.   :14400  
+      lda            seedA                bump            tsub  
+ Min.   :14400   Min.   :1.804e+09   Min.   :14400   Min.   :0  
+ 1st Qu.:14400   1st Qu.:1.804e+09   1st Qu.:14400   1st Qu.:0  
+ Median :14400   Median :1.804e+09   Median :14400   Median :0  
+ Mean   :14400   Mean   :1.804e+09   Mean   :14400   Mean   :0  
+ 3rd Qu.:14400   3rd Qu.:1.804e+09   3rd Qu.:14400   3rd Qu.:0  
+ Max.   :14400   Max.   :1.804e+09   Max.   :14400   Max.   :0  
+      time           gflops       KEY    
+ Min.   :35.18   Min.   :32.51   1x6:40  
+ 1st Qu.:39.38   1st Qu.:39.59   2x3:40  
+ Median :43.52   Median :45.74   3x2:40  
+ Mean   :46.19   Mean   :44.21   6x1:40  
+ 3rd Qu.:50.36   3rd Qu.:50.55           
+ Max.   :61.23   Max.   :56.58
+#+end_example
+
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
@@ -860,12 +905,23 @@ cite:pinto2021providing visualization framework.
 ** Experimental Results & Discussion
 <<sec:results>>
 
-We detail the results regarding the search for the best block
-size, the comparison of the block-cyclic strategies and the intra-node
-scheduler and their impact on the makespan, and finally a detailed
-analysis on the comparison between NMAD and OMPI.
+We detail the results regarding the search for the best block size,
+the comparison of the block-cyclic strategies and the intra-node
+scheduler and their impact on the makespan, and finally an analysis
+comparing NMAD and OMPI.
 
 *** Searching for the best block size
+
+Figure [[fig.bs]] depicts the makespan of the LU factorization, when using
+the =LWS= for intra-node task scheduling, the NMAD MPI layer and an
+input matrix of 16K, as a function of different block sizes. We employ
+violin plots cite:hintze1998violin, a well-known method to visually
+depict the measurement distribution. We can see that the makespan is
+constrained from \approx47s up to \approx80s depending on the block size with
+rather concentrated distributions demonstrating that our experiments
+have relatively low variability. We can also confirm that the block
+size 360\times360 is the one that brings the best compute/communication
+trade-off for this run with six nodes and 144 cores.
 
 This value was taken from a preliminary execution only varying the
 block size as shown in Figure~\ref{fig:timeBlocks}, that depicts
@@ -953,6 +1009,18 @@ Nível Superior - Brasil (CAPES) - Finance Code 001, the FAPERGS
 Tangle this file with C-c C-v t
 
 #+begin_src bib :tangle refs.bib
+@article{hintze1998violin,
+  title={Violin plots: a box plot-density trace synergism},
+  author={Hintze, Jerry L and Nelson, Ray D},
+  journal={The American Statistician},
+  volume={52},
+  number={2},
+  pages={181--184},
+  year={1998},
+  publisher={Taylor \& Francis}
+}
+
+
 @inproceedings{denis2019scalability,
   title={Scalability of the NewMadeleine communication library for large numbers of MPI point-to-point requests},
   author={Denis, Alexandre},
