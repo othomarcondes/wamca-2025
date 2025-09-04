@@ -860,7 +860,7 @@ cite:pinto2021providing visualization framework.
 ** TODO Results
 <<sec:results>>
 
-*** Block Size
+*** Searching for the best block size
 
 This value was taken from a preliminary execution only varying the
 block size as shown in Figure~\ref{fig:timeBlocks}, that depicts
