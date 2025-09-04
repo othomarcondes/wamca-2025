@@ -867,6 +867,17 @@ comparing NMAD and OMPI.
 
 *** Searching for the best block size
 
+Figure [[fig.bs]] depicts the makespan of the LU factorization, when using
+the =LWS= for intra-node task scheduling, the NMAD MPI layer and an
+input matrix of 16K, as a function of different block sizes. We employ
+violin plots cite:hintze1998violin, a well-known method to visually
+depict the measurement distribution. We can see that the makespan is
+constrained from \approx47s up to \approx80s depending on the block size with
+rather concentrated distributions demonstrating that our experiments
+have relatively low variability. We can also confirm that the block
+size 360\times360 is the one that brings the best compute/communication
+trade-off for this run with six nodes and 144 cores.
+
 This value was taken from a preliminary execution only varying the
 block size as shown in Figure~\ref{fig:timeBlocks}, that depicts
 different blocks dimensions and their respective execution times. It
