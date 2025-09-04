@@ -858,7 +858,7 @@ implementations.
 ** TODO Results
 <<sec:results>>
 
-*** Ideal block size setup
+*** Block Size
 
 This value was taken from a preliminary execution only varying the
 block size as shown in Figure~\ref{fig:timeBlocks}, that depicts
