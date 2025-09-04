@@ -368,7 +368,7 @@ p[[2]]
 The performance of dense linear algebra operations on multi-core
 clusters depends critically on the interaction between data
 distribution strategies and task scheduling policies. This paper
-investigates the trade-offs between different block-cyclic data
+investigates the trade-offs between different block-cyclic (BC) data
 partitioning configurations and intra-node scheduling heuristics for
 tiled LU factorization on small-scale HPC clusters. We conduct
 experiments on a 144-core cluster (six nodes with 2×12 cores each)
@@ -494,7 +494,7 @@ employing dynamic scheduling for task execution, potentially achieving
 both predictable communication patterns and runtime adaptability,
 though at the cost of increased implementation complexity.
 
-The block-cyclic static partitioning scheme implemented in the
+The block-cyclic (BC) static partitioning scheme implemented in the
 ScaLAPACK library cite:blackford1997scalapack has established itself
 as the de facto standard method for dense linear algebra computations
 in HPC. This approach has gained widespread adoption and recognition
