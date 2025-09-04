@@ -868,9 +868,20 @@ different blocks dimensions and their respective execution times. It
 is possible to observe that the 360 block size had the best
 performance among the other values.
 
+#+name: fig.bs
+#+caption: The makespan as a function of the block size.
+#+attr_latex: :width .8\linewidth
+[[./img/block-size.pdf]]
+
 *** Comparing BC strategies and scheduler.
 
+#+name: fig.ds
+#+caption: The makespan as a function BC strategies and scheduler.
+#+attr_latex: :width .9\linewidth :float multicolumn
+[[./img/distrib-scheduler.pdf]]
+
 *** To be integrated                                             :noexport:
+
 Figure~\ref{fig:timePQ} depicts four panels, aligned in the X
 dimension (time), each showing the execution time of a different
 scheduler (\verb|random|, \verb|lws|, \verb|dmdas|, \verb|dmda|) with
