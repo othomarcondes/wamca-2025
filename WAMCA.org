@@ -914,21 +914,6 @@ Figure~\ref{fig:timeSched} depicts four panels, aligned in the X dimension (time
 \label{fig:timeSched}
 \end{figure}
 
-** More                                                           :noexport:
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{719424.pdf}
-\caption{Trace of an execution of LU-Factor at cei machine (lws heuristic)}
-\label{fig:trace}
-\end{figure}
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{719448.pdf}
-\caption{Trace of an execution of LU-Factor at cei machine (dmdas heuristic)}
-\label{fig:trace}
-\end{figure}
-
 ** TODO Conclusion
 <<sec:conclusion>>
 
