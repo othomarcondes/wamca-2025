@@ -362,7 +362,7 @@ p[[2]]
 
 #+LaTeX: \maketitle
 
-** TODO Abstract                                                    :ignore:
+** Abstract                                                         :ignore:
 
 #+LaTeX: \begin{abstract}
 The performance of dense linear algebra operations on multi-core
