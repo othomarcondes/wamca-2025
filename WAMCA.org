@@ -746,7 +746,8 @@ layer while sharing the remaining software configurations.
 | *Nome* | *CPU*                              | *RAM*        | *Network* |
 | <l>  | <l>                              | <l>        | <l>     |
 |------+----------------------------------+------------+---------|
-| Cei  | 2 x Intel(R) Xeon(R) Silver 4116 | 96 GB DDR4 | 10G     |
+| Cei  | Supermicro X11DPU                | 96 GB DDR4 | 10G     |
+|      | 2 x Intel(R) Xeon(R) Silver 4116 |            |         |
 |      | 2.10 GHz, 24 physical cores      |            |         |
 
 The data analysis is carried out in a post-mortem fashion by scripts
