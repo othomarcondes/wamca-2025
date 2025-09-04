@@ -868,6 +868,8 @@ different blocks dimensions and their respective execution times. It
 is possible to observe that the 360 block size had the best
 performance among the other values.
 
+*** Comparing BC strategies and scheduler.
+
 *** To be integrated                                             :noexport:
 Figure~\ref{fig:timePQ} depicts four panels, aligned in the X
 dimension (time), each showing the execution time of a different
