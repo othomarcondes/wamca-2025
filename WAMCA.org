@@ -856,7 +856,7 @@ Our focus here is to illustrate the differences between the two MPI
 implementations. We carry out the trace analysis using the StarVZ
 cite:pinto2021providing visualization framework.
 
-** TODO Results
+** Results
 <<sec:results>>
 
 We detail the results regarding the search for the best block
