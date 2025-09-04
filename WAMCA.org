@@ -209,7 +209,8 @@ ggsave("img/block-size.pdf", width=6, height=5)
 options(crayon.enabled=FALSE)
 library(tidyverse)
 bind_rows(
-  read_delim("data/times-SchedPQ.csv", show_col_types=FALSE, progress=FALSE, delim=";")
+  read_delim("data/times-SchedPQ.csv", show_col_types=FALSE, progress=FALSE, delim=";"),
+  read_delim("data/nmad-times.csv", show_col_types=FALSE, progress=FALSE, delim=";")  
 ) |>
   mutate(KEY = paste0(P, "x", Q)) -> df
 df
@@ -217,7 +218,7 @@ df
 
 #+RESULTS:
 #+begin_example
-# A tibble: 160 × 18
+# A tibble: 320 × 18
       Id Function     threads  gpus     P     Q mtxfmt    nb     m     n   lda
    <dbl> <chr>          <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl>
  1     0 dgetrf_nopiv      23     0     1     6      0    64  8192  8192  8192
@@ -230,7 +231,7 @@ df
  8     0 dgetrf_nopiv      23     0     1     6      0    64  8192  8192  8192
  9     0 dgetrf_nopiv      23     0     1     6      0    64  8192  8192  8192
 10     0 dgetrf_nopiv      23     0     1     6      0    64  8192  8192  8192
-# ℹ 150 more rows
+# ℹ 310 more rows
 # ℹ 7 more variables: seedA <dbl>, bump <dbl>, tsub <dbl>, time <dbl>,
 #   gflops <dbl>, scheduler <chr>, KEY <chr>
 # ℹ Use `print(n = ...)` to see more rows
@@ -272,7 +273,7 @@ df |>
   default_theme() +
   ylim(0, NA) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-  facet_grid(m~scheduler) -> p1
+  facet_grid(m~scheduler, scales="free_y") -> p1
 #+end_src
 
 #+RESULTS:
@@ -288,7 +289,7 @@ df |>
   ylim(0, NA) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
         axis.title.y = element_blank()) +
-  facet_grid(m~KEY) -> p2
+  facet_grid(m~KEY, scales="free_y") -> p2
 #+end_src
 
 #+RESULTS:
@@ -299,7 +300,7 @@ df |>
 library(patchwork)
 p1 + plot_spacer() + p2 +
   plot_layout(ncol=3, widths=c(1, 0.01, 1)) -> p
-ggsave("img/distrib-scheduler.pdf", width=13, height=5)
+ggsave("img/distrib-scheduler.pdf", width=13, height=10)
 #+end_src
 
 #+RESULTS:
