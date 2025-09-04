@@ -611,7 +611,7 @@ their interpretation, focusing on the performance overview and
 comparison of different MPI layers. Section [[sec:conclusion]] concludes
 this work with some considerations and future work.
 
-** Methods and Materials
+** Methods & Materials
 <<sec:methodology>>
 
 Our experimental investigation has three phases to evaluate the
@@ -856,7 +856,7 @@ Our focus here is to illustrate the differences between the two MPI
 implementations. We carry out the trace analysis using the StarVZ
 cite:pinto2021providing visualization framework.
 
-** Results
+** Experimental Results & Discussion
 <<sec:results>>
 
 We detail the results regarding the search for the best block
