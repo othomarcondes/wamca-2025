@@ -52,17 +52,10 @@ set -u
 # Destroy all env var starting with STARPU
 unset "${!STARPU@}"
 
-# Define env vars
-export STARPU_SCHED_BETA=10
-export STARPU_MPI_COOP_SENDS=0
-export STARPU_USE_NUMA=1
+# Define env vars (for the cei cluster)
 export STARPU_NCUDA=0
-export STARPU_NCPU=24
-export STARPU_MAIN_THREAD_CPUID="0"
-export STARPU_WORKERS_CPUID="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23"
-export STARPU_MPI_THREAD_CPUID="1"
-export STARPU_CALIBRATE=1
-export STARPU_LIMIT_MAX_SUBMITTED_TASKS=1000000
+export STARPU_NCPU=23
+export STARPU_WORKERS_GETBIND=0
 
 # Create the hostfile
 HOSTFILE="${KEY}.nodes"
