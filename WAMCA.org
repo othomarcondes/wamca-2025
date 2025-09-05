@@ -610,6 +610,39 @@ p1
 
 #+RESULTS:
 
+** 2025-09-05 Compare NMAD and OMPI
+*** Read
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+library(tidyverse)
+tribble (~MPI, ~CSV,
+         "NMAD", "data/nmad-times.csv",
+         "OMPI", "data/output_721146.csv") |>
+  mutate(DATA = map(CSV, read_delim, show_col_types=FALSE, progress=FALSE, delim=";")) |>
+  unnest(DATA) |>
+  mutate(scheduler = as.factor(scheduler)) |>
+  mutate(KEY = as.factor(paste0(P, "x", Q))) -> df
+#+end_src
+
+#+RESULTS:
+
+*** Plot
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df |>
+  ggplot(aes(x = factor(KEY), y = time, fill=MPI)) +
+  geom_violin() +
+  labs(x = "Data Partition [PxQ]",
+       y = "Makespan [seconds]") +
+  default_theme() +
+  ylim(0, NA) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  facet_grid(m~scheduler) -> p1
+p1
+#+end_src
+
+#+RESULTS:
+
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
