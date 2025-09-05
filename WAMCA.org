@@ -348,7 +348,7 @@ p[[2]]
 : Coordinate system already present. Adding new coordinate system, which will
 : replace the existing one.
 
-** 2025-09-04 "data/nmad-times.csv"
+** 2025-09-04 "data/nmad-times.csv" (NMAD)
 *** Read
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 options(crayon.enabled=FALSE)
