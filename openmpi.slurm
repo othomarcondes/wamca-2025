@@ -87,6 +87,7 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq Bloc
 
     export STARPU_SCHED=$scheduler
     "$(which mpirun)" \
+    --mca plm rsh \
     --mca oob_tcp_if_include eno2 \
     --mca btl_tcp_if_include eno2 \
     --np ${SLURM_JOB_NUM_NODES} \
