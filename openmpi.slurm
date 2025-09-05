@@ -99,6 +99,7 @@ int main(int argc, char **argv) {
 $(which mpicc) x.c
 ./a.out
 
+# This is necessary to avoid sbatch + mpirun problems
 export OMPI_MCA_plm=isolated
 
 $(which mpirun) --version
