@@ -1,0 +1,1666 @@
++ KEY=openmpi
++ GUIX_DAEMON_SOCKET=guix://192.168.30.23
++ export GUIX_DAEMON_SOCKET
++ GUIX_LOCPATH=/var/guix/profiles/per-user/root/guix-profile/lib/locale
++ export GUIX_LOCPATH
++ for GUIX_PROFILE in "$HOME/.config/guix/current" "$HOME/.guix-profile"
++ '[' -f /home/users/schnorr/.config/guix/current/etc/profile ']'
++ . /home/users/schnorr/.config/guix/current/etc/profile
+++ export PATH=/home/users/schnorr/.config/guix/current/bin:/home/users/schnorr/.local/bin:/home/users/schnorr/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/cuda/bin
+++ PATH=/home/users/schnorr/.config/guix/current/bin:/home/users/schnorr/.local/bin:/home/users/schnorr/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/cuda/bin
++ for GUIX_PROFILE in "$HOME/.config/guix/current" "$HOME/.guix-profile"
++ '[' -f /home/users/schnorr/.guix-profile/etc/profile ']'
++ . /home/users/schnorr/.guix-profile/etc/profile
+++ export PATH=/home/users/schnorr/.guix-profile/bin:/home/users/schnorr/.config/guix/current/bin:/home/users/schnorr/.local/bin:/home/users/schnorr/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/cuda/bin
+++ PATH=/home/users/schnorr/.guix-profile/bin:/home/users/schnorr/.config/guix/current/bin:/home/users/schnorr/.local/bin:/home/users/schnorr/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/cuda/bin
++ GUIX_MANIFEST=openmpi_chameleon.scm
++ cat
++ set +u
+++ guix shell -m openmpi_chameleon.scm --search-paths
++ eval 'export PATH="/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin:/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/sbin${PATH:+:}$PATH"
+export C_INCLUDE_PATH="/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include${C_INCLUDE_PATH:+:}$C_INCLUDE_PATH"
+export CPLUS_INCLUDE_PATH="/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include/c++:/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include${CPLUS_INCLUDE_PATH:+:}$CPLUS_INCLUDE_PATH"
+export OBJC_INCLUDE_PATH="/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include${OBJC_INCLUDE_PATH:+:}$OBJC_INCLUDE_PATH"
+export OBJCPLUS_INCLUDE_PATH="/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include/c++:/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include${OBJCPLUS_INCLUDE_PATH:+:}$OBJCPLUS_INCLUDE_PATH"
+export LIBRARY_PATH="/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/lib${LIBRARY_PATH:+:}$LIBRARY_PATH"
+export GUIX_LOCPATH="/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/lib/locale${GUIX_LOCPATH:+:}$GUIX_LOCPATH"'
+++ export PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin:/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/sbin:/home/users/schnorr/.guix-profile/bin:/home/users/schnorr/.config/guix/current/bin:/home/users/schnorr/.local/bin:/home/users/schnorr/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/cuda/bin
+++ PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin:/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/sbin:/home/users/schnorr/.guix-profile/bin:/home/users/schnorr/.config/guix/current/bin:/home/users/schnorr/.local/bin:/home/users/schnorr/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/cuda/bin
+++ export C_INCLUDE_PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include
+++ C_INCLUDE_PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include
+++ export CPLUS_INCLUDE_PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include/c++:/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include
+++ CPLUS_INCLUDE_PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include/c++:/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include
+++ export OBJC_INCLUDE_PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include
+++ OBJC_INCLUDE_PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include
+++ export OBJCPLUS_INCLUDE_PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include/c++:/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include
+++ OBJCPLUS_INCLUDE_PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include/c++:/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/include
+++ export LIBRARY_PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/lib
+++ LIBRARY_PATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/lib
+++ export GUIX_LOCPATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/lib/locale:/var/guix/profiles/per-user/root/guix-profile/lib/locale
+++ GUIX_LOCPATH=/gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/lib/locale:/var/guix/profiles/per-user/root/guix-profile/lib/locale
++ set -u
++ unset
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_NCPU=23
++ STARPU_NCPU=23
++ export STARPU_WORKERS_GETBIND=0
++ STARPU_WORKERS_GETBIND=0
++ HOSTFILE=openmpi.nodes
++ srun -l hostname
++ sort -n
++ awk '{print $2}'
++ sed 's/$/ slots=1/'
++ CSV_FILE=openmpi_experimental_project.csv
++ mkdir -p ./output
++ export OMPI_MCA_plm=isolated
++ OMPI_MCA_plm=isolated
+++ which mpirun
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --version
+++ which mpirun
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --help
++ set
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
++ tail -n +2 openmpi_experimental_project.csv
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 2x3
+++ cut -dx -f1
++ p=2
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 2
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=random
++ STARPU_SCHED=random
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=dmdas
++ STARPU_SCHED=dmdas
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 6x1
+++ cut -dx -f1
++ p=6
++ export STARPU_SCHED=dmda
++ STARPU_SCHED=dmda
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 6
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 1x6
+++ cut -dx -f1
++ p=1
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 1
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
+++ echo 3x2
+++ cut -dx -f1
++ p=3
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/mpirun --mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --np 6 --hostfile openmpi.nodes /gnu/store/4k8k521ckz92ww4dp8ml9nppd1nwsb6v-profile/bin/chameleon_dtesting -o getrf_nopiv -m 14400 -n 14400 -b 360 -w -P 3
++ IFS=,
++ read -r size block_size scheduler pq Blocks exp Order
++ echo terminou
