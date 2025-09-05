@@ -91,7 +91,6 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq Bloc
     --mca btl_tcp_if_include eno2 \
     --np ${SLURM_JOB_NUM_NODES} \
     --hostfile $HOSTFILE \
-    -x STARPU_SCHED \
     "$(which chameleon_dtesting)" \
     -o getrf_nopiv \
     -m $size \
