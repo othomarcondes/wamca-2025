@@ -77,6 +77,8 @@ export OMPI_MCA_plm=isolated
 $(which mpirun) --version
 $(which mpirun) --help
 
+set
+
 #    --mca btl_base_verbose 30 \
 #    --mca pml_base_verbose 30 \
 #    --mca oob_base_verbose 30 \
