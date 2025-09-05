@@ -650,6 +650,48 @@ p1
 
 #+RESULTS:
 
+** 16x NMAD traces (jobid 721225)
+*** Read
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+library(starvz)
+library(arrow)
+library(tidyverse)
+library(fs)
+library(patchwork)
+BASE <- "output_nmad_traces_721225/"
+read_csv(paste0(BASE, "nmad_traces_experimental_project.csv"), show_col_types=FALSE, progress=FALSE) |>
+  mutate(DIR = paste0(BASE, Order)) |>
+  mutate(STARVZ = map(DIR, starvz_read)) |>
+  mutate(makespan = map_dbl(STARVZ, function(svz) { svz$Application |> pull(End) |> max() })) -> df
+df |>
+  arrange(pq, scheduler)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 16 × 9
+    size block_size scheduler pq    exp         Order  DIR   STARVZ     makespan
+   <dbl>      <dbl> <chr>     <chr> <chr>       <chr>  <chr> <list>        <dbl>
+ 1 14400        360 dmda      1x6   nmad_traces nmad_… outp… <strvz_dt>   63475.
+ 2 14400        360 dmdas     1x6   nmad_traces nmad_… outp… <strvz_dt>   57205.
+ 3 14400        360 lws       1x6   nmad_traces nmad_… outp… <strvz_dt>   53516.
+ 4 14400        360 random    1x6   nmad_traces nmad_… outp… <strvz_dt>  100132.
+ 5 14400        360 dmda      2x3   nmad_traces nmad_… outp… <strvz_dt>   62489.
+ 6 14400        360 dmdas     2x3   nmad_traces nmad_… outp… <strvz_dt>   52701.
+ 7 14400        360 lws       2x3   nmad_traces nmad_… outp… <strvz_dt>   51882.
+ 8 14400        360 random    2x3   nmad_traces nmad_… outp… <strvz_dt>   95202.
+ 9 14400        360 dmda      3x2   nmad_traces nmad_… outp… <strvz_dt>   60221.
+10 14400        360 dmdas     3x2   nmad_traces nmad_… outp… <strvz_dt>   55361.
+11 14400        360 lws       3x2   nmad_traces nmad_… outp… <strvz_dt>   52574.
+12 14400        360 random    3x2   nmad_traces nmad_… outp… <strvz_dt>   96932.
+13 14400        360 dmda      6x1   nmad_traces nmad_… outp… <strvz_dt>   63299.
+14 14400        360 dmdas     6x1   nmad_traces nmad_… outp… <strvz_dt>   55430.
+15 14400        360 lws       6x1   nmad_traces nmad_… outp… <strvz_dt>   53293.
+16 14400        360 random    6x1   nmad_traces nmad_… outp… <strvz_dt>   98041.
+#+end_example
+
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
