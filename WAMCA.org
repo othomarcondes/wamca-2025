@@ -333,21 +333,27 @@ tibble(DIR = dir_ls("nmad")) |>
     return(svz) })) |>
   mutate(GC = map(STARVZ, panel_st)) |>
   mutate(GC = map(GC, function(p) { p + coord_cartesian(xlim=c(0, 48000)) } )) |>
-  pull(GC) -> p
+  select(DIR, KEY, makespan)
+#  pull(GC) -> p
 #wrap_plots(p, ncol=1)
-p[[2]]
+#p[[4]]
 #p[[1]] + facet_wrap(~KEY)
 #+end_src
 
 #+RESULTS:
-: Coordinate system already present. Adding new coordinate system, which will
-: replace the existing one.
-: Coordinate system already present. Adding new coordinate system, which will
-: replace the existing one.
-: Coordinate system already present. Adding new coordinate system, which will
-: replace the existing one.
-: Coordinate system already present. Adding new coordinate system, which will
-: replace the existing one.
+#+begin_example
+Coordinate system already present. Adding new coordinate system, which will replace the existing one.
+Coordinate system already present. Adding new coordinate system, which will replace the existing one.
+Coordinate system already present. Adding new coordinate system, which will replace the existing one.
+Coordinate system already present. Adding new coordinate system, which will replace the existing one.
+# A tibble: 4 × 3
+  DIR             KEY   makespan
+  <fs::path>      <chr>    <dbl>
+1 nmad/1x6_720745 1x6     46894.
+2 nmad/2x3_720746 2x3     28674.
+3 nmad/3x2_720747 3x2     45841.
+4 nmad/6x1_720748 6x1     44184.
+#+end_example
 
 ** 2025-09-04 "data/nmad-times.csv" (NMAD)
 *** Read
