@@ -1,0 +1,112 @@
+#+title: Do E Block Size
+
+* DOE of block size definition
+Changing:
+- Block size
+#+begin_src R
+options(crayon.enabled=FALSE)
+library(DoE.base)
+library(tidyverse)
+
+fator_size = c(8192, 14400, 16000, 32000)
+fator_blocksize = c(128, 160, 256, 320, 512, 960, 1600)
+fator_scheduler = c("dmda", "lws", "dmdas", "random")
+fator_pq = c("1x6", "6x1", "3x2", "2x3")
+
+fac.design(nfactors=4,
+           replications=10,
+           repeat.only= FALSE ,
+           randomize=TRUE,
+           seed=0,
+           nlevels=c(length(fator_size),
+                     length(fator_blocksize),
+                     length(fator_scheduler),
+                     length(fator_pq)),
+           factor.names=list(
+             size = fator_size,
+             block_size = fator_blocksize,
+             scheduler = fator_scheduler,
+             pq = fator_pq
+           )) |>
+  as_tibble() |>
+  filter(size == 14400) |>
+  filter(scheduler == "lws") |>
+  filter(pq == "1x6") |>
+  mutate(exp = "block-size") |>
+  mutate(Order = paste0(exp, "_", block_size, "_", 1:n())) |>
+  select(-Blocks) |>
+  write_csv("block-size_experimental_project.csv", progress=FALSE) |>
+  print()
+#+end_src
+
+#+RESULTS:
+| 14400 |  320 | lws | 1x6 | block-size | block-size_320_1   |
+| 14400 |  960 | lws | 1x6 | block-size | block-size_960_2   |
+| 14400 |  256 | lws | 1x6 | block-size | block-size_256_3   |
+| 14400 |  128 | lws | 1x6 | block-size | block-size_128_4   |
+| 14400 |  160 | lws | 1x6 | block-size | block-size_160_5   |
+| 14400 |  512 | lws | 1x6 | block-size | block-size_512_6   |
+| 14400 | 1600 | lws | 1x6 | block-size | block-size_1600_7  |
+| 14400 | 1600 | lws | 1x6 | block-size | block-size_1600_8  |
+| 14400 |  128 | lws | 1x6 | block-size | block-size_128_9   |
+| 14400 |  320 | lws | 1x6 | block-size | block-size_320_10  |
+| 14400 |  960 | lws | 1x6 | block-size | block-size_960_11  |
+| 14400 |  160 | lws | 1x6 | block-size | block-size_160_12  |
+| 14400 |  256 | lws | 1x6 | block-size | block-size_256_13  |
+| 14400 |  512 | lws | 1x6 | block-size | block-size_512_14  |
+| 14400 |  512 | lws | 1x6 | block-size | block-size_512_15  |
+| 14400 |  256 | lws | 1x6 | block-size | block-size_256_16  |
+| 14400 |  320 | lws | 1x6 | block-size | block-size_320_17  |
+| 14400 |  960 | lws | 1x6 | block-size | block-size_960_18  |
+| 14400 |  128 | lws | 1x6 | block-size | block-size_128_19  |
+| 14400 | 1600 | lws | 1x6 | block-size | block-size_1600_20 |
+| 14400 |  160 | lws | 1x6 | block-size | block-size_160_21  |
+| 14400 |  512 | lws | 1x6 | block-size | block-size_512_22  |
+| 14400 |  320 | lws | 1x6 | block-size | block-size_320_23  |
+| 14400 |  256 | lws | 1x6 | block-size | block-size_256_24  |
+| 14400 | 1600 | lws | 1x6 | block-size | block-size_1600_25 |
+| 14400 |  128 | lws | 1x6 | block-size | block-size_128_26  |
+| 14400 |  960 | lws | 1x6 | block-size | block-size_960_27  |
+| 14400 |  160 | lws | 1x6 | block-size | block-size_160_28  |
+| 14400 |  160 | lws | 1x6 | block-size | block-size_160_29  |
+| 14400 |  256 | lws | 1x6 | block-size | block-size_256_30  |
+| 14400 |  512 | lws | 1x6 | block-size | block-size_512_31  |
+| 14400 |  128 | lws | 1x6 | block-size | block-size_128_32  |
+| 14400 | 1600 | lws | 1x6 | block-size | block-size_1600_33 |
+| 14400 |  960 | lws | 1x6 | block-size | block-size_960_34  |
+| 14400 |  320 | lws | 1x6 | block-size | block-size_320_35  |
+| 14400 |  512 | lws | 1x6 | block-size | block-size_512_36  |
+| 14400 | 1600 | lws | 1x6 | block-size | block-size_1600_37 |
+| 14400 |  960 | lws | 1x6 | block-size | block-size_960_38  |
+| 14400 |  320 | lws | 1x6 | block-size | block-size_320_39  |
+| 14400 |  160 | lws | 1x6 | block-size | block-size_160_40  |
+| 14400 |  128 | lws | 1x6 | block-size | block-size_128_41  |
+| 14400 |  256 | lws | 1x6 | block-size | block-size_256_42  |
+| 14400 |  256 | lws | 1x6 | block-size | block-size_256_43  |
+| 14400 | 1600 | lws | 1x6 | block-size | block-size_1600_44 |
+| 14400 |  128 | lws | 1x6 | block-size | block-size_128_45  |
+| 14400 |  320 | lws | 1x6 | block-size | block-size_320_46  |
+| 14400 |  960 | lws | 1x6 | block-size | block-size_960_47  |
+| 14400 |  160 | lws | 1x6 | block-size | block-size_160_48  |
+| 14400 |  512 | lws | 1x6 | block-size | block-size_512_49  |
+| 14400 |  960 | lws | 1x6 | block-size | block-size_960_50  |
+| 14400 |  160 | lws | 1x6 | block-size | block-size_160_51  |
+| 14400 |  512 | lws | 1x6 | block-size | block-size_512_52  |
+| 14400 |  128 | lws | 1x6 | block-size | block-size_128_53  |
+| 14400 |  256 | lws | 1x6 | block-size | block-size_256_54  |
+| 14400 |  320 | lws | 1x6 | block-size | block-size_320_55  |
+| 14400 | 1600 | lws | 1x6 | block-size | block-size_1600_56 |
+| 14400 | 1600 | lws | 1x6 | block-size | block-size_1600_57 |
+| 14400 |  128 | lws | 1x6 | block-size | block-size_128_58  |
+| 14400 |  160 | lws | 1x6 | block-size | block-size_160_59  |
+| 14400 |  512 | lws | 1x6 | block-size | block-size_512_60  |
+| 14400 |  960 | lws | 1x6 | block-size | block-size_960_61  |
+| 14400 |  320 | lws | 1x6 | block-size | block-size_320_62  |
+| 14400 |  256 | lws | 1x6 | block-size | block-size_256_63  |
+| 14400 |  160 | lws | 1x6 | block-size | block-size_160_64  |
+| 14400 |  320 | lws | 1x6 | block-size | block-size_320_65  |
+| 14400 |  512 | lws | 1x6 | block-size | block-size_512_66  |
+| 14400 |  256 | lws | 1x6 | block-size | block-size_256_67  |
+| 14400 | 1600 | lws | 1x6 | block-size | block-size_1600_68 |
+| 14400 |  128 | lws | 1x6 | block-size | block-size_128_69  |
+| 14400 |  960 | lws | 1x6 | block-size | block-size_960_70  |

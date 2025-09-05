@@ -1,0 +1,60 @@
+#+title: Do E Nmad Traces
+
+* Nmad traces
+Changing:
+- Scheduler
+- PxQ
+Fixed:
+- Size
+- Block-size
+#+begin_src R
+options(crayon.enabled=FALSE)
+library(DoE.base)
+library(tidyverse)
+
+fator_size = c(4096, 8192, 14400)
+fator_blocksize = c(16, 64, 360)
+fator_scheduler = c("dmda", "lws", "dmdas", "random")
+fator_pq = c("1x6", "6x1", "3x2", "2x3")
+
+fac.design(nfactors=4,
+           replications=1,
+           repeat.only= FALSE ,
+           randomize=TRUE,
+           seed=0,
+           nlevels=c(length(fator_size),
+                     length(fator_blocksize),
+                     length(fator_scheduler),
+                     length(fator_pq)),
+           factor.names=list(
+             size = fator_size,
+             block_size = fator_blocksize,
+             scheduler = fator_scheduler,
+             pq = fator_pq
+           )) |>
+  as_tibble() |>
+  filter(size == 14400) |>
+  filter(block_size == 360) |>
+    mutate(exp = "nmad_traces") |>
+    mutate(Order = paste0(exp, "_", block_size,"_", scheduler, "_", 1:n())) |>
+  write_csv("nmad_traces_experimental_project.csv", progress=FALSE) |>
+  print()
+#+end_src
+
+#+RESULTS:
+| 14400 | 360 | dmdas  | 2x3 | nmad_traces | nmad_traces_360_dmdas_1   |
+| 14400 | 360 | random | 2x3 | nmad_traces | nmad_traces_360_random_2  |
+| 14400 | 360 | random | 3x2 | nmad_traces | nmad_traces_360_random_3  |
+| 14400 | 360 | dmda   | 6x1 | nmad_traces | nmad_traces_360_dmda_4    |
+| 14400 | 360 | lws    | 1x6 | nmad_traces | nmad_traces_360_lws_5     |
+| 14400 | 360 | lws    | 3x2 | nmad_traces | nmad_traces_360_lws_6     |
+| 14400 | 360 | dmda   | 3x2 | nmad_traces | nmad_traces_360_dmda_7    |
+| 14400 | 360 | lws    | 2x3 | nmad_traces | nmad_traces_360_lws_8     |
+| 14400 | 360 | dmdas  | 3x2 | nmad_traces | nmad_traces_360_dmdas_9   |
+| 14400 | 360 | dmdas  | 6x1 | nmad_traces | nmad_traces_360_dmdas_10  |
+| 14400 | 360 | dmdas  | 1x6 | nmad_traces | nmad_traces_360_dmdas_11  |
+| 14400 | 360 | dmda   | 2x3 | nmad_traces | nmad_traces_360_dmda_12   |
+| 14400 | 360 | lws    | 6x1 | nmad_traces | nmad_traces_360_lws_13    |
+| 14400 | 360 | dmda   | 1x6 | nmad_traces | nmad_traces_360_dmda_14   |
+| 14400 | 360 | random | 1x6 | nmad_traces | nmad_traces_360_random_15 |
+| 14400 | 360 | random | 6x1 | nmad_traces | nmad_traces_360_random_16 |

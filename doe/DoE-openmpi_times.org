@@ -1,0 +1,205 @@
+#+title: Do E OpenMPI Times
+
+* OpenMPI times
+Changing:
+- Scheduler
+- PxQ
+Fixed:
+- Size
+- Block-size
+#+begin_src R
+options(crayon.enabled=FALSE)
+library(DoE.base)
+library(tidyverse)
+
+fator_size = c(4096, 8192, 14400)
+fator_blocksize = c(16, 64, 360)
+fator_scheduler = c("dmda", "lws", "dmdas", "random")
+fator_pq = c("1x6", "6x1", "3x2", "2x3")
+
+fac.design(nfactors=4,
+           replications=10,
+           repeat.only= FALSE ,
+           randomize=TRUE,
+           seed=0,
+           nlevels=c(length(fator_size),
+                     length(fator_blocksize),
+                     length(fator_scheduler),
+                     length(fator_pq)),
+           factor.names=list(
+             size = fator_size,
+             block_size = fator_blocksize,
+             scheduler = fator_scheduler,
+             pq = fator_pq
+           )) |>
+  as_tibble() |>
+  filter(size == 14400) |>
+  filter(block_size == 360) |>
+    mutate(exp = "openmpi_times") |>
+    mutate(Order = paste0(exp, "_", block_size,"_", scheduler, "_", 1:n())) |>
+  select(-Blocks) |>
+  write_csv("openmpi_times_experimental_project.csv", progress=FALSE) |>
+  print()
+#+end_src
+
+#+RESULTS:
+| 14400 | 360 | dmdas  | 2x3 | openmpi_times | openmpi_times_360_dmdas_1    |
+| 14400 | 360 | random | 2x3 | openmpi_times | openmpi_times_360_random_2   |
+| 14400 | 360 | random | 3x2 | openmpi_times | openmpi_times_360_random_3   |
+| 14400 | 360 | dmda   | 6x1 | openmpi_times | openmpi_times_360_dmda_4     |
+| 14400 | 360 | lws    | 1x6 | openmpi_times | openmpi_times_360_lws_5      |
+| 14400 | 360 | lws    | 3x2 | openmpi_times | openmpi_times_360_lws_6      |
+| 14400 | 360 | dmda   | 3x2 | openmpi_times | openmpi_times_360_dmda_7     |
+| 14400 | 360 | lws    | 2x3 | openmpi_times | openmpi_times_360_lws_8      |
+| 14400 | 360 | dmdas  | 3x2 | openmpi_times | openmpi_times_360_dmdas_9    |
+| 14400 | 360 | dmdas  | 6x1 | openmpi_times | openmpi_times_360_dmdas_10   |
+| 14400 | 360 | dmdas  | 1x6 | openmpi_times | openmpi_times_360_dmdas_11   |
+| 14400 | 360 | dmda   | 2x3 | openmpi_times | openmpi_times_360_dmda_12    |
+| 14400 | 360 | lws    | 6x1 | openmpi_times | openmpi_times_360_lws_13     |
+| 14400 | 360 | dmda   | 1x6 | openmpi_times | openmpi_times_360_dmda_14    |
+| 14400 | 360 | random | 1x6 | openmpi_times | openmpi_times_360_random_15  |
+| 14400 | 360 | random | 6x1 | openmpi_times | openmpi_times_360_random_16  |
+| 14400 | 360 | dmda   | 1x6 | openmpi_times | openmpi_times_360_dmda_17    |
+| 14400 | 360 | lws    | 2x3 | openmpi_times | openmpi_times_360_lws_18     |
+| 14400 | 360 | random | 2x3 | openmpi_times | openmpi_times_360_random_19  |
+| 14400 | 360 | random | 3x2 | openmpi_times | openmpi_times_360_random_20  |
+| 14400 | 360 | dmda   | 2x3 | openmpi_times | openmpi_times_360_dmda_21    |
+| 14400 | 360 | random | 6x1 | openmpi_times | openmpi_times_360_random_22  |
+| 14400 | 360 | random | 1x6 | openmpi_times | openmpi_times_360_random_23  |
+| 14400 | 360 | lws    | 3x2 | openmpi_times | openmpi_times_360_lws_24     |
+| 14400 | 360 | dmdas  | 1x6 | openmpi_times | openmpi_times_360_dmdas_25   |
+| 14400 | 360 | dmda   | 3x2 | openmpi_times | openmpi_times_360_dmda_26    |
+| 14400 | 360 | lws    | 6x1 | openmpi_times | openmpi_times_360_lws_27     |
+| 14400 | 360 | dmdas  | 2x3 | openmpi_times | openmpi_times_360_dmdas_28   |
+| 14400 | 360 | lws    | 1x6 | openmpi_times | openmpi_times_360_lws_29     |
+| 14400 | 360 | dmdas  | 6x1 | openmpi_times | openmpi_times_360_dmdas_30   |
+| 14400 | 360 | dmdas  | 3x2 | openmpi_times | openmpi_times_360_dmdas_31   |
+| 14400 | 360 | dmda   | 6x1 | openmpi_times | openmpi_times_360_dmda_32    |
+| 14400 | 360 | lws    | 3x2 | openmpi_times | openmpi_times_360_lws_33     |
+| 14400 | 360 | dmda   | 3x2 | openmpi_times | openmpi_times_360_dmda_34    |
+| 14400 | 360 | random | 1x6 | openmpi_times | openmpi_times_360_random_35  |
+| 14400 | 360 | dmdas  | 3x2 | openmpi_times | openmpi_times_360_dmdas_36   |
+| 14400 | 360 | lws    | 1x6 | openmpi_times | openmpi_times_360_lws_37     |
+| 14400 | 360 | random | 3x2 | openmpi_times | openmpi_times_360_random_38  |
+| 14400 | 360 | dmda   | 6x1 | openmpi_times | openmpi_times_360_dmda_39    |
+| 14400 | 360 | dmdas  | 6x1 | openmpi_times | openmpi_times_360_dmdas_40   |
+| 14400 | 360 | lws    | 2x3 | openmpi_times | openmpi_times_360_lws_41     |
+| 14400 | 360 | dmda   | 2x3 | openmpi_times | openmpi_times_360_dmda_42    |
+| 14400 | 360 | dmdas  | 2x3 | openmpi_times | openmpi_times_360_dmdas_43   |
+| 14400 | 360 | random | 2x3 | openmpi_times | openmpi_times_360_random_44  |
+| 14400 | 360 | dmdas  | 1x6 | openmpi_times | openmpi_times_360_dmdas_45   |
+| 14400 | 360 | lws    | 6x1 | openmpi_times | openmpi_times_360_lws_46     |
+| 14400 | 360 | dmda   | 1x6 | openmpi_times | openmpi_times_360_dmda_47    |
+| 14400 | 360 | random | 6x1 | openmpi_times | openmpi_times_360_random_48  |
+| 14400 | 360 | dmdas  | 3x2 | openmpi_times | openmpi_times_360_dmdas_49   |
+| 14400 | 360 | lws    | 3x2 | openmpi_times | openmpi_times_360_lws_50     |
+| 14400 | 360 | random | 3x2 | openmpi_times | openmpi_times_360_random_51  |
+| 14400 | 360 | random | 1x6 | openmpi_times | openmpi_times_360_random_52  |
+| 14400 | 360 | dmdas  | 2x3 | openmpi_times | openmpi_times_360_dmdas_53   |
+| 14400 | 360 | lws    | 6x1 | openmpi_times | openmpi_times_360_lws_54     |
+| 14400 | 360 | dmda   | 1x6 | openmpi_times | openmpi_times_360_dmda_55    |
+| 14400 | 360 | lws    | 1x6 | openmpi_times | openmpi_times_360_lws_56     |
+| 14400 | 360 | random | 6x1 | openmpi_times | openmpi_times_360_random_57  |
+| 14400 | 360 | dmda   | 3x2 | openmpi_times | openmpi_times_360_dmda_58    |
+| 14400 | 360 | lws    | 2x3 | openmpi_times | openmpi_times_360_lws_59     |
+| 14400 | 360 | dmdas  | 1x6 | openmpi_times | openmpi_times_360_dmdas_60   |
+| 14400 | 360 | dmda   | 2x3 | openmpi_times | openmpi_times_360_dmda_61    |
+| 14400 | 360 | dmda   | 6x1 | openmpi_times | openmpi_times_360_dmda_62    |
+| 14400 | 360 | dmdas  | 6x1 | openmpi_times | openmpi_times_360_dmdas_63   |
+| 14400 | 360 | random | 2x3 | openmpi_times | openmpi_times_360_random_64  |
+| 14400 | 360 | random | 1x6 | openmpi_times | openmpi_times_360_random_65  |
+| 14400 | 360 | dmda   | 3x2 | openmpi_times | openmpi_times_360_dmda_66    |
+| 14400 | 360 | dmdas  | 2x3 | openmpi_times | openmpi_times_360_dmdas_67   |
+| 14400 | 360 | dmda   | 1x6 | openmpi_times | openmpi_times_360_dmda_68    |
+| 14400 | 360 | lws    | 6x1 | openmpi_times | openmpi_times_360_lws_69     |
+| 14400 | 360 | random | 2x3 | openmpi_times | openmpi_times_360_random_70  |
+| 14400 | 360 | dmdas  | 1x6 | openmpi_times | openmpi_times_360_dmdas_71   |
+| 14400 | 360 | dmda   | 2x3 | openmpi_times | openmpi_times_360_dmda_72    |
+| 14400 | 360 | lws    | 1x6 | openmpi_times | openmpi_times_360_lws_73     |
+| 14400 | 360 | dmdas  | 6x1 | openmpi_times | openmpi_times_360_dmdas_74   |
+| 14400 | 360 | lws    | 3x2 | openmpi_times | openmpi_times_360_lws_75     |
+| 14400 | 360 | dmda   | 6x1 | openmpi_times | openmpi_times_360_dmda_76    |
+| 14400 | 360 | random | 6x1 | openmpi_times | openmpi_times_360_random_77  |
+| 14400 | 360 | random | 3x2 | openmpi_times | openmpi_times_360_random_78  |
+| 14400 | 360 | dmdas  | 3x2 | openmpi_times | openmpi_times_360_dmdas_79   |
+| 14400 | 360 | lws    | 2x3 | openmpi_times | openmpi_times_360_lws_80     |
+| 14400 | 360 | random | 3x2 | openmpi_times | openmpi_times_360_random_81  |
+| 14400 | 360 | dmdas  | 2x3 | openmpi_times | openmpi_times_360_dmdas_82   |
+| 14400 | 360 | lws    | 3x2 | openmpi_times | openmpi_times_360_lws_83     |
+| 14400 | 360 | random | 6x1 | openmpi_times | openmpi_times_360_random_84  |
+| 14400 | 360 | dmdas  | 3x2 | openmpi_times | openmpi_times_360_dmdas_85   |
+| 14400 | 360 | random | 2x3 | openmpi_times | openmpi_times_360_random_86  |
+| 14400 | 360 | dmda   | 2x3 | openmpi_times | openmpi_times_360_dmda_87    |
+| 14400 | 360 | dmda   | 3x2 | openmpi_times | openmpi_times_360_dmda_88    |
+| 14400 | 360 | lws    | 6x1 | openmpi_times | openmpi_times_360_lws_89     |
+| 14400 | 360 | lws    | 1x6 | openmpi_times | openmpi_times_360_lws_90     |
+| 14400 | 360 | dmda   | 1x6 | openmpi_times | openmpi_times_360_dmda_91    |
+| 14400 | 360 | dmdas  | 1x6 | openmpi_times | openmpi_times_360_dmdas_92   |
+| 14400 | 360 | random | 1x6 | openmpi_times | openmpi_times_360_random_93  |
+| 14400 | 360 | dmdas  | 6x1 | openmpi_times | openmpi_times_360_dmdas_94   |
+| 14400 | 360 | dmda   | 6x1 | openmpi_times | openmpi_times_360_dmda_95    |
+| 14400 | 360 | lws    | 2x3 | openmpi_times | openmpi_times_360_lws_96     |
+| 14400 | 360 | dmdas  | 2x3 | openmpi_times | openmpi_times_360_dmdas_97   |
+| 14400 | 360 | random | 3x2 | openmpi_times | openmpi_times_360_random_98  |
+| 14400 | 360 | dmda   | 3x2 | openmpi_times | openmpi_times_360_dmda_99    |
+| 14400 | 360 | lws    | 3x2 | openmpi_times | openmpi_times_360_lws_100    |
+| 14400 | 360 | dmda   | 1x6 | openmpi_times | openmpi_times_360_dmda_101   |
+| 14400 | 360 | dmdas  | 6x1 | openmpi_times | openmpi_times_360_dmdas_102  |
+| 14400 | 360 | random | 1x6 | openmpi_times | openmpi_times_360_random_103 |
+| 14400 | 360 | dmdas  | 3x2 | openmpi_times | openmpi_times_360_dmdas_104  |
+| 14400 | 360 | lws    | 2x3 | openmpi_times | openmpi_times_360_lws_105    |
+| 14400 | 360 | dmda   | 2x3 | openmpi_times | openmpi_times_360_dmda_106   |
+| 14400 | 360 | lws    | 6x1 | openmpi_times | openmpi_times_360_lws_107    |
+| 14400 | 360 | random | 6x1 | openmpi_times | openmpi_times_360_random_108 |
+| 14400 | 360 | random | 2x3 | openmpi_times | openmpi_times_360_random_109 |
+| 14400 | 360 | dmda   | 6x1 | openmpi_times | openmpi_times_360_dmda_110   |
+| 14400 | 360 | lws    | 1x6 | openmpi_times | openmpi_times_360_lws_111    |
+| 14400 | 360 | dmdas  | 1x6 | openmpi_times | openmpi_times_360_dmdas_112  |
+| 14400 | 360 | dmdas  | 1x6 | openmpi_times | openmpi_times_360_dmdas_113  |
+| 14400 | 360 | lws    | 3x2 | openmpi_times | openmpi_times_360_lws_114    |
+| 14400 | 360 | dmdas  | 6x1 | openmpi_times | openmpi_times_360_dmdas_115  |
+| 14400 | 360 | dmda   | 3x2 | openmpi_times | openmpi_times_360_dmda_116   |
+| 14400 | 360 | lws    | 6x1 | openmpi_times | openmpi_times_360_lws_117    |
+| 14400 | 360 | dmda   | 1x6 | openmpi_times | openmpi_times_360_dmda_118   |
+| 14400 | 360 | random | 3x2 | openmpi_times | openmpi_times_360_random_119 |
+| 14400 | 360 | lws    | 2x3 | openmpi_times | openmpi_times_360_lws_120    |
+| 14400 | 360 | dmda   | 2x3 | openmpi_times | openmpi_times_360_dmda_121   |
+| 14400 | 360 | random | 6x1 | openmpi_times | openmpi_times_360_random_122 |
+| 14400 | 360 | dmdas  | 2x3 | openmpi_times | openmpi_times_360_dmdas_123  |
+| 14400 | 360 | lws    | 1x6 | openmpi_times | openmpi_times_360_lws_124    |
+| 14400 | 360 | dmda   | 6x1 | openmpi_times | openmpi_times_360_dmda_125   |
+| 14400 | 360 | random | 1x6 | openmpi_times | openmpi_times_360_random_126 |
+| 14400 | 360 | random | 2x3 | openmpi_times | openmpi_times_360_random_127 |
+| 14400 | 360 | dmdas  | 3x2 | openmpi_times | openmpi_times_360_dmdas_128  |
+| 14400 | 360 | lws    | 3x2 | openmpi_times | openmpi_times_360_lws_129    |
+| 14400 | 360 | random | 3x2 | openmpi_times | openmpi_times_360_random_130 |
+| 14400 | 360 | dmda   | 3x2 | openmpi_times | openmpi_times_360_dmda_131   |
+| 14400 | 360 | dmdas  | 2x3 | openmpi_times | openmpi_times_360_dmdas_132  |
+| 14400 | 360 | random | 2x3 | openmpi_times | openmpi_times_360_random_133 |
+| 14400 | 360 | dmdas  | 3x2 | openmpi_times | openmpi_times_360_dmdas_134  |
+| 14400 | 360 | lws    | 2x3 | openmpi_times | openmpi_times_360_lws_135    |
+| 14400 | 360 | random | 6x1 | openmpi_times | openmpi_times_360_random_136 |
+| 14400 | 360 | dmdas  | 6x1 | openmpi_times | openmpi_times_360_dmdas_137  |
+| 14400 | 360 | dmda   | 6x1 | openmpi_times | openmpi_times_360_dmda_138   |
+| 14400 | 360 | lws    | 6x1 | openmpi_times | openmpi_times_360_lws_139    |
+| 14400 | 360 | lws    | 1x6 | openmpi_times | openmpi_times_360_lws_140    |
+| 14400 | 360 | dmda   | 1x6 | openmpi_times | openmpi_times_360_dmda_141   |
+| 14400 | 360 | random | 1x6 | openmpi_times | openmpi_times_360_random_142 |
+| 14400 | 360 | dmda   | 2x3 | openmpi_times | openmpi_times_360_dmda_143   |
+| 14400 | 360 | dmdas  | 1x6 | openmpi_times | openmpi_times_360_dmdas_144  |
+| 14400 | 360 | dmda   | 2x3 | openmpi_times | openmpi_times_360_dmda_145   |
+| 14400 | 360 | lws    | 1x6 | openmpi_times | openmpi_times_360_lws_146    |
+| 14400 | 360 | lws    | 3x2 | openmpi_times | openmpi_times_360_lws_147    |
+| 14400 | 360 | dmdas  | 2x3 | openmpi_times | openmpi_times_360_dmdas_148  |
+| 14400 | 360 | random | 2x3 | openmpi_times | openmpi_times_360_random_149 |
+| 14400 | 360 | dmda   | 1x6 | openmpi_times | openmpi_times_360_dmda_150   |
+| 14400 | 360 | dmdas  | 6x1 | openmpi_times | openmpi_times_360_dmdas_151  |
+| 14400 | 360 | random | 1x6 | openmpi_times | openmpi_times_360_random_152 |
+| 14400 | 360 | dmdas  | 1x6 | openmpi_times | openmpi_times_360_dmdas_153  |
+| 14400 | 360 | dmda   | 6x1 | openmpi_times | openmpi_times_360_dmda_154   |
+| 14400 | 360 | lws    | 2x3 | openmpi_times | openmpi_times_360_lws_155    |
+| 14400 | 360 | random | 6x1 | openmpi_times | openmpi_times_360_random_156 |
+| 14400 | 360 | dmdas  | 3x2 | openmpi_times | openmpi_times_360_dmdas_157  |
+| 14400 | 360 | random | 3x2 | openmpi_times | openmpi_times_360_random_158 |
+| 14400 | 360 | dmda   | 3x2 | openmpi_times | openmpi_times_360_dmda_159   |
+| 14400 | 360 | lws    | 6x1 | openmpi_times | openmpi_times_360_lws_160    |
