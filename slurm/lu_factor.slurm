@@ -2,9 +2,9 @@
 #SBATCH --nodes=6
 #SBATCH --partition=cei
 #SBATCH --time=12:00:00
-#SBATCH --job-name="nmad_traces"
-#SBATCH --output=./%J.out
-#SBATCH --error=./%J.err
+#SBATCH --job-name="teste"
+#SBATCH --output=./%J/%J.out
+#SBATCH --error=./%J/%J.err
 
 # Usage: sbatch lu_factor.slurm RASTRO(1|0) MPI(nmad|openmpi)
 
@@ -35,7 +35,7 @@ done
 #hostname
 
 # Install requirements (usually done before)
-GUIX_MANIFEST=${SLURM_JOB_NAME}_chameleon.scm
+GUIX_MANIFEST=${SLURM_JOB_ID}/${SLURM_JOB_NAME}_chameleon.scm
 
 if [ "$MPI" = "nmad" ]; then
 cat <<EOF > $GUIX_MANIFEST
@@ -65,7 +65,7 @@ cat <<EOF > $GUIX_MANIFEST
 		(transform1 (specification->package "pageng"))))
 
 EOF
-else if [ "$MPI" = "openmpi" ]; then
+elif [ "$MPI" = "openmpi" ]; then
 cat <<EOF > $GUIX_MANIFEST
 	(use-modules (guix transformations)
 		     (inria storm)
@@ -88,24 +88,36 @@ eval "$(guix shell -m ${GUIX_MANIFEST} --search-paths)"
 set -u
 
 # Create the hostfile
-HOSTFILE="${SLURM_JOB_ID}.nodes"
+HOSTFILE="${SLURM_JOBID}/${SLURM_JOB_ID}.nodes"
 srun -l hostname | sort -n | awk '{print $2}' > $HOSTFILE
+
 unset "${!STARPU@}"
 
 # Read experiments and execute
 CSV_FILE="${SLURM_JOB_NAME}_experimental_project.csv"
-OUTPUT_DIR=./output_${KEY}
+OUTPUT_DIR=${SLURM_JOB_ID}/output_${KEY}
 mkdir -p ${OUTPUT_DIR} 
 
 STARPU_ENV_VARS=""
 
 # Set common variables
-[ "$MPI" = "nmad" ] && STARPU_ENV_VARS="-DSTARPU_NCUDA=0 -DSTARPU_NCPU=23" || STARPU_ENV_VARS="-x STARPU_NCUDA=0 -x STARPU_NCPU=23"
+[ "$MPI" = "nmad" ] && STARPU_ENV_VARS="-DSTARPU_NCUDA=0 -DSTARPU_NCPU=23" || STARPU_ENV_VARS="-x STARPU_NCUDA=0 -x STARPU_NCPU=23 -x STARPU_WORKERS_GETBIND=0"
 
 # Set FxT (traces) variables based on MPI Implementation
-if [ RASTRO = 1 ];then
+if [ "$RASTRO" = 1 ]; then
 	[ "$MPI" = "nmad" ] && STARPU_ENV_VARS="$STARPU_ENV_VARS -DSTARPU_FXT_TRACE=1" || STARPU_ENV_VARS="$STARPU_ENV_VARS -x STARPU_FXT_TRACE=1" 
 
+fi
+
+
+OPENMPI_PARAMETERS="--mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2" 
+# This is necessary to avoid sbatch + mpirun problems
+if [ "$MPI" = "openmpi" ]; then
+	export OMPI_MCA_plm=isolated
+	export STARPU_NCUDA=0
+	export STARPU_NCPU=23
+	export STARPU_WORKERS_GETBIND=0
+	srun -l hostname | sort -n | awk '{print $2}' | sed 's/$/ slots=1/' > $HOSTFILE
 fi
 
 # Skip header and read the rest
@@ -117,23 +129,24 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq exp 
     $(which mpirun) \
     -n ${SLURM_JOB_NUM_NODES} \
     $STARPU_ENV_VARS \
-    -DSTARPU_FXT_PREFIX="./${OUTPUT_DIR}/$order" \
-    -DSTARPU_SCHED=$scheduler \
+    $([ "$MPI" = "nmad" ] && echo "-DSTARPU_FXT_PREFIX="./${OUTPUT_DIR}/$order" -DSTARPU_SCHED=$scheduler" || echo "$OPENMPI_PARAMETERS -x STARPU_FXT_PREFIX="./${OUTPUT_DIR}/$order" -x STARPU_SCHED=$scheduler" ) \
     -machinefile $HOSTFILE \
     $(which chameleon_dtesting) \
-    $([ $RASTRO = 1 ] && echo "--trace") \
+    $([ "$RASTRO" = 1 ] && echo "--trace") \
     -o dgetrf_nopiv \
     -m $size \
     -n $size \
     -b $block_size \
     -w  \
-    -P $p > ./${OUTPUT_DIR}/$order.out
+    -P $p > ./${OUTPUT_DIR}/$order.out < /dev/null
 
-    # Execute StarVZ
-    export R_LIBS_USER=$(pwd)/R/x86_64-pc-linux-gnu-library/4.2/
-    export LD_LIBRARY_PATH=$(pwd)/arrow/lib/
-    export STARVZ_TOOLS=$(Rscript -e 'cat(system.file("tools/", package = "starvz"), sep="\n")')
-    $STARVZ_TOOLS/starvz -a lu ./${OUTPUT_DIR}/$order/
+    if [ "$RASTRO" = 1 ]; then
+	    # Execute StarVZ
+	    export R_LIBS_USER=$(pwd)/R/x86_64-pc-linux-gnu-library/4.2/
+	    export LD_LIBRARY_PATH=$(pwd)/arrow/lib/
+	    export STARVZ_TOOLS=$(Rscript -e 'cat(system.file("tools/", package = "starvz"), sep="\n")')
+	    $STARVZ_TOOLS/starvz -a lu ./${OUTPUT_DIR}/$order/
+    fi
 done
 
 echo "End of executions"
