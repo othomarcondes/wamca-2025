@@ -318,6 +318,7 @@ library(patchwork)
 tibble(DIR = dir_ls("nmad")) |>
   separate(DIR, into=c("XX0", "KEY", "JOBID"), remove=FALSE) |>
   mutate(STARVZ = map(DIR, starvz_read)) |>
+  mutate(makespan = map_dbl(STARVZ, function(svz) { svz$Application |> pull(End) |> max() })) |>
   mutate(STARVZ = map2(STARVZ, KEY, function(svz, key) {
     svz$Application |> mutate(KEY = key) -> svz$Application
     return(svz)
