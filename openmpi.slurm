@@ -77,49 +77,12 @@ srun -l hostname | sort -n | awk '{print $2}' | sed 's/$/ slots=1/' > $HOSTFILE
 CSV_FILE="${SLURM_JOB_NAME}_experimental_project.csv"
 
 mkdir -p ./output
-# Skip header and read the rest
-
-echo '
-#include <mpi.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char **argv) {
-    MPI_Init(&argc, &argv);
-
-    int rank;
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-
-    printf("Rank %d: STARPU_SCHED=%s\n", rank, getenv("STARPU_SCHED"));
-
-    MPI_Finalize();
-    return 0;
-}
-' > x.c
-$(which mpicc) x.c
-./a.out
 
 # This is necessary to avoid sbatch + mpirun problems
 export OMPI_MCA_plm=isolated
 
 $(which mpirun) --version
 $(which mpirun) --help
-tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq Blocks exp Order; do
-   echo
-   echo $scheduler
-   echo
-   export STARPU_SCHED=$scheduler
-   $(which mpirun) \
-    --mca btl_base_verbose 30 \
-    --mca pml_base_verbose 30 \
-    --mca oob_base_verbose 30 \
-    --mca oob_tcp_if_include eno2 \
-    --mca btl_tcp_if_include eno2 \
-   --np ${SLURM_JOB_NUM_NODES} \
-   --hostfile $HOSTFILE \
-   -x STARPU_SCHED \
-   ./a.out < /dev/null
-done
 
 #    --mca btl_base_verbose 30 \
 #    --mca pml_base_verbose 30 \
