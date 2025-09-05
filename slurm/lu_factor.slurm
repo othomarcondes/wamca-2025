@@ -98,6 +98,7 @@ CSV_FILE="${SLURM_JOB_NAME}_experimental_project.csv"
 OUTPUT_DIR=${SLURM_JOB_ID}/output_${KEY}
 mkdir -p ${OUTPUT_DIR} 
 
+rsync ${CSV_FILE} ./${SLURM_JOB_ID}/ 
 STARPU_ENV_VARS=""
 
 # Set common variables
