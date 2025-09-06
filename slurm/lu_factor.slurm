@@ -6,7 +6,8 @@
 #SBATCH --output=./%J/%J.out
 #SBATCH --error=./%J/%J.err
 
-# Usage: sbatch lu_factor.slurm RASTRO(1|0) MPI(nmad|openmpi)
+# Usage: sbatch --job-name=OP lu_factor.slurm RASTRO(1|0) MPI(nmad|openmpi)
+# where OP is one of nmad_times, nmad_traces, openmpi_times, openmpi_traces
 
 # RASTRO (0 | 1)
 RASTRO=$1
