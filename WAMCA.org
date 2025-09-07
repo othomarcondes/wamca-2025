@@ -300,7 +300,7 @@ df |>
 library(patchwork)
 p1 + plot_spacer() + p2 +
   plot_layout(ncol=3, widths=c(1, 0.01, 1)) -> p
-ggsave("img/distrib-scheduler.pdf", width=13, height=10)
+ggsave("img/nmad-distrib-scheduler.pdf", width=13, height=10)
 #+end_src
 
 #+RESULTS:
