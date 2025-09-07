@@ -1424,7 +1424,7 @@ performance among the other values.
 #+attr_latex: :width .8\linewidth
 [[./img/block-size.pdf]]
 
-*** Comparison general overview
+*** General overview of the comparison
 
 Figure [[fig.ds]] depicts the distribution of the execution time (Y-axis)
 as a function of the block-cyclic strategy (X-axis), the intra-node
