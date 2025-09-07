@@ -1867,9 +1867,12 @@ has sustained poorer performance when run with the =nmad= middleware.
 [[./img/lws-3x2-agg_traces-with-abe.pdf]]
 
 
-*** MPI transport delays
+*** Observation of OpenMPI delays
 
-
+#+name: fig.trace2
+#+caption: Application workers behavior along time in the four data partitioning schemes, depicting significative delays from the start.
+#+attr_latex: :width \linewidth
+[[./img/lws-all_pq-traces.pdf]]
 
 *** To be integrated                                             :noexport:
 
