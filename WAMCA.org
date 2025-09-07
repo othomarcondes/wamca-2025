@@ -1478,8 +1478,26 @@ its local work stealing policy.
 
 #+latex: \noindent
 _Transport Layer_: The final observations about Figure [[fig.ds]] include
-the comparison between the two transport layers. Our first experiments
-have been 
+the comparison between the two transport layers. The general
+understanding is that =nmad= is capable of providing much better results
+as previously demonstrated cite:nesi2022. The =nmad= layer provides
+operations focusing on low-latency between tasks, exactly what StarPU
+scheduling heuristics require to dispatch more parallelism in other
+nodes as soon as possible (e.g. when local tasks become ready because
+of remote tasks made available their input). What we observe in our
+results is a different story: =openmpi= is better than =nmad= no matter
+the data partitioning strategy considering separated scheduling
+strategy. If we allow comparisons among different schedulers, we can
+indeed observe that =nmad= with =lws= (the best case with =nmad=) is better
+than =openmpi= with the =random= scheduler. Considering the best case for
+=nmad=, which is with the =lws= scheduler, we can see a small benefit of
+running with 2\times3 and 3\times2 data partitioning schemes, while there is no
+a statistical significance for the difference as the makespan
+distribution (violin plots) interleave slightly. A possible
+explanation for the poorer unexpected results of =nmad= might be related
+to our network. The six machines have a 10G Ethernet interfaces whose
+cables use a switch that shares the main administrative operations of
+the general cluster environment.
 
 #+name: fig.ds
 #+caption: The makespan (Y-axis) as a function of data partitioning strategies (X-axis), scheduler (facets) and transport layer (colors).
