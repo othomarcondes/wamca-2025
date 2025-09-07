@@ -18,11 +18,12 @@
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 #+LATEX_HEADER: \usepackage{booktabs}
 
-* Things to investigate
+* Things to investigate                                            :noexport:
 ** Why task mean duration is higher in nmad when compared against openmpi
 
 I suppose is some experiment problem.
 
+** Why for the dmdas, dmda the execution time with traces are so much faster than without?
 * Experiments                                                      :noexport:
 ** Step 1: Block size fixed to 360, matrix size fixed to 14400
 Changing
@@ -1138,7 +1139,7 @@ The following object is masked from ‘package:utils’:
 ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 #+end_example
 
-*** Plot
+*** Plot =img/lws-all_pq-traces.pdf=
 
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 df |>
@@ -1212,6 +1213,37 @@ ggsave("img/lws-all_pq-traces.pdf", width=6, height=10)
 : Scale for x is already present.
 : Adding another scale for x, which will replace the existing scale.
 
+*** Idle time before 10s of execution
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df2 |>
+  group_by(TRANSPORT, size, block_size, scheduler, pq) |>  
+  mutate(DF = map(STARVZ, function(sv) { sv$Application } )) |>
+  unnest(DF) |>
+  filter(End < 10000) |>
+  group_by(ResourceId, .add=TRUE) |>
+  summarize(Idle = max(End) - sum(Duration), .groups="keep") |>
+  ungroup(ResourceId) |>
+  summarize(
+    Idle.Min = min(Idle),
+    Idle.Mean = mean(Idle),
+    Idle.Max = max(Idle))
+#+end_src
+
+#+RESULTS:
+#+begin_example
+`summarise()` has grouped output by 'TRANSPORT', 'size', 'block_size',
+'scheduler'. You can override using the `.groups` argument.
+# A tibble: 4 × 8
+# Groups:   TRANSPORT, size, block_size, scheduler [1]
+  TRANSPORT  size block_size scheduler pq    Idle.Min Idle.Mean Idle.Max
+  <chr>     <dbl>      <dbl> <chr>     <chr>    <dbl>     <dbl>    <dbl>
+1 openmpi   14400        360 lws       1x6       705.     1545.    2925.
+2 openmpi   14400        360 lws       2x3       272.      816.    1414.
+3 openmpi   14400        360 lws       3x2       189.     1116.    2140.
+4 openmpi   14400        360 lws       6x1       273.      934.    1931.
+#+end_example
+
 
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
@@ -1219,10 +1251,10 @@ ggsave("img/lws-all_pq-traces.pdf", width=6, height=10)
 \title{Impact of Data Distribution and Schedulers for the LU Factorization on Multi-Core Clusters}
 
 \author{
-\IEEEauthorblockN{Otho José Sirtoli Marcondes\IEEEauthorrefmark{1},
-                  Philippe O. A. Navaux\IEEEauthorrefmark{1},
-                  Lucas Mello Schnorr\IEEEauthorrefmark{1}}
-\IEEEauthorblockN{\IEEEauthorrefmark{1} Institute of Informatics/PPGC/UFRGS, Porto Alegre, Brazil}
+\IEEEauthorblockN{Otho José Sirtoli Marcondes,
+                  Philippe O. A. Navaux,
+                  Lucas Mello Schnorr}
+\IEEEauthorblockN{Institute of Informatics/PPGC/UFRGS, Porto Alegre, Brazil}
 }
 #+END_EXPORT
 
@@ -1887,41 +1919,27 @@ has sustained poorer performance when run with the =nmad= middleware.
 
 *** Observation of OpenMPI delays
 
+Figure [[fig.trace2]] depicts four space/time views (also known as
+Gantt-Charts), each one with all the 144 workers of the six machines
+(on the Y axis), considering the three types of tasks (colors). From
+top to bottom, we represent the behavior of the 1\times6, 2\times3, 3\times2, and 6\times1
+data distribution. We can observe that in the start of the four
+executions, approximately until the time 10s, we can see a more dense
+behavior of =dgemm= tasks. In this time interval, the mean idle time of
+application workers is \approx1500ms for 1\times6 (the worst) and \approx800ms for 2\times3
+(the best), indicating that data partitioning plays an important whole
+as there are fewer synchronization tasks indeed. However even the best
+case here demonstrates significant OpenMPI delays in the part of the
+application where parallelism is maximum. We believe the main reason
+for this problem, which appears across all our experiments, is related
+to the network limitations in our infrastructure.
+
 #+name: fig.trace2
 #+caption: Application workers behavior along time in the four data partitioning schemes, depicting significative delays from the start.
 #+attr_latex: :width \linewidth
 [[./img/lws-all_pq-traces.pdf]]
 
-*** To be integrated                                             :noexport:
-
-Figure~\ref{fig:timePQ} depicts four panels, aligned in the X
-dimension (time), each showing the execution time of a different
-scheduler (\verb|random|, \verb|lws|, \verb|dmdas|, \verb|dmda|) with
-a fixed PxQ configuration. The standard deviation is represented by
-the black error bars on each bar. We can see that the \verb|lws| and
-\verb|random| schedulers did not present much variation when changing
-the PxQ configuration. As for the \verb|dmdas| and \verb|dmda|, both
-of them showed significantly better performance when utilizing the
-$P=2$ $Q=3$ and $P=3$ $Q=2$ configurations.
-
-# NEEDS TO BE REDONE (DONE WITH THE 64 BLOCK SIZE)
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{tempo_medio_com_desvio_padrao_por_PQ.png}
-\caption{Execution times based on the PxQ configuration}
-\label{fig:timePQ}
-\end{figure}
-
-Figure~\ref{fig:timeSched} depicts four panels, aligned in the X dimension (time), each of them showing the execution time of a PxQ configuration with a fixed scheduler heuristic. The standard deviation is represented by the black error bars on each bar. We can see that the \verb|lws| scheduler had the best results among the schedulers fallowed by the \verb|random| scheduler. The \verb|dmda| and \verb|dmdas| had similar performance, with performance gains when P and Q are interleaved.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{tempo_medio_com_desvio_padrao_por_scheduler.png}
-\caption{Execution times based on the scheduler heuristic}
-\label{fig:timeSched}
-\end{figure}
-
-** TODO Conclusion
+** Conclusion
 <<sec:conclusion>>
 
 The study examines the impact of data distribution using Block cyclic
