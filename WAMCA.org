@@ -1481,7 +1481,7 @@ this work with some considerations and future work.
 <<sec:related_work>>
 *** Static Data Distribution
 *** Task-based Runtime Systems
-The use of task-based runtime systems to execute parallel programs in a distributed way is adopted by various libraries and runtime systems such as StarPU, OmpSs and PaRSEC, providing programming models that abstract parallelism through tasks rather than explicit thread or process management. In these systems, computations are expressed as a set of tasks with declared data dependencies. At runtime, a scheduler dynamically builds a task dependency graph (DAG) and maps tasks to available resources (e.g., CPUs or GPUs). This approach relieves programmers from explicitly handling synchronization, communication and allowing an easy way to implement different data distributions.
+The use of task-based runtime systems to execute parallel programs in a distributed way is adopted by various libraries and runtime systems such as StarPU cite:augonnet2012starpu, OmpSs cite:duran2011ompss and PaRSEC cite:bosilca2013parsec, providing programming models that abstract parallelism through tasks rather than explicit thread or process management. In these systems, computations are expressed as a set of tasks with declared data dependencies. At runtime, a scheduler dynamically builds a task dependency graph (DAG) and maps tasks to available resources (e.g., CPUs or GPUs). This approach relieves programmers from explicitly handling synchronization, communication and allowing an easy way to implement different data distributions.
 
 The main advantages of task-based environments lie in their adaptability and performance portability. Dynamic schedulers can exploit runtime information (such as task durations, data locality, or device load) to optimize execution and balance workloads across heterogeneous resources. Furthermore, the DAG-based model exposes parallelism that may not be obvious at compile time, improving resource utilization and scalability. Compared to static parallel models (e.g., MPI-only or OpenMP loop-level parallelism), task-based runtimes achieve better overlap of communication and computation, reduce idle times, and adapt to irregular workloads.
 
@@ -2257,6 +2257,17 @@ series = {PPoPP '23}
   pages={357-367},
   keywords={Distributed processing;Adaptation models;Gaussian processes;Market research;Behavioral sciences;Task analysis;Standards;HPC;Heterogeneous;Task-Based;Distribution;Load Balancing},
   doi={10.1109/IPDPS53621.2022.00042}}
+
+@article{duran2011ompss,
+  title={Ompss: a proposal for programming heterogeneous multi-core architectures},
+  author={Duran, Alejandro and Ayguad{\'e}, Eduard and Badia, Rosa M and Labarta, Jes{\'u}s and Martinell, Luis and Martorell, Xavier and Planas, Judit},
+  journal={Parallel processing letters},
+  volume={21},
+  number={02},
+  pages={173--193},
+  year={2011},
+  publisher={World Scientific}
+}
 
 #+end_src
 * Emacs setup                                                      :noexport:
