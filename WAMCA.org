@@ -23,6 +23,7 @@
 
 I suppose is some experiment problem.
 
+** Why for the dmdas, dmda the execution time with traces are so much faster than without?
 * Experiments                                                      :noexport:
 ** Step 1: Block size fixed to 360, matrix size fixed to 14400
 Changing
