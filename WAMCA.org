@@ -1301,7 +1301,10 @@ variable, we measure the makespan metric, which represents the total
 execution time from the initiation of the LU factorization algorithm
 until its completion, providing a comprehensive measure of overall
 computational efficiency that encompasses both computation and
-communication costs across all participating nodes.
+communication costs across all participating nodes. We employ
+violin plots cite:hintze1998violin, a well-known method to visually
+depict the measurement distribution, thereby avoiding the necessity of
+calculating mean and typical variation measures.
 
 # Third, we detail how we obtain detailed execution traces collected
 # during representative runs to gain deeper understanding of the
@@ -1346,9 +1349,7 @@ execution traces obtained from the StarPU runtime.
 
 Figure [[fig.bs]] depicts the makespan of the LU factorization, when using
 the =LWS= for intra-node task scheduling, the NMAD MPI layer and an
-input matrix of 16K, as a function of different block sizes. We employ
-violin plots cite:hintze1998violin, a well-known method to visually
-depict the measurement distribution. We can see that the makespan is
+input matrix of 16K, as a function of different block sizes.  We can see that the makespan is
 constrained from \approx47s up to \approx80s depending on the block size with
 rather concentrated distributions demonstrating that our experiments
 have relatively low variability. We can also confirm that the block
