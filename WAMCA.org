@@ -1248,7 +1248,7 @@ LU factorization on our target platform by systematically evaluating
 performance across a range of block dimensions. Using all six
 available computing nodes with the Locality Work Stealing (LWS)
 scheduler and the MadMPI communication layer, we perform tiled LU
-factorization on a fixed input matrix of order 16000 (16K). We vary
+factorization on a fixed input matrix of order 14400 (14.4K). We vary
 the tile size across ten different configurations: 128×128, 256×256,
 300×300, 320×320, 400×400, 420×420, 460×460, 512×512, 960×960, and
 1600×1600. This range encompasses both standard power-of-two
