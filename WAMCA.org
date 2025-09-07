@@ -1220,12 +1220,12 @@ layer while sharing the remaining software configurations.
 #+CAPTION: Hardware specification of the cei partition.
 #+NAME: tab:hardware
 #+ATTR_LATEX: :booktabs t
-| *Nome* | *CPU*                              | *RAM*        | *Network* |
-| <l>  | <l>                              | <l>        | <l>     |
-|------+----------------------------------+------------+---------|
-| Cei  | Supermicro X11DPU                | 96 GB DDR4 | 10G     |
-|      | 2 x Intel(R) Xeon(R) Silver 4116 |            |         |
-|      | 2.10 GHz, 24 physical cores      |            |         |
+| *Nome* | *CPU*                              | *RAM*   | *Network*  |
+| <l>  | <l>                              | <l>   | <l>      |
+|------+----------------------------------+-------+----------|
+| Cei  | Supermicro X11DPU                | 96 GB | 10G      |
+|      | 2 x Intel(R) Xeon(R) Silver 4116 | DDR4  | Ethernet |
+|      | 2.10 GHz, 24 physical cores      |       |          |
 
 The data analysis is carried out in a post-mortem fashion by scripts
 written in the R language when using the StarVZ library framework
