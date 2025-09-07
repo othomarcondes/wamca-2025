@@ -1884,35 +1884,6 @@ has sustained poorer performance when run with the =nmad= middleware.
 #+attr_latex: :width \linewidth
 [[./img/lws-all_pq-traces.pdf]]
 
-*** To be integrated                                             :noexport:
-
-Figure~\ref{fig:timePQ} depicts four panels, aligned in the X
-dimension (time), each showing the execution time of a different
-scheduler (\verb|random|, \verb|lws|, \verb|dmdas|, \verb|dmda|) with
-a fixed PxQ configuration. The standard deviation is represented by
-the black error bars on each bar. We can see that the \verb|lws| and
-\verb|random| schedulers did not present much variation when changing
-the PxQ configuration. As for the \verb|dmdas| and \verb|dmda|, both
-of them showed significantly better performance when utilizing the
-$P=2$ $Q=3$ and $P=3$ $Q=2$ configurations.
-
-# NEEDS TO BE REDONE (DONE WITH THE 64 BLOCK SIZE)
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{tempo_medio_com_desvio_padrao_por_PQ.png}
-\caption{Execution times based on the PxQ configuration}
-\label{fig:timePQ}
-\end{figure}
-
-Figure~\ref{fig:timeSched} depicts four panels, aligned in the X dimension (time), each of them showing the execution time of a PxQ configuration with a fixed scheduler heuristic. The standard deviation is represented by the black error bars on each bar. We can see that the \verb|lws| scheduler had the best results among the schedulers fallowed by the \verb|random| scheduler. The \verb|dmda| and \verb|dmdas| had similar performance, with performance gains when P and Q are interleaved.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{tempo_medio_com_desvio_padrao_por_scheduler.png}
-\caption{Execution times based on the scheduler heuristic}
-\label{fig:timeSched}
-\end{figure}
-
 ** TODO Conclusion
 <<sec:conclusion>>
 
