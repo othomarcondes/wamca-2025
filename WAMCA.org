@@ -1835,6 +1835,18 @@ series = {PPoPP '23}
   HAL_ID = {inria-00547847},
   HAL_VERSION = {v1},
 }
+
+@INPROCEEDINGS{nesi2022,
+  author={Nesi, Lucas Leandro and Schnorr, Lucas Mello and Legrand, Arnaud},
+  booktitle={2022 IEEE International Parallel and Distributed Processing Symposium (IPDPS)}, 
+  title={Multi-Phase Task-Based HPC Applications: Quickly Learning how to Run Fast}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={357-367},
+  keywords={Distributed processing;Adaptation models;Gaussian processes;Market research;Behavioral sciences;Task analysis;Standards;HPC;Heterogeneous;Task-Based;Distribution;Load Balancing},
+  doi={10.1109/IPDPS53621.2022.00042}}
+
 #+end_src
 * Emacs setup                                                      :noexport:
 
