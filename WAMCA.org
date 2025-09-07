@@ -1426,6 +1426,35 @@ performance among the other values.
 
 *** Comparing BC strategies and scheduler.
 
+Figure [[fig.ds]] depicts the distribution of the execution time (Y-axis)
+as a function of the block-cyclic strategy (X-axis), the intra-node
+scheduler (facets) and the transport layer (color). We observe several
+interesting phenomena, according to the changing block-cyclic
+strategy, the scheduler and the transport layer.
+#+latex: %
+/Block-Cyclic Strategy/: We expected the 2\times3 and 3\times2 data partitions to
+be more communication efficient, thereby inflicting a smaller makespan
+no matter the scheduler or transport layer. These data partitions,
+when compared to the other two (1\times6 and 6\times1), contain less
+communication tasks to accomplish as they have more appropriate data
+partitions. Counting the number of MPI communications across the
+OpenMPI experiments, we see that the 1\times6 and 6\times1 data partitions
+demonstrate \approx3900 MPI operations for our input and block sizes, while
+the 2\times3 and 3\times2 data partitions demonstrate \approx2300 MPI operations. The
+common sense indicate that with less communication operations for a
+the same payload (the block size), we would expect a smaller
+communication time and, by consequence, a smaller makespan.  However,
+our results indicate that data partition have a minimal effect as the
+makespan observations are very similar among the data partition
+strategies no matter the scheduler or the transport layer. That being
+said, for the =random= scheduling in the =nmad= transport layer (rightmost
+facet, red color), we can see a slight difference favoring 2\times3 and 3\times2
+data partitions, according to our initial expectations. We believe
+that the main reason for these results, different from what has been
+observed in previous studies cite:nesi2020communication, is double
+fold. Firstly, the workload is simply too small. Secondly, despite
+being different, these data distributions
+
 #+name: fig.ds
 #+caption: The makespan as a function BC strategies and scheduler.
 #+attr_latex: :width .9\linewidth
