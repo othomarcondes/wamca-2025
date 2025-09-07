@@ -1470,7 +1470,7 @@ contributions for the MPI NewMadeleine implementation.
 
 # Section [[sec:related]] presents some basic concepts on matrix
 # distribution, modern task-based runtimes and related work.
-The paper is structured as follows.  Section [[sec:methodology]] details
+The paper is structured as follows. Section [[sec:related_work]] presents some related work on static data partition and how task-based runtimes systems allowed and facilitated the implementation of these data distributions strategies. Section [[sec:methodology]] details
 our methodology and explains how we conducted the experiments in our
 investigation. Section [[sec:results]] presents experimental results and
 their interpretation, focusing on the performance overview and
