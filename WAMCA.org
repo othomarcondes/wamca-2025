@@ -1432,6 +1432,7 @@ scheduler (facets) and the transport layer (color). We observe several
 interesting phenomena, according to the changing block-cyclic
 strategy, the scheduler and the transport layer.
 #+latex: %
+
 /Block-Cyclic Strategy/: We expected the 2\times3 and 3\times2 data partitions to
 be more communication efficient, thereby inflicting a smaller makespan
 no matter the scheduler or transport layer. These data partitions,
