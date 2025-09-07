@@ -1339,7 +1339,8 @@ cite:pinto2021providing visualization framework.
 We detail the results regarding the search for the best block size,
 the comparison of the block-cyclic strategies, the intra-node
 scheduler, and the transport layer and their impact on the makespan,
-and finally an analysis comparing NMAD and OMPI.
+and finally an analysis comparing NMAD and OMPI using detailed
+execution traces obtained from the StarPU runtime.
 
 *** Searching for the best block size
 
