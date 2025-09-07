@@ -1646,6 +1646,36 @@ the general cluster environment.
 
 *** NMAD /versus/ OMPI analysis with traces
 
+We delve into the traces to get a better understanding besides the
+rough makespan measurements usually employed in such type of
+analysis. StarVZ cite:pinto2021providing provides modern data science
+to the performance analysis of StarPU applications. Figure [[fig.trace1]]
+has been created by cleverly tweaking StarVZ configurations to obtain
+the aggregated node occupation along the execution time considering
+the three =LU= tasks (colors) of two traced executions, both with the
+=lws= scheduler and the 3\times2 data partitioning for =openmpi= (top) and =nmad=
+(bottom). In accordance to what we previously observed in Figure
+[[fig.ds]], the makespan of the =openmpi= execution is more than half of
+that of =nmad=. To understand why this happens, we also depict the
+per-node Area Bound Estimation (ABE) cite:garcia2018visual, which
+roughly represents the amount of time would take to execute all the
+tasks each node has received disregarding communication costs. For
+example, for the =openmpi= run (top), Node 0 (denoted CPU 0 in the
+figure) has an ABE of 13167, meaning that if all its tasks could be
+executed without waiting, Node 0 will stop working when that timestamp
+would be reached. This rough estimation is computed per trace, meaning
+the cost of tasks in a given trace is take as it is, without any time
+of performance mode whatsoever. What is interesting in this comparison
+is that the same Node 0 in the =nmad= run has an ABE of 35629, clearly
+indicating that the cost of tasks is much higher. Indeed, if we take a
+look to the traces and compute the mean duration of the costlier and
+more numerous =dgemm= task, we can see that when executed with =nmad= the
+mean duration is \approx232ms, while with =openmpi= is \approx86s. Such timings,
+along with the per-node ABE, fully justify that the main culprit for
+the poor performance of =nmad= is not the middleware by itself, but some
+other compute reason. We are still investigating why the =dgemm= task
+has sustained poorer performance when run with the =nmad= middleware.
+
 #+name: fig.trace1
 #+caption: Node occupation along the execution time considering the three =LU= tasks (colors) of two runs with the =lws= scheduler and the 3\times2 data partitioning for =openmpi= (top) and =nmad= (bottom).
 #+attr_latex: :width \linewidth
