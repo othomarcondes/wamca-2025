@@ -931,7 +931,7 @@ The following object is masked from ‘package:utils’:
 ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 #+end_example
 
-**** Plot
+**** Plot =lws-3x2-agg_traces-with-abe.pdf=
 
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 df |>
@@ -992,7 +992,7 @@ Removed 270 rows containing missing values or values outside the scale range
 (`geom_rect()`).
 #+end_example
 
-**** Observe
+**** Observe =lws-3x2= mean duration of tasks
 
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 df2 |>
@@ -1018,6 +1018,67 @@ df2 |>
 4 openmpi   14400        360 lws       3x2   dgetrf_nopiv 297. 
 5 nmad      14400        360 lws       3x2   dtrsm         25.1
 6 openmpi   14400        360 lws       3x2   dtrsm         13.9
+#+end_example
+
+**** FAIL FAIL Plot =dmdas-3x2-agg_traces-with-abe.pdf=
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df |>
+  filter(scheduler == "dmdas") |>
+  filter(pq == "3x2") |>  
+  mutate(makespan = map_dbl(STARVZ, function(svz) { svz$Application |> pull(End) |> max() })) |>
+  mutate(STARVZ = map(STARVZ, function(svz) {
+    svz$Application |>
+      filter(Value != "dplgsy") -> svz$Application
+    svz
+  })) -> df2
+df2 |>
+  mutate(STARVZ = map(STARVZ, function(svz) {
+#    svz$config$base_size <- 20
+    svz$config$st$aggregation$step <- 100
+    svz$config$st$abe$active <- TRUE
+    svz$config$st$abe$size <- 2
+    svz$config$st$abe$label <- FALSE
+#    svz$config$st$idleness <- TRUE
+    svz$config$st$outliers <- FALSE
+    svz$config$st$labels <- "NODES_only"
+    svz$config$st$aggregation$active <- TRUE
+    svz$config$st$aggregation$method <- "nodes"
+    return(svz) })) |>
+  mutate(GC = map(STARVZ, panel_st)) |>
+#  mutate(GC = map2(GC, TRANSPORT, function(gc, tr) { gc + ggtitle(tr) })) |>
+  mutate(GC = map(GC, function(gc) { gc + xlim(0, 53000) })) |>
+  pull(GC) -> l.plots
+l.plots[[1]] + theme(
+                 legend.box = "horizontal",                 
+                 axis.title.y = element_text(size = 12),
+                 axis.text.y = element_text(size = 12),                 
+                 axis.text.x = element_blank(),
+                 axis.title.x = element_blank()
+               ) -> l.plots[[1]]
+l.plots[[2]] + theme(
+                 axis.title.y = element_text(size = 12),
+                 axis.text.y = element_text(size = 12),
+                 axis.title.x = element_text(size = 12),
+                 axis.text.x = element_text(size = 12),                 
+                 legend.position = "none"
+               ) -> l.plots[[2]]
+wrap_plots(l.plots, nrow=2)
+ggsave("img/dmdas-3x2-agg_traces-with-abe.pdf", width=6, height=10)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+Warning message:
+Removed 144 rows containing missing values or values outside the scale range
+(`geom_rect()`).
+Warning message:
+Removed 144 rows containing missing values or values outside the scale range
+(`geom_rect()`).
 #+end_example
 
 * *Paper*                                                              :ignore:
@@ -1680,6 +1741,8 @@ has sustained poorer performance when run with the =nmad= middleware.
 #+caption: Node occupation along the execution time considering the three =LU= tasks (colors) of two runs with the =lws= scheduler and the 3\times2 data partitioning for =openmpi= (top) and =nmad= (bottom).
 #+attr_latex: :width \linewidth
 [[./img/lws-3x2-agg_traces-with-abe.pdf]]
+
+
 
 *** To be integrated                                             :noexport:
 
