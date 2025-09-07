@@ -691,6 +691,138 @@ df |>
 15 14400        360 lws       6x1   nmad_traces nmad_… outp… <strvz_dt>   53293.
 16 14400        360 random    6x1   nmad_traces nmad_… outp… <strvz_dt>   98041.
 #+end_example
+** AGAIN!
+** 2025-09-06 Times from job identifiers 72130[12]
+*** Preprocess using bash and awk
+
+#+begin_src shell :results output :exports both
+DIR=data-wamca-again/
+CSV=${DIR}/times.csv
+FILES=$(find ${DIR}/72130[12]/ -name '*.out' | grep '_360_')
+FIRST=$(find ${DIR}/72130[12]/ -name '*.out' | head -n1)
+HEADER="$(head -n1 $FIRST);scheduler;transport"
+{
+    echo $HEADER
+    for f in $FILES; do
+	TRANSPORT=$(basename "$f" | awk -F'_' '{print $1}')
+	SCHEDULER=$(basename "$f" | awk -F'_' '{print $4}')
+	LINE="$(tail -n+2 $f);$SCHEDULER;$TRANSPORT"
+	echo $LINE
+    done
+} > ${CSV}
+echo $CSV
+#+end_src
+
+#+RESULTS:
+: data-wamca-again//times.csv
+
+*** Read
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+suppressMessages(library(tidyverse))
+bind_rows(
+  read_delim("data-wamca-again/times.csv", show_col_types=FALSE, progress=FALSE, delim=";")
+) |>
+  mutate(scheduler = as.factor(scheduler)) |>
+  mutate(transport = as.factor(transport)) |>
+  mutate(KEY = as.factor(paste0(P, "x", Q))) -> df
+df |> summary()
+df |> group_by(scheduler, KEY)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Id      Function            threads        gpus         P       
+ Min.   :0   Length:320         Min.   :23   Min.   :0   Min.   :1.00  
+ 1st Qu.:0   Class :character   1st Qu.:23   1st Qu.:0   1st Qu.:1.75  
+ Median :0   Mode  :character   Median :23   Median :0   Median :2.50  
+ Mean   :0                      Mean   :23   Mean   :0   Mean   :3.00  
+ 3rd Qu.:0                      3rd Qu.:23   3rd Qu.:0   3rd Qu.:3.75  
+ Max.   :0                      Max.   :23   Max.   :0   Max.   :6.00  
+       Q            mtxfmt        nb            m               n        
+ Min.   :1.00   Min.   :0   Min.   :360   Min.   :14400   Min.   :14400  
+ 1st Qu.:1.75   1st Qu.:0   1st Qu.:360   1st Qu.:14400   1st Qu.:14400  
+ Median :2.50   Median :0   Median :360   Median :14400   Median :14400  
+ Mean   :3.00   Mean   :0   Mean   :360   Mean   :14400   Mean   :14400  
+ 3rd Qu.:3.75   3rd Qu.:0   3rd Qu.:360   3rd Qu.:14400   3rd Qu.:14400  
+ Max.   :6.00   Max.   :0   Max.   :360   Max.   :14400   Max.   :14400  
+      lda            seedA                bump            tsub  
+ Min.   :14400   Min.   :1.804e+09   Min.   :14400   Min.   :0  
+ 1st Qu.:14400   1st Qu.:1.804e+09   1st Qu.:14400   1st Qu.:0  
+ Median :14400   Median :1.804e+09   Median :14400   Median :0  
+ Mean   :14400   Mean   :1.804e+09   Mean   :14400   Mean   :0  
+ 3rd Qu.:14400   3rd Qu.:1.804e+09   3rd Qu.:14400   3rd Qu.:0  
+ Max.   :14400   Max.   :1.804e+09   Max.   :14400   Max.   :0  
+      time            gflops       scheduler    transport    KEY    
+ Min.   : 22.67   Min.   :18.89   dmda  :80   nmad   :160   1x6:80  
+ 1st Qu.: 45.22   1st Qu.:31.90   dmdas :80   openmpi:160   2x3:80  
+ Median : 53.64   Median :37.11   lws   :80                 3x2:80  
+ Mean   : 55.72   Mean   :41.06   random:80                 6x1:80  
+ 3rd Qu.: 62.40   3rd Qu.:44.02                                     
+ Max.   :105.40   Max.   :87.81
+# A tibble: 320 × 19
+# Groups:   scheduler, KEY [16]
+      Id Function     threads  gpus     P     Q mtxfmt    nb     m     n   lda
+   <dbl> <chr>          <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1     0 dgetrf_nopiv      23     0     3     2      0   360 14400 14400 14400
+ 2     0 dgetrf_nopiv      23     0     1     6      0   360 14400 14400 14400
+ 3     0 dgetrf_nopiv      23     0     2     3      0   360 14400 14400 14400
+ 4     0 dgetrf_nopiv      23     0     2     3      0   360 14400 14400 14400
+ 5     0 dgetrf_nopiv      23     0     3     2      0   360 14400 14400 14400
+ 6     0 dgetrf_nopiv      23     0     3     2      0   360 14400 14400 14400
+ 7     0 dgetrf_nopiv      23     0     6     1      0   360 14400 14400 14400
+ 8     0 dgetrf_nopiv      23     0     6     1      0   360 14400 14400 14400
+ 9     0 dgetrf_nopiv      23     0     2     3      0   360 14400 14400 14400
+10     0 dgetrf_nopiv      23     0     1     6      0   360 14400 14400 14400
+# ℹ 310 more rows
+# ℹ 8 more variables: seedA <dbl>, bump <dbl>, tsub <dbl>, time <dbl>,
+#   gflops <dbl>, scheduler <fct>, transport <fct>, KEY <fct>
+# ℹ Use `print(n = ...)` to see more rows
+#+end_example
+
+*** Theme
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, skip_x = FALSE) {
+  ret <- list()
+
+  ret[[length(ret) + 1]] <- theme_bw(base_size = base_size)
+  ret[[length(ret) + 1]] <- theme(
+    plot.margin = unit(c(0, 0, 0, 0), "cm"),
+    legend.spacing = unit(3, "cm"),
+    legend.position = "top",
+    legend.justification = "left",
+    legend.box.spacing = unit(0, "pt"),
+    legend.box.margin = margin(0, 0, 0, 0)
+  )
+  ret[[length(ret) + 1]] <- guides(color = guide_legend(nrow = 1))
+  if (!legend_title) {
+    ret[[length(ret) + 1]] <- theme(legend.title = element_blank())
+  }
+  return(ret)
+}
+#+end_src
+
+#+RESULTS:
+
+*** Plot (facet by scheduler)
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df |>
+  ggplot(aes(x = factor(KEY), y = time, fill = transport)) +
+  geom_violin() +
+  labs(x = "Data Partition [PxQ]",
+       y = "Makespan [seconds]") +
+  default_theme() +
+  ylim(0, NA) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  scale_fill_brewer(palette = "Set1") +  
+  facet_grid(m~scheduler) -> p1
+p1
+#+end_src
+
+#+RESULTS:
 
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
