@@ -1370,7 +1370,7 @@ performance among the other values.
 
 #+name: fig.ds
 #+caption: The makespan as a function BC strategies and scheduler.
-#+attr_latex: :width .9\linewidth :float multicolumn
+#+attr_latex: :width .9\linewidth
 [[./img/distrib-scheduler.pdf]]
 
 *** NMAD /versus/ OMPI analysis with traces
