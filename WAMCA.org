@@ -1220,7 +1220,7 @@ layer while sharing the remaining software configurations.
 #+CAPTION: Hardware specification of the cei partition.
 #+NAME: tab:hardware
 #+ATTR_LATEX: :booktabs t
-| *Nome* | *CPU*                              | *RAM*   | *Network*  |
+| *Name* | *CPU*                              | *RAM*   | *Network*  |
 | <l>  | <l>                              | <l>   | <l>      |
 |------+----------------------------------+-------+----------|
 | Cei  | Supermicro X11DPU                | 96 GB | 10G      |
