@@ -1244,7 +1244,6 @@ df2 |>
 4 openmpi   14400        360 lws       6x1       273.      934.    1931.
 #+end_example
 
-
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
@@ -1791,12 +1790,6 @@ rather concentrated distributions demonstrating that our experiments
 have relatively low variability. We can also confirm that the block
 size 360\times360 is the one that brings the best compute/communication
 trade-off for this run with six nodes and 144 cores.
-
-This value was taken from a preliminary execution only varying the
-block size as shown in Figure~\ref{fig:timeBlocks}, that depicts
-different blocks dimensions and their respective execution times. It
-is possible to observe that the 360 block size had the best
-performance among the other values.
 
 #+name: fig.bs
 #+caption: The makespan as a function of the block size.
