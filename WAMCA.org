@@ -1647,8 +1647,8 @@ the general cluster environment.
 *** NMAD /versus/ OMPI analysis with traces
 
 #+name: fig.trace1
-#+caption: Node occupation along the execution time considering the three =LU= tasks of two runs with the =lws= scheduler and the 3\times2 data partitioning for =openmpi= (top) and =nmad= (bottom).
-#+attr_latex: :width .9\linewidth
+#+caption: Node occupation along the execution time considering the three =LU= tasks (colors) of two runs with the =lws= scheduler and the 3\times2 data partitioning for =openmpi= (top) and =nmad= (bottom).
+#+attr_latex: :width \linewidth
 [[./img/lws-3x2-agg_traces-with-abe.pdf]]
 
 *** To be integrated                                             :noexport:
