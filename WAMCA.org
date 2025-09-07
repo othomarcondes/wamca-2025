@@ -1431,9 +1431,9 @@ as a function of the block-cyclic strategy (X-axis), the intra-node
 scheduler (facets) and the transport layer (color). We observe several
 interesting phenomena, according to block-cyclic
 strategy, scheduler and transport layer.
-#+latex: %
 
-/Block-Cyclic Strategy/: We expected the 2\times3 and 3\times2 data partitions to
+#+latex: \noindent
+_Block-Cyclic Strategy_: We expected the 2\times3 and 3\times2 data partitions to
 be more communication efficient, thereby inflicting a smaller makespan
 no matter the scheduler or transport layer. These data partitions,
 when compared to the other two (1\times6 and 6\times1), contain less
@@ -1458,9 +1458,9 @@ an effective difference in the per-MPI rank load. Secondly, despite
 being different, these data distributions remain very similar. The
 case would be different if we had 625 MPI processes and a 25\times25
 against a 1\times625 data distribution.
-#+latex: %
 
-/Intra-node Scheduler/: Still in Figure [[fig.ds]], both =dmdas= and =dmda= are
+#+latex: \noindent
+_Intra-node Scheduler_: Still in Figure [[fig.ds]], both =dmdas= and =dmda= are
 very sophisticated scheduling heuristics that take into account
 evolving per-task performance models and data transfers into
 account. Despite their clear benefits for heterogeneous executions
@@ -1476,8 +1476,10 @@ against other schedulers when using =nmad= is that the transport layer
 might create additional delays that negatively impact =lws= behavior and
 its local work stealing policy.
 
-#+latex: %
-/Transport Layer/:
+#+latex: \noindent
+_Transport Layer_: The final observations about Figure [[fig.ds]] include
+the comparison between the two transport layers. Our first experiments
+have been 
 
 #+name: fig.ds
 #+caption: The makespan (Y-axis) as a function of data partitioning strategies (X-axis), scheduler (facets) and transport layer (colors).
