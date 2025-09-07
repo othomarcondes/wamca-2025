@@ -9,7 +9,7 @@ library(DoE.base)
 library(tidyverse)
 
 fator_size = c(8192, 14400, 16000, 32000)
-fator_blocksize = c(128, 160, 256, 320, 512, 960, 1600)
+fator_blocksize = c(128, 256, 320, 512, 960, 1600)
 fator_scheduler = c("dmda", "lws", "dmdas", "random")
 fator_pq = c("1x6", "6x1", "3x2", "2x3")
 

@@ -146,6 +146,16 @@ df
 
 #+RESULTS:
 #+begin_example
+── Attaching core tidyverse packages ─────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4
+── Conflicts ───────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 # A tibble: 120 × 16
       Id Function     threads  gpus     P     Q mtxfmt    nb     m     n   lda   seedA  bump  tsub  time gflops
    <dbl> <chr>          <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>  <dbl>
@@ -202,8 +212,6 @@ df |>
   facet_wrap(~m, strip.position = "right") -> p
 ggsave("img/block-size.pdf", width=6, height=5)
 #+end_src
-
-#+RESULTS:
 
 ** Data distribution and scheduler
 *** Read
@@ -1741,8 +1749,8 @@ execution traces obtained from the StarPU runtime.
 
 Figure [[fig.bs]] depicts the makespan of the LU factorization, when using
 the =LWS= for intra-node task scheduling, the NMAD MPI layer and an
-input matrix of 16K, as a function of different block sizes.  We can see that the makespan is
-constrained from \approx47s up to \approx80s depending on the block size with
+input matrix of 14400 (14.4K), as a function of different block sizes.  We can see that the makespan is
+constrained from \approx32s up to \approx62s depending on the block size with
 rather concentrated distributions demonstrating that our experiments
 have relatively low variability. We can also confirm that the block
 size 360\times360 is the one that brings the best compute/communication
