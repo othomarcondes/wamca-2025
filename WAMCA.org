@@ -1421,7 +1421,7 @@ performance among the other values.
 
 #+name: fig.bs
 #+caption: The makespan as a function of the block size.
-#+attr_latex: :width .8\linewidth
+#+attr_latex: :width .75\linewidth
 [[./img/block-size.pdf]]
 
 *** General overview of the comparison
@@ -1505,6 +1505,9 @@ the general cluster environment.
 [[./img/distrib-scheduler.pdf]]
 
 *** NMAD /versus/ OMPI analysis with traces
+
+
+
 *** To be integrated                                             :noexport:
 
 Figure~\ref{fig:timePQ} depicts four panels, aligned in the X
