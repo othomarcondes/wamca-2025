@@ -1244,7 +1244,6 @@ df2 |>
 4 openmpi   14400        360 lws       6x1       273.      934.    1931.
 #+end_example
 
-
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
