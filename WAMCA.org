@@ -1424,7 +1424,7 @@ performance among the other values.
 #+attr_latex: :width .8\linewidth
 [[./img/block-size.pdf]]
 
-*** Comparing BC strategies and scheduler.
+*** Comparison general overview
 
 Figure [[fig.ds]] depicts the distribution of the execution time (Y-axis)
 as a function of the block-cyclic strategy (X-axis), the intra-node
@@ -1450,10 +1450,17 @@ strategies no matter the scheduler or the transport layer. That being
 said, for the =random= scheduling in the =nmad= transport layer (rightmost
 facet, red color), we can see a slight difference favoring 2\times3 and 3\times2
 data partitions, according to our initial expectations. We believe
-that the main reason for these results, different from what has been
-observed in previous studies cite:nesi2020communication, is double
-fold. Firstly, the workload is simply too small. Secondly, despite
-being different, these data distributions
+there are two main reasons for these results, different from what has
+been observed in previous studies cite:nesi2020communication, is
+double fold. Firstly, the workload is simply too small to demonstrate
+an effective difference in the per-MPI rank load. Secondly, despite
+being different, these data distributions remain very similar. The
+case would be different if we had 625 MPI processes and a 25\times25
+against a 1\times625 data distribution.
+#+latex: %
+/Intra-node Scheduler/:
+#+latex: %
+/Transport Layer/:
 
 #+name: fig.ds
 #+caption: The makespan as a function BC strategies and scheduler.
