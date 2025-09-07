@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 #+LATEX_HEADER: \usepackage{booktabs}
 
-* Things to investigate
+* Things to investigate                                            :noexport:
 ** Why task mean duration is higher in nmad when compared against openmpi
 
 I suppose is some experiment problem.
