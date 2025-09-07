@@ -18,6 +18,11 @@
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 #+LATEX_HEADER: \usepackage{booktabs}
 
+* Things to investigate
+** Why task mean duration is higher in nmad when compared against openmpi
+
+I suppose is some experiment problem.
+
 * Experiments                                                      :noexport:
 ** Step 1: Block size fixed to 360, matrix size fixed to 14400
 Changing
