@@ -1458,7 +1458,23 @@ being different, these data distributions remain very similar. The
 case would be different if we had 625 MPI processes and a 25\times25
 against a 1\times625 data distribution.
 #+latex: %
-/Intra-node Scheduler/:
+
+/Intra-node Scheduler/: Still in Figure [[fig.ds]], both =dmdas= and =dmda= are
+very sophisticated scheduling heuristics that take into account
+evolving per-task performance models and data transfers into
+account. Despite their clear benefits for heterogeneous executions
+encompassing GPUs, the fact that they enable poorer makespan results
+than =lws= is a bit surprisingly. The difference between =dmdas= and =dmdas=
+is very small, no matter the data partitioning scheme, while the =lws=
+is the intra-node scheduler that enables the best execution
+time. Interestingly enough, we can see that the =lws= combined with
+=openmpi= brings much better results than the combination with
+=nmad=. Indeed, the =lws= makespan is almost similar to competing =dmdas=
+scheduler. A possible reason to explain such smaller gain of =lws=
+against other schedulers when using =nmad= is that the transport layer
+might create additional delays that negatively impact =lws= behavior and
+its local work stealing policy.
+
 #+latex: %
 /Transport Layer/:
 
