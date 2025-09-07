@@ -823,6 +823,63 @@ ggsave("img/distrib-scheduler.pdf", width=10, height=10)
 
 #+RESULTS:
 
+** 2025-09-06 Amount of "MPI Communication" for each data partitioning strategy, etc
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+library(starvz)
+library(arrow)
+library(tidyverse)
+library(fs)
+library(patchwork)
+
+tribble(~BASE, ~CSV,
+        "data-wamca-again/721304/", "openmpi_traces_experimental_project.csv",
+        "data-wamca-again/721303/", "nmad_traces_experimental_project.csv") |>
+  separate(CSV, into=c("TRANSPORT", paste0("XX", 1:4)), remove=FALSE) |>
+  select(-starts_with("XX")) |>
+  mutate(KEY = basename(BASE)) |>
+  mutate(DATA = map(paste0(BASE, CSV), read_csv, show_col_types=FALSE, progress=FALSE)) |> unnest(DATA) |>
+  mutate(DIR = paste0(BASE, "output_", TRANSPORT, "_traces_", KEY, "/", Order)) |>
+  select(-BASE, -CSV, -KEY, -exp, -Order) |>
+  filter(TRANSPORT == "openmpi") |>  
+  mutate(STARVZ = map(DIR, starvz_read, selective=FALSE)) |>
+  select(-DIR) -> df
+
+df |>
+  mutate(MPI.Comm = map_int(STARVZ, function(svz) {
+    svz$Link |>
+      filter(Type == "MPI communication") |>      
+      filter(Start >= svz$Zero$value) |>
+      nrow()
+  })) |>
+  arrange(pq, scheduler) |>  
+  print(n=32)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 16 × 7
+   TRANSPORT  size block_size scheduler pq    STARVZ     MPI.Comm
+   <chr>     <dbl>      <dbl> <chr>     <chr> <list>        <int>
+ 1 openmpi   14400        360 dmda      1x6   <strvz_dt>     3916
+ 2 openmpi   14400        360 dmdas     1x6   <strvz_dt>     3965
+ 3 openmpi   14400        360 lws       1x6   <strvz_dt>     3965
+ 4 openmpi   14400        360 random    1x6   <strvz_dt>     3963
+ 5 openmpi   14400        360 dmda      2x3   <strvz_dt>     2356
+ 6 openmpi   14400        360 dmdas     2x3   <strvz_dt>     2359
+ 7 openmpi   14400        360 lws       2x3   <strvz_dt>     2353
+ 8 openmpi   14400        360 random    2x3   <strvz_dt>     2356
+ 9 openmpi   14400        360 dmda      3x2   <strvz_dt>     2362
+10 openmpi   14400        360 dmdas     3x2   <strvz_dt>     2373
+11 openmpi   14400        360 lws       3x2   <strvz_dt>     2354
+12 openmpi   14400        360 random    3x2   <strvz_dt>     2364
+13 openmpi   14400        360 dmda      6x1   <strvz_dt>     3910
+14 openmpi   14400        360 dmdas     6x1   <strvz_dt>     3970
+15 openmpi   14400        360 lws       6x1   <strvz_dt>     3965
+16 openmpi   14400        360 random    6x1   <strvz_dt>     3965
+#+end_example
+
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
