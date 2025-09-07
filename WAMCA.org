@@ -1429,8 +1429,8 @@ performance among the other values.
 Figure [[fig.ds]] depicts the distribution of the execution time (Y-axis)
 as a function of the block-cyclic strategy (X-axis), the intra-node
 scheduler (facets) and the transport layer (color). We observe several
-interesting phenomena, according to the changing block-cyclic
-strategy, the scheduler and the transport layer.
+interesting phenomena, according to block-cyclic
+strategy, scheduler and transport layer.
 #+latex: %
 
 /Block-Cyclic Strategy/: We expected the 2\times3 and 3\times2 data partitions to
