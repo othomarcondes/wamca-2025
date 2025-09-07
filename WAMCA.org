@@ -1392,60 +1392,6 @@ employing dynamic scheduling for task execution, potentially achieving
 both predictable communication patterns and runtime adaptability,
 though at the cost of increased implementation complexity.
 
-The block-cyclic (BC) static partitioning scheme implemented in the
-ScaLAPACK library cite:blackford1997scalapack has established itself
-as the de facto standard method for dense linear algebra computations
-in HPC. This approach has gained widespread adoption and recognition
-through its use in prestigious benchmarks such as the High Performance
-LINPACK (HPL) benchmark cite:dongarra1979linpack, which serves as the
-basis for ranking supercomputers in the TOP500 list cite:top500. The
-robustness, predictability, and extensive optimization of the
-block-cyclic distribution have made it a good solution for scientific
-computing applications, despite its inherent limitations in adapting
-to modern heterogeneous and dynamic computing environments.
-
-#+name: fig:bc-new
-#+caption: Considering a 16\times16 matrix (the X and Y-axis), the four different block-cyclic distributions (facets) with six nodes (colors).
-#+attr_latex: :width \linewidth :placement  [!htb]
-[[./img/BC.pdf]]
-
-The block-cyclic distribution operates by organizing processors in a
-two-dimensional grid and cyclically distributing matrix blocks across
-this processor grid to achieve balanced workload distribution. Figure
-[[fig:bc-new]] demonstrates a concrete example with six computing nodes to
-data partitioning a 16\times16 matrix. There are four different
-partitioning strategies (1\times6, 2\times3, 3\times2, and 6\times1) represented by the
-facets while the colors represent the six different nodes. The four
-strategies represent different communication boundaries trade-offs as
-communication operations occur between nearby processors in the grid
-according the tiled LU factorization. A significant limitation emerges
-when the number of available nodes is a prime number, as it becomes
-impossible to create an optimal rectangular processor grid that fully
-utilizes all machines while minimizing communication overhead. For
-instance, with six nodes, the choice between a 2×3 or 3×2 processor
-grid represents a compromise, as neither configuration perfectly
-balances computation and communication requirements. For this example,
-one would employ only four nodes if solely synchronization costs would
-be taken into account.
-
-
-Alternative approaches to block-cyclic distribution, such as the 1D-1D
-cite:beaumont2001static cite:nesi2020communication distribution
-method, offer sophisticated solutions that are less sensitive to the
-total number of processors and can potentially achieve better
-communication patterns for certain problem configurations. Despite
-these theoretical advantages and their mathematical elegance in
-handling arbitrary processor counts, these methods face significant
-practical barriers in typical MPI+X programming environments. The
-primary obstacle lies in their implementation complexity, as they
-require programmers to explicitly manage intricate communication
-patterns, memory layouts, and synchronization protocols that are
-automatically handled in block-cyclic schemes. This implementation
-burden, combined with the lack of mature software libraries supporting
-these alternative distributions, has limited their adoption in
-production scientific computing environments where development time
-and code reliability are paramount concerns.
-
 With the ever-increasing scale of modern HPC clusters, now composed of
 thousands or even hundreds of thousands of computing nodes, static
 partitioning approaches have revealed fundamental limitations that
@@ -1512,12 +1458,70 @@ this work with some considerations and future work.
 ** Related Work
 <<sec:related_work>>
 *** Static Data Distribution
+The block-cyclic (BC) static partitioning scheme implemented in the
+ScaLAPACK library cite:blackford1997scalapack has established itself
+as the de facto standard method for dense linear algebra computations
+in HPC. This approach has gained widespread adoption and recognition
+through its use in prestigious benchmarks such as the High Performance
+LINPACK (HPL) benchmark cite:dongarra1979linpack, which serves as the
+basis for ranking supercomputers in the TOP500 list cite:top500. The
+robustness, predictability, and extensive optimization of the
+block-cyclic distribution have made it a good solution for scientific
+computing applications, despite its inherent limitations in adapting
+to modern heterogeneous and dynamic computing environments.
+
+#+name: fig:bc-new
+#+caption: Considering a 16\times16 matrix (the X and Y-axis), the four different block-cyclic distributions (facets) with six nodes (colors).
+#+attr_latex: :width \linewidth :placement  [!htb]
+[[./img/BC.pdf]]
+
+The block-cyclic distribution operates by organizing processors in a
+two-dimensional grid and cyclically distributing matrix blocks across
+this processor grid to achieve balanced workload distribution. Figure
+[[fig:bc-new]] demonstrates a concrete example with six computing nodes to
+data partitioning a 16\times16 matrix. There are four different
+partitioning strategies (1\times6, 2\times3, 3\times2, and 6\times1) represented by the
+facets while the colors represent the six different nodes. The four
+strategies represent different communication boundaries trade-offs as
+communication operations occur between nearby processors in the grid
+according the tiled LU factorization. A significant limitation emerges
+when the number of available nodes is a prime number, as it becomes
+impossible to create an optimal rectangular processor grid that fully
+utilizes all machines while minimizing communication overhead. For
+instance, with six nodes, the choice between a 2×3 or 3×2 processor
+grid represents a compromise, as neither configuration perfectly
+balances computation and communication requirements. For this example,
+one would employ only four nodes if solely synchronization costs would
+be taken into account.
+
+Although the standard block-cyclic (BC) distribution remains the most widely adopted approach for homogeneous sets of nodes, few studies have proposed enhancements for the distribution in specific scenarios. Notably, the work of citeauthor:10177470 cite:10177470 introduces a generalization of both the two-dimensional block-cyclic (2DBC) and symmetric block-cyclic (SBC) distributions, enabling their adaptation to an arbitrary numbers of nodes in which the grid would be very unbalanced.
+
+
+Alternative approaches to block-cyclic distribution, such as the 1D-1D
+cite:beaumont2001static cite:nesi2020communication distribution
+method, offer sophisticated solutions that are less sensitive to the
+total number of processors and can potentially achieve better
+communication patterns for certain problem configurations. Despite
+these theoretical advantages and their mathematical elegance in
+handling arbitrary processor counts, these methods face significant
+practical barriers in typical MPI+X programming environments. The
+primary obstacle lies in their implementation complexity, as they
+require programmers to explicitly manage intricate communication
+patterns, memory layouts, and synchronization protocols that are
+automatically handled in block-cyclic schemes. This implementation
+burden, combined with the lack of mature software libraries supporting
+these alternative distributions, has limited their adoption in
+production scientific computing environments where development time
+and code reliability are paramount concerns.
+
+
 *** Task-based Runtime Systems
 The use of task-based runtime systems to execute parallel programs in a distributed way is adopted by various libraries and runtime systems such as StarPU cite:augonnet2012starpu, OmpSs cite:duran2011ompss and PaRSEC cite:bosilca2013parsec, providing programming models that abstract parallelism through tasks rather than explicit thread or process management. In these systems, computations are expressed as a set of tasks with declared data dependencies. At runtime, a scheduler dynamically builds a task dependency graph (DAG) and maps tasks to available resources (e.g., CPUs or GPUs). This approach relieves programmers from explicitly handling synchronization, communication and allowing an easy way to implement different data distributions.
 
-The main advantages of task-based environments lie in their adaptability and performance portability. Dynamic schedulers can exploit runtime information (such as task durations, data locality, or device load) to optimize execution and balance workloads across heterogeneous resources. Furthermore, the DAG-based model exposes parallelism that may not be obvious at compile time, improving resource utilization and scalability. Compared to static parallel models (e.g., MPI-only or OpenMP loop-level parallelism), task-based runtimes achieve better overlap of communication and computation, reduce idle times, and adapt to irregular workloads.
+The main advantages of task-based environments lie in their adaptability and performance portability. Dynamic schedulers can exploit runtime information (such as task durations, data locality, or device load) to optimize execution and balance workloads across heterogeneous resources. Furthermore, the DAG-based model can reduce the impact of possible imbalances on the workload, scheduling subsequent tasks based on the runtime-detected irregularity. Compared to static parallel models (e.g., MPI-only or OpenMP loop-level parallelism), task-based runtimes achieve better overlap of communication and computation, reduce idle times, and adapt to irregular workloads.
 
-In this work we make use of the Chameleon linear algebra library, which provides the LU factorization implementation with the Block-cyclic data distribution, allowing to define tiles of work. We also make use of the StarPU runtime, which as mentioned above works as a task-based runtime system and also provides a range of different scheduling strategies to distribute the tasks among the available set of workers.
+In this work we make use of the Chameleon linear algebra library, which provides the LU factorization implementation with the Block-Cyclic data distribution, allowing us to define tiles of work. We also make use of the StarPU runtime, which as mentioned above works as a task-based runtime system and also provides a range of different scheduling strategies to distribute the tasks among the available set of workers.
+
 
 ** Methods & Materials
 <<sec:methodology>>
@@ -2286,6 +2290,17 @@ series = {PPoPP '23}
   year={2011},
   publisher={World Scientific}
 }
+
+@INPROCEEDINGS{10177470,
+  author={Beaumont, Olivier and Collin, Jean-Alexandre and Eyraud-Dubois, Lionel and Vérité, Mathieu},
+  booktitle={2023 IEEE International Parallel and Distributed Processing Symposium (IPDPS)},
+  title={Data Distribution Schemes for Dense Linear Algebra Factorizations on Any Number of Nodes},
+  year={2023},
+  volume={},
+  number={},
+  pages={390-401},
+  keywords={Distributed processing;Runtime;Symmetric matrices;Distributed databases;Linear algebra;Programming;Libraries;Dense Linear Algebra;LU factorization;Cholesky Factorization;Task-based Runtime Systems;Data Distribution Schemes},
+  doi={10.1109/IPDPS54959.2023.00047}}
 
 #+end_src
 * Emacs setup                                                      :noexport:
