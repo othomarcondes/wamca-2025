@@ -1880,6 +1880,14 @@ has sustained poorer performance when run with the =nmad= middleware.
 
 *** Observation of OpenMPI delays
 
+Figure [[fig.trace2]] depicts four space/time views (also known as
+Gantt-Charts), each one with all the 144 workers of the six machines
+(on the Y axis), considering the three types of tasks (colors). From
+top to bottom, we represent the behavior of the 1\times6, 2\times3, 3\times2, and 6\times1
+data distribution. We can observe that in the start of the four
+executions, approximately until the time 10s, we can see a more dense
+behavior of =dgemm= tasks. However
+
 #+name: fig.trace2
 #+caption: Application workers behavior along time in the four data partitioning schemes, depicting significative delays from the start.
 #+attr_latex: :width \linewidth
