@@ -1463,7 +1463,7 @@ against a 1\times625 data distribution.
 /Transport Layer/:
 
 #+name: fig.ds
-#+caption: The makespan as a function BC strategies and scheduler.
+#+caption: The makespan (Y-axis) as a function of data partitioning strategies (X-axis), scheduler (facets) and transport layer (colors).
 #+attr_latex: :width .9\linewidth
 [[./img/distrib-scheduler.pdf]]
 
