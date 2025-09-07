@@ -1337,9 +1337,9 @@ cite:pinto2021providing visualization framework.
 <<sec:results>>
 
 We detail the results regarding the search for the best block size,
-the comparison of the block-cyclic strategies and the intra-node
-scheduler and their impact on the makespan, and finally an analysis
-comparing NMAD and OMPI.
+the comparison of the block-cyclic strategies, the intra-node
+scheduler, and the transport layer and their impact on the makespan,
+and finally an analysis comparing NMAD and OMPI.
 
 *** Searching for the best block size
 
