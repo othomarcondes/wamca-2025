@@ -2183,7 +2183,8 @@ constrained from \approx40s up to \approx62s depending on the block size with
 rather concentrated distributions demonstrating that our experiments
 have relatively low variability. We can also confirm that the block
 size 360\times360 is the one that brings the best compute/communication
-trade-off for this run with six nodes and 144 cores.
+trade-off for this run with six nodes and 144 cores. By consequence,
+we adopt this block size order for the remaining results of this work.
 
 #+name: fig.bs
 #+caption: The makespan as a function of the block size.
