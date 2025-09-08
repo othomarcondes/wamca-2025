@@ -2128,7 +2128,7 @@ execution traces obtained from the StarPU runtime.
 Figure [[fig.bs]] depicts the makespan of the LU factorization, when using
 the =LWS= for intra-node task scheduling and an
 input matrix of 14400 (14.4K), as a function of different block sizes.  We can see that the makespan is
-constrained from \approx32s up to \approx62s depending on the block size with
+constrained from \approx40s up to \approx62s depending on the block size with
 rather concentrated distributions demonstrating that our experiments
 have relatively low variability. We can also confirm that the block
 size 360\times360 is the one that brings the best compute/communication
