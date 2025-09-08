@@ -1425,11 +1425,9 @@ and CHAMELEON cite:klinkenberg2020chameleon.
 In this paper, we investigate the trade-offs of different data
 partitioning strategies, such as the ones of Figure [[fig:bc-new]], in a
 small-scale cluster composed of 144 cores -- six nodes of 2\times12 cores
-each. We are interested particularly in the combination of 1/ the
-communication cost imposed by different MPI middlewares (OpenMPI
-cite:gabriel2004open and MadMPI cite:denis2019scalability), and 2/ the
-different intra-node task scheduling heuristics, specifically on how
-together these factors influence the overall execution time of the
+each. We are interested particularly in the different intra-node task
+scheduling heuristics, specifically on how these factor influence the
+overall execution time of the
 application.  As a realistic case study, we explore the tiled LU
 factorization as implemented by the dense linear algebra library
 Chameleon cite:chameleon and the traditional block cyclic distribution
@@ -1441,16 +1439,14 @@ architecture; *(b)* an overview comparison correlating data partitioning
 strategies and scheduling heuristics; *(c)* a detailed analysis with the
 StarVZ cite:pinto2021providing visualization framework using gathered
 traces from representative executions; and *(d)* a methodological
-strategy that includes reproducible tools such as Guix, and
-contributions for the MPI NewMadeleine implementation.
+strategy that includes reproducible tools such as Guix.
 
 # Section [[sec:related]] presents some basic concepts on matrix
 # distribution, modern task-based runtimes and related work.
 The paper is structured as follows. Section [[sec:related_work]] presents some related work on static data partition and how task-based runtime systems allow and facilitate the implementation of these data distributions strategies. Section [[sec:methodology]] details
 our methodology and explains how we conducted the experiments in our
 investigation. Section [[sec:results]] presents experimental results and
-their interpretation, focusing on the performance overview and
-comparison of different MPI layers. Section [[sec:conclusion]] concludes
+their interpretation, focusing on the performance overview. Section [[sec:conclusion]] concludes
 this work with some considerations and future work.
 
 ** Related Work
