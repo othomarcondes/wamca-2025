@@ -1822,69 +1822,11 @@ might create additional delays that negatively impact =lws= behavior and
 its local work stealing policy.
 
 #+latex: \noindent
-_Transport Layer_: The final observations about Figure [[fig.ds]] include
-the comparison between the two transport layers. The general
-understanding is that =nmad= is capable of providing much better results
-as previously demonstrated cite:nesi2022. The =nmad= layer provides
-operations focusing on low-latency between tasks, exactly what StarPU
-scheduling heuristics require to dispatch more parallelism in other
-nodes as soon as possible (e.g. when local tasks become ready because
-of remote tasks made available their input). What we observe in our
-results is a different story: =openmpi= is better than =nmad= no matter
-the data partitioning strategy considering separated scheduling
-strategy. If we allow comparisons among different schedulers, we can
-indeed observe that =nmad= with =lws= (the best case with =nmad=) is better
-than =openmpi= with the =random= scheduler. Considering the best case for
-=nmad=, which is with the =lws= scheduler, we can see a small benefit of
-running with 2\times3 and 3\times2 data partitioning schemes, while there is no
-a statistical significance for the difference as the makespan
-distribution (violin plots) interleave slightly. A possible
-explanation for the poorer unexpected results of =nmad= might be related
-to our network. The six machines have a 10G Ethernet interfaces whose
-cables use a switch that shares the main administrative operations of
-the general cluster environment.
 
 #+name: fig.ds
 #+caption: The makespan (Y-axis) as a function of data partitioning strategies (X-axis), scheduler (facets) and transport layer (colors).
 #+attr_latex: :width .9\linewidth
 [[./img/distrib-scheduler.pdf]]
-
-*** NMAD /versus/ OpenMPI analysis with traces
-
-We delve into the traces to get a better understanding besides the
-rough makespan measurements usually employed in such type of
-analysis. StarVZ cite:pinto2021providing provides modern data science
-to the performance analysis of StarPU applications. Figure [[fig.trace1]]
-has been created by cleverly tweaking StarVZ configurations to obtain
-the aggregated node occupation along the execution time considering
-the three =LU= tasks (colors) of two traced executions, both with the
-=lws= scheduler and the 3\times2 data partitioning for =openmpi= (top) and =nmad=
-(bottom). In accordance to what we previously observed in Figure
-[[fig.ds]], the makespan of the =openmpi= execution is more than half of
-that of =nmad=. To understand why this happens, we also depict the
-per-node Area Bound Estimation (ABE) cite:garcia2018visual, which
-roughly represents the amount of time would take to execute all the
-tasks each node has received disregarding communication costs. For
-example, for the =openmpi= run (top), Node 0 (denoted CPU 0 in the
-figure) has an ABE of 13167, meaning that if all its tasks could be
-executed without waiting, Node 0 will stop working when that timestamp
-would be reached. This rough estimation is computed per trace, meaning
-the cost of tasks in a given trace is take as it is, without any time
-of performance mode whatsoever. What is interesting in this comparison
-is that the same Node 0 in the =nmad= run has an ABE of 35629, clearly
-indicating that the cost of tasks is much higher. Indeed, if we take a
-look to the traces and compute the mean duration of the costlier and
-more numerous =dgemm= task, we can see that when executed with =nmad= the
-mean duration is \approx232ms, while with =openmpi= is \approx86s. Such timings,
-along with the per-node ABE, fully justify that the main culprit for
-the poor performance of =nmad= is not the middleware by itself, but some
-other compute reason. We are still investigating why the =dgemm= task
-has sustained poorer performance when run with the =nmad= middleware.
-
-#+name: fig.trace1
-#+caption: Node occupation along the execution time considering the three =LU= tasks (colors) of two runs with the =lws= scheduler and the 3\times2 data partitioning for =openmpi= (top) and =nmad= (bottom).
-#+attr_latex: :width \linewidth
-[[./img/lws-3x2-agg_traces-with-abe.pdf]]
 
 
 *** Observation of OpenMPI delays
