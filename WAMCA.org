@@ -1475,7 +1475,7 @@ default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, sk
 
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 df |>
-  ggplot(aes(x = factor(KEY), y = time, fill = transport)) +
+  ggplot(aes(x = factor(KEY), y = time)) +
   geom_violin() +
   labs(x = "Data Partition [PxQ]",
        y = "Makespan [seconds]") +
