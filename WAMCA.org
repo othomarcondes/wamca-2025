@@ -1528,14 +1528,11 @@ block size for our target platform, systematically varying tile
 dimensions to identify the configuration that minimize the makespan.
 Second, we describe the full-factorial experimental design to
 investigate the complex interplay between static data distribution
-strategies, intra-node scheduling heuristics, and two different MPI
-implementations. Third, we detail how we obtain detailed execution
+strategies and intra-node scheduling heuristics. Third, we detail how we obtain detailed execution
 traces collected during representative runs to gain deeper
-understanding of the performance differences observed between OpenMPI
-and MadMPI implementations.
+understanding of the performance differences observed between different scheduler heuristics.
 #+latex: %
-We describe 1/ the StarPU-MPI runtime together with the two MPI
-implementations (OpenMPI and MadMPI); 2/ the task-based multi-node
+We describe 1/ the StarPU-MPI runtime; 2/ the task-based multi-node
 implementation of the LU factorization application as available in the
 Chameleon suite; 3/ the hardware and software configuration, including
 the GUIX mechanism to have a fully reproducible software stack; and 4/
