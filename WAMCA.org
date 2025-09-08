@@ -1749,14 +1749,14 @@ cite:pinto2021providing visualization framework.
 
 We detail the results regarding the search for the best block size,
 the comparison of the block-cyclic strategies, the intra-node
-scheduler, and the transport layer and their impact on the makespan,
-and finally an analysis comparing NMAD and OMPI using detailed
+scheduler, and the transport layer and their impact on the makespan.
+and finally an analysis comparing different data distributions using detailed
 execution traces obtained from the StarPU runtime.
 
 *** Searching for the best block size
 
 Figure [[fig.bs]] depicts the makespan of the LU factorization, when using
-the =LWS= for intra-node task scheduling, the NMAD MPI layer and an
+the =LWS= for intra-node task scheduling and an
 input matrix of 14400 (14.4K), as a function of different block sizes.  We can see that the makespan is
 constrained from \approx32s up to \approx62s depending on the block size with
 rather concentrated distributions demonstrating that our experiments
@@ -1772,10 +1772,10 @@ trade-off for this run with six nodes and 144 cores.
 *** General overview of the comparison
 
 Figure [[fig.ds]] depicts the distribution of the execution time (Y-axis)
-as a function of the block-cyclic strategy (X-axis), the intra-node
-scheduler (facets) and the transport layer (color). We observe several
+as a function of the block-cyclic strategy (X-axis) and the intra-node
+scheduler (facets). We observe several
 interesting phenomena, according to block-cyclic
-strategy, scheduler and transport layer.
+strategy and scheduler.
 
 #+latex: \noindent
 _Block-Cyclic Strategy_: We expected the 2\times3 and 3\times2 data partitions to
