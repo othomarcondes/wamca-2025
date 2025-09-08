@@ -1319,14 +1319,14 @@ df2 |>
 #    svz$config$st$abe$size <- 2
     svz$config$st$abe$label <- FALSE
 #    svz$config$st$idleness <- TRUE
-    svz$config$st$outliers <- FALSE
+    svz$config$st$outliers <- TRUE
     svz$config$st$labels <- "NODES_only"
     svz$config$st$aggregation$active <- FALSE
     svz$config$st$aggregation$method <- "nodes"
     return(svz) })) |>
   mutate(GC = map(STARVZ, panel_st)) |>
 #  mutate(GC = map2(GC, TRANSPORT, function(gc, tr) { gc + ggtitle(tr) })) |>
-  mutate(GC = map(GC, function(gc) { gc + xlim(0, 25000) })) |>
+  mutate(GC = map(GC, function(gc) { gc + xlim(0, 30000) })) |>
   arrange(pq) |>
   mutate(Label = paste0(scheduler, ", ", pq)) |>
   mutate(GC = map2(GC, Label, function(gc, p) { gc + labs(y = paste0(p, "\nApplication Workers")) })) |>
@@ -1350,18 +1350,10 @@ ggsave("img/lws-vs-dmdas-3x2-openmpi-traces.pdf", width=6, height=10)
 #+end_src
 
 #+RESULTS:
-#+begin_example
-Scale for x is already present.
-Adding another scale for x, which will replace the existing scale.
-Scale for x is already present.
-Adding another scale for x, which will replace the existing scale.
-Warning message:
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_rect()`).
-Warning message:
-Removed 14 rows containing missing values or values outside the scale range
-(`geom_rect()`).
-#+end_example
+: Scale for x is already present.
+: Adding another scale for x, which will replace the existing scale.
+: Scale for x is already present.
+: Adding another scale for x, which will replace the existing scale.
 
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
