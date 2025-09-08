@@ -1658,7 +1658,7 @@ Our preliminary study focuses on determining the optimal tile size for
 LU factorization on our target platform by systematically evaluating
 performance across a range of block dimensions. Using all six
 available computing nodes with the Locality Work Stealing (LWS)
-scheduler and the MadMPI communication layer, we perform tiled LU
+scheduler, we perform tiled LU
 factorization on a fixed input matrix of order 14400 (14.4K). We vary
 the tile size across ten different configurations: 128×128, 256×256,
 300×300, 320×320, 400×400, 420×420, 460×460, 512×512, 960×960, and
@@ -1681,22 +1681,19 @@ while minimizing synchronization costs for subsequent experiments.
 Our full-factorial experimental design systematically investigates the
 interaction effects between multiple factors influencing LU
 factorization performance by evaluating all possible combinations of
-three key variables. Using all six computing nodes, a fixed input
+two key variables. Using all six computing nodes, a fixed input
 matrix of order 14400 (14.4K), and a fixed block size (360\times360), we
-manipulate three factors across their complete range of values. The
-first factor consists of two MPI implementations: MadMPI (NMAD) and
-OpenMPI (OMPI), allowing us to assess the impact of different
-communication middleware on overall performance. The second factor
+manipulate two factors across their complete range of values. The
+first factor
 varies four intra-node scheduling heuristics available in StarPU-MPI:
-=lws=, =random=, =dmda=, and =dmdas=.  The third factor explores the four
+=lws=, =random=, =dmda=, and =dmdas=.  The second factor explores the four
 inter-node static data partitioning strategies that organize the six
 available nodes into different processor grid configurations: 1×6,
 2×3, 3×2, and 6×1, corresponding to the block-cyclic distribution
-schemes illustrated in our earlier analysis. This 2×4×4 factorial
-design yields 32 unique experimental conditions, enabling
+schemes illustrated in our earlier analysis. This 4×4 factorial
+design yields 16 unique experimental conditions, enabling
 comprehensive analysis of main effects and interaction patterns
-between communication layers, scheduling policies, and data
-distribution strategies.
+between scheduling policies and data distribution strategies.
 
 # We run each configuration a number of times in a random order
 # to quantify variability. As response variables, we observe the
@@ -1739,8 +1736,7 @@ Finally, our third phase employs StarPU's built-in trace collection
 mechanism to conduct detailed performance analysis through eight
 representative executions without replications. We fix the LWS
 scheduler, block size at 360×360 tiles, and matrix size at 14,400,
-while varying two factors: the MPI implementation (MadMPI and OpenMPI)
-and the four data partitioning strategies (1×6, 2×3, 3×2, and 6×1). We
+while varying the four data partitioning strategies (1×6, 2×3, 3×2, and 6×1). We
 leverage on these cases to enable in-depth examination of delays
 induced by longer communication operations and other task scheduling
 problems to better elucidate our previously overview of observations.
