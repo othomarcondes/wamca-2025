@@ -1270,9 +1270,8 @@ partitioning configurations and intra-node scheduling heuristics for
 tiled LU factorization on small-scale HPC clusters. We conduct
 experiments on a 144-core cluster (six nodes with 2×12 cores each)
 using the CHAMELEON dense linear algebra library with StarPU-MPI
-runtime system. Our study examines how communication costs imposed by
-different MPI middlewares (OpenMPI and MadMPI) interact with various
-scheduling heuristics to influence overall execution time. Through
+runtime system. Our study examines how different scheduling heuristics
+influence overall execution time. Through
 systematic evaluation of data partitioning configurations (1×6, 2×3,
 3×2, and 6×1) and comprehensive trace analysis using the StarVZ
 visualization framework, we provide insights into optimal tile sizing,
