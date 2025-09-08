@@ -1855,8 +1855,8 @@ to the network limitations in our infrastructure.
 <<sec:conclusion>>
 
 The study examines the impact of data distribution using Block cyclic
-and also the impact of different scheduler heuristics and transport
-layer in the context of task-based runtime in clusters. The linear
+and also the impact of different scheduler heuristics in the context
+of task-based runtime in clusters. The linear
 algebra LU factorization application provided by Chameleon was used as
 a means to analyze how these configurations impact performance. The
 \verb|dmda| and \verb|dmdas| heuristics presented similar behavior in
