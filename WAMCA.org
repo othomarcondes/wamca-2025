@@ -1580,19 +1580,6 @@ operations using any MPI implementation.
 # clusters.
 
 #+latex: \noindent
-*MPI Layers*. In our study, we employ NewMadeleine and OpenMPI as MPI
-transport layers for the StarPU-MPI runtime. NewMadeleine
-cite:aumage2007new is a high-performance communication library that
-provides MPI functionality through its MadMPI interface. Its design
-addresses scalability challenges with irregular communication patterns
-and high message volumes.  The library is multi-threaded and supports
-the MPI_THREAD_MULTIPLE threading level, making it particularly
-well-suited for task-based runtime systems like StarPU-MPI that rely
-on concurrent communication operations from multiple threads.  OpenMPI
-is a widely-adopted, open-source implementation of the Message Passing
-Interface (MPI) standard that provides portable, high-performance
-parallel communication capabilities.  The comprehensive multi-threaded
-compliance makes it a natural baseline for comparative studies.
 
 *** Application: the LU Factorization
 
