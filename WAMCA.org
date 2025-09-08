@@ -1335,6 +1335,32 @@ ggsave("img/lws-vs-dmdas-3x2-openmpi-traces.pdf", width=6, height=10)
 : Scale for x is already present.
 : Adding another scale for x, which will replace the existing scale.
 
+*** Idle time before 10s of execution
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df2 |>
+  group_by(TRANSPORT, size, block_size, scheduler, pq) |>
+  mutate(DF = map(STARVZ, function(sv) { sv$Application } )) |>
+  unnest(DF) |>
+  filter(End < 10000) |>
+  group_by(ResourceId, .add=TRUE) |>
+  summarize(Idle = max(End) - sum(Duration), .groups="keep") |>
+  ungroup(ResourceId) |>
+  summarize(
+    Idle.Min = min(Idle),
+    Idle.Mean = mean(Idle),
+    Idle.Max = max(Idle))
+#+end_src
+
+#+RESULTS:
+: `summarise()` has grouped output by 'TRANSPORT', 'size', 'block_size', 'scheduler'. You can override using the
+: `.groups` argument.
+: # A tibble: 2 × 8
+: # Groups:   TRANSPORT, size, block_size, scheduler [2]
+:   TRANSPORT  size block_size scheduler pq    Idle.Min Idle.Mean Idle.Max
+:   <chr>     <dbl>      <dbl> <chr>     <chr>    <dbl>     <dbl>    <dbl>
+: 1 openmpi   14400        360 dmdas     3x2       459.     1184.    2176.
+: 2 openmpi   14400        360 lws       3x2       189.     1116.    2140.
 
 ** 2025-09-08 (Sec III.E?) 3x2 versus 6x1, OpenMPI, LWS
 *** Read
@@ -2221,12 +2247,14 @@ to the network limitations in our infrastructure.
 #+attr_latex: :width \linewidth
 [[./img/lws-all_pq-traces.pdf]]
 
-*** lws versus dmdas
+*** Schedulers comparison
 
 Figure [[fig.trace3]] depicts two space/time views, each one with all the 144 workers of the six machines
 (on the Y axis), considering the three types of tasks (colors). From
 top to bottom, we represent the behavior of the =lws= and =dmdas= intra-node schedulers,
-both using the 3\times2 data distribution.
+both using the 3\times2 data distribution. We can observe that both the executions have similar
+behavior, with =dgemm= tasks representing the major part of the first 10s, and a mean idle time of
+\approximate1100ms. Nevertheless,
 
 #+name: fig.trace3
 #+caption: Application workers behavior along time in the 3\times2 data distribution and using the =lws= and =dmdas= schedulers respectively.
