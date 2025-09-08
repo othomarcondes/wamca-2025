@@ -1542,6 +1542,80 @@ ggsave("img/distrib-scheduler.pdf", width=10, height=10)
 
 #+RESULTS:
 
+
+** 2025-09-08 Block size OpenMPI
+*** Read
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+library(tidyverse)
+bind_rows(
+  read_delim("new_data/openmpi_blocks.csv", show_col_types=FALSE, progress=FALSE, delim=";")
+) -> df
+df
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 120 × 16
+      Id Function     threads  gpus     P     Q mtxfmt    nb     m     n   lda   seedA  bump  tsub  time gflops
+   <dbl> <chr>          <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>  <dbl>
+ 1     0 dgetrf_nopiv      23     0     1     6      0   128 14400 14400 14400  1.80e9 14400     0  42.4   46.9
+ 2     0 dgetrf_nopiv      23     0     1     6      0   128 14400 14400 14400  1.80e9 14400     0  40.7   48.9
+ 3     0 dgetrf_nopiv      23     0     1     6      0   128 14400 14400 14400  1.80e9 14400     0  41.3   48.2
+ 4     0 dgetrf_nopiv      23     0     1     6      0   128 14400 14400 14400  1.80e9 14400     0  41.7   47.8
+ 5     0 dgetrf_nopiv      23     0     1     6      0   128 14400 14400 14400  1.80e9 14400     0  44.9   44.4
+ 6     0 dgetrf_nopiv      23     0     1     6      0   128 14400 14400 14400  1.80e9 14400     0  41.3   48.2
+ 7     0 dgetrf_nopiv      23     0     1     6      0   128 14400 14400 14400  1.80e9 14400     0  43.0   46.3
+ 8     0 dgetrf_nopiv      23     0     1     6      0   128 14400 14400 14400  1.80e9 14400     0  40.9   48.7
+ 9     0 dgetrf_nopiv      23     0     1     6      0   128 14400 14400 14400  1.80e9 14400     0  42.0   47.4
+10     0 dgetrf_nopiv      23     0     1     6      0   128 14400 14400 14400  1.80e9 14400     0  41.4   48.1
+# ℹ 110 more rows
+# ℹ Use `print(n = ...)` to see more rows
+#+end_example
+
+*** Theme
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, skip_x = FALSE) {
+  ret <- list()
+
+  ret[[length(ret) + 1]] <- theme_bw(base_size = base_size)
+  ret[[length(ret) + 1]] <- theme(
+    plot.margin = unit(c(0, 0, 0, 0), "cm"),
+    legend.spacing = unit(3, "cm"),
+    legend.position = "top",
+    legend.justification = "left",
+    legend.box.spacing = unit(0, "pt"),
+    legend.box.margin = margin(0, 0, 0, 0)
+  )
+  ret[[length(ret) + 1]] <- guides(color = guide_legend(nrow = 1))
+  if (!legend_title) {
+    ret[[length(ret) + 1]] <- theme(legend.title = element_blank())
+  }
+  return(ret)
+}
+#+end_src
+
+#+RESULTS:
+
+*** Plot
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df |>
+  ggplot(aes(x = factor(nb), y = time)) +
+  geom_violin() +
+  labs(x = "Block Size [order]",
+       y = "Makespan [seconds]") +
+  default_theme() +
+  ylim(0, NA) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  facet_wrap(~m, strip.position = "right") -> p
+ggsave("img/block-size.pdf", width=6, height=5)
+#+end_src
+
+#+RESULTS:
+
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
