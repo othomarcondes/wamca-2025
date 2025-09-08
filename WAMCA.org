@@ -1623,12 +1623,10 @@ experiments. Table [[tab:hardware]] specifies the hardware of one node.
 The \verb|Cei| partition comprises six nodes, where each node uses a
 10-Gigabit X540-AT2 network interface connected to a dedicated switch
 with sufficient aggregated capacity. From the software perspective, we
-use the 1.4.7 StarPU and 1.3.0 Chameleon versions. We also used
-NewMadeleine, with the commit =6e1a64d0= (June 2025, after fixes in the
-TCP interface reported by us) and the MPI implementation from OpenMPI
+use the 1.4.7 StarPU and 1.3.0 Chameleon versions. We also used the
+MPI implementation from OpenMPI
 4 cite:gabriel2004open. The complete software stack is kept stable
-by the Guix package manager, with two manifest files one for each MPI
-layer while sharing the remaining software configurations.
+by the Guix package manager, with a manifest file containing all software configurations.
 
 #+CAPTION: Hardware specification of the cei partition.
 #+NAME: tab:hardware
