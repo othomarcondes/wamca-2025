@@ -1508,14 +1508,12 @@ these alternative distributions, has limited their adoption in
 production scientific computing environments where development time
 and code reliability are paramount concerns.
 
-
 *** Task-based Runtime Systems
 The use of task-based runtime systems to execute parallel programs in a distributed way is adopted by various libraries and runtime systems such as StarPU cite:augonnet2012starpu, OmpSs cite:duran2011ompss and PaRSEC cite:bosilca2013parsec, providing programming models that abstract parallelism through tasks rather than explicit thread or process management. In these systems, computations are expressed as a set of tasks with declared data dependencies. At runtime, a scheduler dynamically builds a task dependency graph (DAG) and maps tasks to available resources (e.g., CPUs or GPUs). This approach relieves programmers from explicitly handling synchronization, communication and allowing an easy way to implement different data distributions.
 
 The main advantages of task-based environments lie in their adaptability and performance portability. Dynamic schedulers can exploit runtime information (such as task durations, data locality, or device load) to optimize execution and balance workloads across heterogeneous resources. Furthermore, the DAG-based model can reduce the impact of possible imbalances on the workload, scheduling subsequent tasks based on the runtime-detected irregularity. Compared to static parallel models (e.g., MPI-only or OpenMP loop-level parallelism), task-based runtimes achieve better overlap of communication and computation, reduce idle times, and adapt to irregular workloads.
 
 In this work we make use of the Chameleon linear algebra library, which provides the LU factorization implementation with the Block-Cyclic data distribution, allowing us to define tiles of work. We also make use of the StarPU runtime, which as mentioned above works as a task-based runtime system and also provides a range of different scheduling strategies to distribute the tasks among the available set of workers.
-
 
 ** Methods & Materials
 <<sec:methodology>>
@@ -1827,7 +1825,6 @@ its local work stealing policy.
 #+caption: The makespan (Y-axis) as a function of data partitioning strategies (X-axis), scheduler (facets) and transport layer (colors).
 #+attr_latex: :width .9\linewidth
 [[./img/distrib-scheduler.pdf]]
-
 
 *** Observation of OpenMPI delays
 
