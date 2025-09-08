@@ -2221,6 +2221,28 @@ to the network limitations in our infrastructure.
 #+attr_latex: :width \linewidth
 [[./img/lws-all_pq-traces.pdf]]
 
+*** lws versus dmdas
+
+Figure [[fig.trace3]] depicts two space/time views, each one with all the 144 workers of the six machines
+(on the Y axis), considering the three types of tasks (colors). From
+top to bottom, we represent the behavior of the =lws= and =dmdas= intra-node schedulers,
+both using the 3\times2 data distribution.
+
+#+name: fig.trace3
+#+caption: Application workers behavior along time in the 3\times2 data distribution and using the =lws= and =dmdas= schedulers respectively.
+#+attr_latex: :width \linewidth
+[[./img/lws-vs-dmdas-3x2-openmpi-traces.pdf]]
+*** 3x2 versus 6x1 lws
+
+Figure [[fig.trace4]] depicts two space/time views, each one with all the 144 workers of the six machines
+(on the Y axis), considering the three types of tasks (colors). From
+top to bottom, we represent the behavior of the 3\times2 and 6\times1 data distributions,
+both using the =lws= scheduler.
+
+#+name: fig.trace4
+#+caption: Application workers behavior along time in the 3\times2 and 6\times1 data distributions and using the =lws= scheduler respectively.
+#+attr_latex: :width \linewidth
+[[./img/lws-3x2-versus-6x1-openmpi-traces.pdf]]
 ** Conclusion
 <<sec:conclusion>>
 
