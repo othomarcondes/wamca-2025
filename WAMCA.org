@@ -1244,6 +1244,16 @@ df2 |>
 4 openmpi   14400        360 lws       6x1       273.      934.    1931.
 #+end_example
 
+** 2025-09-08
+
+Na primeira Sec IV.D tu vais comparar os rastros de LWS e DMDAS para
+explicar porque o LWS ficou melhor. Usa o mesmo método utilizado na
+Sec IV.C, Figura 5, só que daí tu selecionas dois gráficos somente por
+exemplo com a distribuição 3x2. 2/ Na segunda Sec IV.E tu vais
+analisar exclusivamente o LWS e detalhar o comportamento LWS entre 3x2
+e 6x1 onde analisando os dados dos rastros, remontar métricas que
+possam explicar porque a diferença entre os dois casos foi tão
+pequena.
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
 #+BEGIN_EXPORT latex 
