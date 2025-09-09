@@ -107,8 +107,12 @@ if [ "$RASTRO" = 1 ]; then
     STARPU_ENV_VARS="-x STARPU_FXT_TRACE=1"
 fi
 
-STARPU_ENV_VARS="${STARPU_ENV_VARS} -x STARPU_NCUDA=0 -x STARPU_NCPU=23 -x STARPU_WORKERS_GETBIND=0 -x STARPU_WORKERS_CPUID=\"0-23\" -x STARPU_DISPLAY_BINDINGS=1"
-
+STARPU_ENV_VARS=""
+STARPU_ENV_VARS+=" -x STARPU_NCUDA=0"
+STARPU_ENV_VARS+=" -x STARPU_NCPU=23"
+STARPU_ENV_VARS+=" -x STARPU_WORKERS_GETBIND=0"
+STARPU_ENV_VARS+=" -x STARPU_WORKERS_CPUID=\"0-23\""
+STARPU_ENV_VARS+=" -x STARPU_DISPLAY_BINDINGS=1"
 
 OPENMPI_PARAMETERS=""
 # This is necessary to avoid sbatch + mpirun problems
@@ -135,7 +139,7 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq exp 
     
     $(which mpirun) \
     -n ${SLURM_JOB_NUM_NODES} \
-    $STARPU_ENV_VARS \
+    ${STARPU_ENV_VARS} \
     $OPENMPI_PARAMETERS \
     -machinefile $HOSTFILE \
     $(which chameleon_dtesting) \
