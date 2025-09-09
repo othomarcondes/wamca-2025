@@ -2419,7 +2419,7 @@ view.
 #+attr_latex: :width \linewidth :float multicolumn
 [[./img/lws-vs-dmdas-3x2-openmpi-traces.pdf]]
 
-*** Similarities on the =lws= executions
+*** Similarities of data distribution using the =lws= executions
 
 Figure [[fig.trace4]] depicts two space/time views, each one with all the
 144 workers of the six machines (on the Y axis), considering the three
