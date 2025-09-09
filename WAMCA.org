@@ -1554,6 +1554,28 @@ Removed 2 rows containing missing values or values outside the scale range
 (`geom_rect()`).
 #+end_example
 
+*** MPI Communication time between the two runs
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df2 |>
+  mutate(Total = map(STARVZ, function(svz) {
+    svz$Link |>
+      filter(Type == "MPI communication") |>      
+      filter(Start >= svz$Zero$value) |>
+      group_by(Dest) |> 
+      summarize(MPI = sum(Duration), .groups="drop") |>
+      summarize(MPI = sum(MPI) / n()) # Mean MPI time
+  })) |>
+  unnest(Total)
+#+end_src
+
+#+RESULTS:
+: # A tibble: 2 × 8
+:   TRANSPORT  size block_size scheduler pq    STARVZ     makespan   MPI
+:   <chr>     <dbl>      <dbl> <chr>     <chr> <list>        <dbl> <dbl>
+: 1 openmpi   14400        360 lws       3x2   <strvz_dt>   21951. 4508.
+: 2 openmpi   14400        360 lws       6x1   <strvz_dt>   22713. 2974.
+
 ** 2025-09-08 (Sec III.B) Times from job identifiers 72130[12]
 *** Preprocess using bash and awk
 
