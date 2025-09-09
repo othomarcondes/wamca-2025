@@ -2373,7 +2373,14 @@ because, as expected, there is a natural variation of the cost of
 tasks. What is surprisingly is that the =dmdas= has a much larger
 makespan compared to =lws=, probably because the delays caused by
 outliers worse the general progression of the application much more
-strongly.
+strongly. If we investigate further the trace to quantify the temporal
+gaps between the tasks on each core, we conclude that in the =lws= run
+the mean gap (considering all the cores) is of \approx7841ms whereas for the
+=dmdas= run such gap is much higher, \approx9154ms. This difference quantifies
+indeed that there are larger delays in the =dmdas= run. These delays are
+probably caused by the \approx200 more outlier tasks in the =dmdas= run, which
+clearly correlates with the delays as one can see in the space/time
+view.
 
 #+name: fig.trace3
 #+caption: Application workers behavior along time in the 3\times2 data distribution and using the =lws= and =dmdas= schedulers respectively.
