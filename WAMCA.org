@@ -2052,7 +2052,7 @@ In this work we make use of the Chameleon linear algebra library, which provides
 Our experimental investigation has three phases to evaluate the
 performance characteristics of the tiled LU factorization under
 different setups. We describe the methods involved in these three
-phrases. We describe the preliminary study to determine the optimal
+phrases. First, we present the preliminary study to determine the optimal
 block size for our target platform, systematically varying tile
 dimensions to identify the configuration that minimize the makespan.
 Second, we describe the full-factorial experimental design to
