@@ -1362,6 +1362,38 @@ df2 |>
 : 1 openmpi   14400        360 dmdas     3x2       459.     1184.    2176.
 : 2 openmpi   14400        360 lws       3x2       189.     1116.    2140.
 
+*** MPI Communication time between the two runs
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df2 |>
+  mutate(Total = map(STARVZ, function(svz) {
+    svz$Link |>
+      filter(Type == "MPI communication") |>      
+      filter(Start >= svz$Zero$value) |>
+      group_by(Dest) |> 
+      summarize(MPI = sum(Duration))
+  })) |>
+  unnest(Total)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 12 × 9
+   TRANSPORT  size block_size scheduler pq    STARVZ     makespan Dest      MPI
+   <chr>     <dbl>      <dbl> <chr>     <chr> <list>        <dbl> <fct>   <dbl>
+ 1 openmpi   14400        360 lws       3x2   <strvz_dt>   21951. 0_mpict 4185.
+ 2 openmpi   14400        360 lws       3x2   <strvz_dt>   21951. 1_mpict 9137.
+ 3 openmpi   14400        360 lws       3x2   <strvz_dt>   21951. 2_mpict 4562.
+ 4 openmpi   14400        360 lws       3x2   <strvz_dt>   21951. 3_mpict 3191.
+ 5 openmpi   14400        360 lws       3x2   <strvz_dt>   21951. 4_mpict 1491.
+ 6 openmpi   14400        360 lws       3x2   <strvz_dt>   21951. 5_mpict 4482.
+ 7 openmpi   14400        360 dmdas     3x2   <strvz_dt>   25477. 0_mpict 1368.
+ 8 openmpi   14400        360 dmdas     3x2   <strvz_dt>   25477. 1_mpict 5230.
+ 9 openmpi   14400        360 dmdas     3x2   <strvz_dt>   25477. 2_mpict 2026.
+10 openmpi   14400        360 dmdas     3x2   <strvz_dt>   25477. 3_mpict 1644.
+11 openmpi   14400        360 dmdas     3x2   <strvz_dt>   25477. 4_mpict 3336.
+12 openmpi   14400        360 dmdas     3x2   <strvz_dt>   25477. 5_mpict 4114.
+#+end_example
 ** 2025-09-08 (Sec III.E?) 3x2 versus 6x1, OpenMPI, LWS
 *** Read
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
