@@ -2276,8 +2276,7 @@ while varying the four data partitioning strategies (1×6, 2×3, 3×2, and 6×1)
 leverage on these cases to enable in-depth examination of delays
 induced by longer communication operations and other task scheduling
 problems to better elucidate our previously overview of observations.
-Our focus here is to illustrate the differences between the two MPI
-implementations. We carry out the trace analysis using the StarVZ
+We carry out the trace analysis using the StarVZ
 cite:pinto2021providing visualization framework.
 
 ** Experimental Results & Discussion
