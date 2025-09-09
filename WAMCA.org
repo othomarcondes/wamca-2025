@@ -1546,30 +1546,6 @@ ggsave("img/lws-3x2-versus-6x1-openmpi-traces.pdf", width=6, height=10)
 : Scale for x is already present.
 : Adding another scale for x, which will replace the existing scale.
 
-*** Idle time before 10s of execution
-
-#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
-df2 |>
-  group_by(TRANSPORT, size, block_size, scheduler, pq) |>
-  mutate(DF = map(STARVZ, function(sv) { sv$Application } )) |>
-  unnest(DF) |>
-  filter(End < 10000) |>
-  group_by(ResourceId, .add=TRUE) |>
-  summarize(Idle = max(End) - sum(Duration), .groups="keep") |>
-  ungroup(ResourceId) |>
-  summarize(
-    Idle.Min = min(Idle),
-    Idle.Mean = mean(Idle),
-    Idle.Max = max(Idle))
-#+end_src
-
-#+RESULTS:
-: # A tibble: 2 × 7
-:   TRANSPORT  size block_size scheduler pq    STARVZ     makespan
-:   <chr>     <dbl>      <dbl> <chr>     <chr> <list>        <dbl>
-: 1 openmpi   14400        360 lws       3x2   <strvz_dt>   21951.
-: 2 openmpi   14400        360 lws       6x1   <strvz_dt>   22713.
-
 ** 2025-09-08 (Sec III.B) Times from job identifiers 72130[12]
 *** Preprocess using bash and awk
 
