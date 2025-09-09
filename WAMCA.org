@@ -1277,6 +1277,26 @@ tribble(~BASE, ~CSV,
 #+end_src
 
 #+RESULTS:
+#+begin_example
+Some features are not enabled in this build of Arrow. Run `arrow_info()` for more information.
+
+Attaching package: ‘arrow’
+
+The following object is masked from ‘package:utils’:
+
+    timestamp
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ lubridate::duration() masks arrow::duration()
+✖ dplyr::filter()       masks stats::filter()
+✖ dplyr::lag()          masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+#+end_example
 
 *** Plot
 
@@ -1296,7 +1316,7 @@ df2 |>
 #    svz$config$base_size <- 20
     svz$config$st$aggregation$step <- 100
     svz$config$st$abe$active <- TRUE
-#    svz$config$st$abe$size <- 2
+    svz$config$st$abe$size <- 10
     svz$config$st$abe$label <- FALSE
 #    svz$config$st$idleness <- TRUE
     svz$config$st$outliers <- TRUE
@@ -1306,7 +1326,7 @@ df2 |>
     return(svz) })) |>
   mutate(GC = map(STARVZ, panel_st)) |>
 #  mutate(GC = map2(GC, TRANSPORT, function(gc, tr) { gc + ggtitle(tr) })) |>
-  mutate(GC = map(GC, function(gc) { gc + xlim(0, 30000) })) |>
+  mutate(GC = map(GC, function(gc) { gc + xlim(0, 25400) })) |>
   arrange(pq) |>
   mutate(Label = paste0(scheduler, ", ", pq)) |>
   mutate(GC = map2(GC, Label, function(gc, p) { gc + labs(y = paste0(p, "\nApplication Workers")) })) |>
@@ -1326,14 +1346,22 @@ l.plots[[2]] + theme(
                  legend.position = "none"
                ) -> l.plots[[2]]
 wrap_plots(l.plots, nrow=2)
-ggsave("img/lws-vs-dmdas-3x2-openmpi-traces.pdf", width=6, height=10)
+ggsave("img/lws-vs-dmdas-3x2-openmpi-traces.pdf", width=12, height=10)
 #+end_src
 
 #+RESULTS:
-: Scale for x is already present.
-: Adding another scale for x, which will replace the existing scale.
-: Scale for x is already present.
-: Adding another scale for x, which will replace the existing scale.
+#+begin_example
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+Warning message:
+Removed 1 row containing missing values or values outside the scale range
+(`geom_rect()`).
+Warning message:
+Removed 1 row containing missing values or values outside the scale range
+(`geom_rect()`).
+#+end_example
 
 *** Idle time before 10s of execution
 
@@ -1353,8 +1381,8 @@ df2 |>
 #+end_src
 
 #+RESULTS:
-: `summarise()` has grouped output by 'TRANSPORT', 'size', 'block_size', 'scheduler'. You can override using the
-: `.groups` argument.
+: `summarise()` has grouped output by 'TRANSPORT', 'size', 'block_size',
+: 'scheduler'. You can override using the `.groups` argument.
 : # A tibble: 2 × 8
 : # Groups:   TRANSPORT, size, block_size, scheduler [2]
 :   TRANSPORT  size block_size scheduler pq    Idle.Min Idle.Mean Idle.Max
@@ -1542,7 +1570,6 @@ df2 |>
 : 1 openmpi   14400        360 lws       3x2   <strvz_dt>   21951.
 : 2 openmpi   14400        360 lws       6x1   <strvz_dt>   22713.
 
-
 ** 2025-09-08 (Sec III.B) Times from job identifiers 72130[12]
 *** Preprocess using bash and awk
 
@@ -1668,7 +1695,6 @@ ggsave("img/distrib-scheduler.pdf", width=10, height=10)
 #+end_src
 
 #+RESULTS:
-
 
 ** 2025-09-08 Block size OpenMPI
 *** Read
@@ -2384,7 +2410,7 @@ view.
 
 #+name: fig.trace3
 #+caption: Application workers behavior along time in the 3\times2 data distribution and using the =lws= and =dmdas= schedulers respectively.
-#+attr_latex: :width \linewidth
+#+attr_latex: :width \linewidth :float multicolumn
 [[./img/lws-vs-dmdas-3x2-openmpi-traces.pdf]]
 
 *** Similarities on the =lws= executions
