@@ -2464,7 +2464,9 @@ Future work includes the adoption of SimGrid cite:CASANOVA2025103125 to
 run larger simulations and scale the number of nodes, as previous
 works have already been capable to validate the StarPU-SimGrid
 combination cite:nesi2020communication in the context of the data
-partitioning strategies.
+partitioning strategies. We intend also to investigate further the
+repetitive delays as seen in the detailed traces we have analyzed, as
+they impact negatively the makespan for our runs in our infrastructure.
 
 #+latex: \noindent
 *Acknowledgements*.
