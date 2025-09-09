@@ -122,6 +122,13 @@ if [ "$MPI" = "openmpi" ]; then
 	srun -l hostname | sort -n | awk '{print $2}' | sed 's/$/ slots=1/' > $HOSTFILE
 fi
 
+# Control experimental parameters
+for machine in $(cat $HOSTFILE | cut -d" " -f1); do
+    ssh $machine 'echo 0 | tee /sys/devices/system/cpu/cpufreq/boost'
+    ssh $machine 'for i in $(seq 0 47); do cpufreq-set -c $i -g performance -d 2100000 -u 2100000;  done'
+    # TODO: disable HT cores
+done
+
 # Skip header and read the rest
 tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq exp order; do
     # Define env vars
