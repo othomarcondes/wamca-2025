@@ -2275,12 +2275,13 @@ to the network limitations in our infrastructure.
 
 *** Schedulers comparison
 
-Figure [[fig.trace3]] depicts two space/time views, each one with all the 144 workers of the six machines
-(on the Y axis), considering the three types of tasks (colors). From
-top to bottom, we represent the behavior of the =lws= and =dmdas= intra-node schedulers,
-both using the 3\times2 data distribution. We can observe that both the executions have similar
-behavior, with =dgemm= tasks representing the major part of the first 10s, and a mean idle time of
-\approximate1100ms. Nevertheless,
+Figure [[fig.trace3]] depicts two space/time views, each one with all the
+144 workers of the six machines (on the Y axis), considering the three
+types of tasks (colors). From top to bottom, we represent the behavior
+of the =lws= and =dmdas= intra-node schedulers, both using the 3\times2 data
+distribution. We can observe that both the executions have similar
+behavior, with =dgemm= tasks representing the major part of the first
+10s, and a mean idle time of \approximate1100ms.
 
 #+name: fig.trace3
 #+caption: Application workers behavior along time in the 3\times2 data distribution and using the =lws= and =dmdas= schedulers respectively.
