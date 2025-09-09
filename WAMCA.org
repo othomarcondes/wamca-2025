@@ -2306,15 +2306,18 @@ strongly.
 
 *** Similarities on the =lws= executions
 
-Figure [[fig.trace4]] depicts two space/time views, each one with all the 144 workers of the six machines
-(on the Y axis), considering the three types of tasks (colors). From
-top to bottom, we represent the behavior of the 3\times2 and 6\times1 data distributions,
-both using the =lws= scheduler. We can observe that both the executions had similar behaviors,
-with the 3\times2 and the 6\times1 data distributions having a mean
-idle time of \approximate900ms and \aproximate1100ms respectively in the first 10s of execution. Also,
-the ABE (Area Bound Estimation); representing the optimal runtime, ignoring dependencies; which is
-represented by a gray bar in each nodes bar, also show similar values, indicate that the workload was distributed
-similarly between the nodes in both executions.
+Figure [[fig.trace4]] depicts two space/time views, each one with all the
+144 workers of the six machines (on the Y axis), considering the three
+types of tasks (colors). From top to bottom, we represent the behavior
+of the 3\times2 and 6\times1 data distributions, both using the =lws=
+scheduler. We can observe that both the executions had similar
+behaviors, with the 3\times2 and the 6\times1 data distributions having a mean
+idle time of \approximate900ms and \aproximate1100ms respectively in
+the first 10s of execution. Also, the ABE (Area Bound Estimation);
+representing the optimal runtime, ignoring dependencies; which is
+represented by a gray bar in each nodes bar, also show similar values,
+indicate that the workload was distributed similarly between the nodes
+in both executions.
 
 
 #+name: fig.trace4
