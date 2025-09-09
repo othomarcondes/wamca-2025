@@ -114,9 +114,9 @@ fi
 # Control experimental parameters
 for machine in $(cat $HOSTFILE | cut -d" " -f1); do
     ssh $machine 'echo 0 | tee /sys/devices/system/cpu/cpufreq/boost'
-    ssh $machine 'for i in $(seq 0 47); do cpufreq-set -c $i -g performance -d 2100000 -u 2100000;  done'
+#    ssh $machine 'for i in $(seq 0 47); do cpufreq-set -c $i -g performance -d 2100000 -u 2100000;  done'
     # TODO: disable HT cores
-    ssh $machine 'for i in $(seq 24 47); do echo 0 > /sys/devices/system/cpu/cpu${i}/online; done'
+#    ssh $machine 'for i in $(seq 24 47); do echo 0 > /sys/devices/system/cpu/cpu${i}/online; done'
 done
 
 # Skip header and read the rest
