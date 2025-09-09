@@ -1346,7 +1346,7 @@ l.plots[[2]] + theme(
                  legend.position = "none"
                ) -> l.plots[[2]]
 wrap_plots(l.plots, nrow=2)
-ggsave("img/lws-vs-dmdas-3x2-openmpi-traces.pdf", width=12, height=10)
+ggsave("img/lws-vs-dmdas-3x2-openmpi-traces.pdf", width=12, height=8.5)
 #+end_src
 
 #+RESULTS:
