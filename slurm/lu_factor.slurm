@@ -100,18 +100,8 @@ OUTPUT_DIR=${SLURM_JOB_ID}/output_${KEY}
 mkdir -p ${OUTPUT_DIR} 
 
 rsync ${CSV_FILE} ./${SLURM_JOB_ID}/ 
-STARPU_ENV_VARS=""
 
 # Set FxT (traces) variables based on MPI Implementation
-if [ "$RASTRO" = 1 ]; then
-    STARPU_ENV_VARS="-x STARPU_FXT_TRACE=1"
-fi
-
-STARPU_ENV_VARS=""
-STARPU_ENV_VARS+=" -x STARPU_NCUDA=0"
-STARPU_ENV_VARS+=" -x STARPU_NCPU=23"
-STARPU_ENV_VARS+=" -x STARPU_WORKERS_GETBIND=0"
-STARPU_ENV_VARS+=" -x STARPU_DISPLAY_BINDINGS=1"
 
 OPENMPI_PARAMETERS=""
 # This is necessary to avoid sbatch + mpirun problems
@@ -135,7 +125,23 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq exp 
     mkdir -p ./${OUTPUT_DIR}/$order
     p=$(echo "$pq" | cut -d'x' -f1)
 
-    STARPU_ENV_VARS="${STARPU_ENV_VARS} -x STARPU_FXT_PREFIX="./${OUTPUT_DIR}/$order" -x STARPU_SCHED=$scheduler"
+    if [ "$RASTRO" = 1 ]; then
+	export STARPU_FXT_TRACE=1
+    fi
+    
+    export STARPU_NCUDA=0
+    export STARPU_NCPU=23
+    export STARPU_WORKERS_GETBIND=0
+    export STARPU_FXT_PREFIX="./${OUTPUT_DIR}/$order"
+    export STARPU_SCHED=$scheduler
+
+
+    STARPU_ENV_VARS=""
+    STARPU_ENV_VARS+=" -x STARPU_NCUDA"
+    STARPU_ENV_VARS+=" -x STARPU_NCPU"
+    STARPU_ENV_VARS+=" -x STARPU_WORKERS_GETBIND"
+    STARPU_ENV_VARS+=" -x STARPU_FXT_PREFIX"
+    STARPU_ENV_VARS+=" -x STARPU_SCHED"
     
     $(which mpirun) \
     -n ${SLURM_JOB_NUM_NODES} \
