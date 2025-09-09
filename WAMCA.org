@@ -2019,7 +2019,14 @@ balances computation and communication requirements. For this example,
 one would employ only four nodes if solely synchronization costs would
 be taken into account.
 
-Although the standard block-cyclic (BC) distribution remains the most widely adopted approach for homogeneous sets of nodes, few studies have proposed enhancements for the distribution in specific scenarios. Notably, the work of citeauthor:10177470 cite:10177470 introduces a generalization of both the two-dimensional block-cyclic (2DBC) and symmetric block-cyclic (SBC) distributions, enabling their adaptation to an arbitrary numbers of nodes in which the grid would be very unbalanced.
+Although the standard block-cyclic (BC) distribution remains the most
+widely adopted approach for homogeneous sets of nodes, few studies
+have proposed enhancements for the distribution in specific
+scenarios cite:10177470. They introduce a
+generalization of both the two-dimensional block-cyclic (2DBC) and
+symmetric block-cyclic (SBC) distributions, enabling their adaptation
+to an arbitrary numbers of nodes in which the grid would be very
+unbalanced.
 
 
 Alternative approaches to block-cyclic distribution, such as the 1D-1D
