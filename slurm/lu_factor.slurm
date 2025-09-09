@@ -102,24 +102,20 @@ mkdir -p ${OUTPUT_DIR}
 rsync ${CSV_FILE} ./${SLURM_JOB_ID}/ 
 STARPU_ENV_VARS=""
 
-# Set common variables
-[ "$MPI" = "nmad" ] && STARPU_ENV_VARS="-DSTARPU_NCUDA=0 -DSTARPU_NCPU=23" || STARPU_ENV_VARS="-x STARPU_NCUDA=0 -x STARPU_NCPU=23 -x STARPU_WORKERS_GETBIND=0"
-
 # Set FxT (traces) variables based on MPI Implementation
 if [ "$RASTRO" = 1 ]; then
-	[ "$MPI" = "nmad" ] && STARPU_ENV_VARS="$STARPU_ENV_VARS -DSTARPU_FXT_TRACE=1" || STARPU_ENV_VARS="$STARPU_ENV_VARS -x STARPU_FXT_TRACE=1" 
-
+    STARPU_ENV_VARS="-x STARPU_FXT_TRACE=1"
 fi
 
+STARPU_ENV_VARS="${STARPU_ENV_VARS} -x STARPU_NCUDA=0 -x STARPU_NCPU=23 -x STARPU_WORKERS_GETBIND=0 -x STARPU_WORKERS_CPUID=\"0-23\" -x STARPU_DISPLAY_BINDINGS=1"
 
-OPENMPI_PARAMETERS="--mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2" 
+
+OPENMPI_PARAMETERS=""
 # This is necessary to avoid sbatch + mpirun problems
 if [ "$MPI" = "openmpi" ]; then
-	export OMPI_MCA_plm=isolated
-	export STARPU_NCUDA=0
-	export STARPU_NCPU=23
-	export STARPU_WORKERS_GETBIND=0
-	srun -l hostname | sort -n | awk '{print $2}' | sed 's/$/ slots=1/' > $HOSTFILE
+    OPENMPI_PARAMETERS="--mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2" 
+    export OMPI_MCA_plm=isolated
+    srun -l hostname | sort -n | awk '{print $2}' | sed 's/$/ slots=1/' > $HOSTFILE
 fi
 
 # Control experimental parameters
@@ -135,10 +131,12 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq exp 
     mkdir -p ./${OUTPUT_DIR}/$order
     p=$(echo "$pq" | cut -d'x' -f1)
 
+    STARPU_ENV_VARS="${STARPU_ENV_VARS} -x STARPU_FXT_PREFIX="./${OUTPUT_DIR}/$order" -x STARPU_SCHED=$scheduler"
+    
     $(which mpirun) \
     -n ${SLURM_JOB_NUM_NODES} \
     $STARPU_ENV_VARS \
-    $([ "$MPI" = "nmad" ] && echo "-DSTARPU_FXT_PREFIX="./${OUTPUT_DIR}/$order" -DSTARPU_SCHED=$scheduler" || echo "$OPENMPI_PARAMETERS -x STARPU_FXT_PREFIX="./${OUTPUT_DIR}/$order" -x STARPU_SCHED=$scheduler" ) \
+    $OPENMPI_PARAMETERS \
     -machinefile $HOSTFILE \
     $(which chameleon_dtesting) \
     $([ "$RASTRO" = 1 ] && echo "--trace") \
