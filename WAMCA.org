@@ -2279,9 +2279,25 @@ Figure [[fig.trace3]] depicts two space/time views, each one with all the
 144 workers of the six machines (on the Y axis), considering the three
 types of tasks (colors). From top to bottom, we represent the behavior
 of the =lws= and =dmdas= intra-node schedulers, both using the 3\times2 data
-distribution. We can observe that both the executions have similar
-behavior, with =dgemm= tasks representing the major part of the first
-10s, and a mean idle time of \approximate1100ms.
+distribution. We also configure StarVZ to make transparent all =dgemm=
+tasks considered normal, whose duration falls within an expected time
+interval according to the performance model. We depict without
+transparency those =dgemm= tasks considered by StarVZ as outliers. Such
+mechanism allows us to better understand application behavior along
+time. The figure also has the per-node Area Bound Estimation (ABE)
+depicted as a number for each node and a vertical oriented number that
+represents the estimated value. The per-node ABE represents how much
+time would it take to run all the tasks statically bounded to that
+node disregarding communication costs. The largest per-node ABE is
+therefore the optimistic makespan. We can see that it is \approx14605ms
+(node 1) for =lws= and \approx15045ms (also node 1) for =dmdas=, as well as a
+similar per-node ABE values for remaining nodes. This indicate that
+the 3\times2 data distribution has a slight difference between the two runs
+because, as expected, there is a natural variation of the cost of
+tasks. What is surprisingly is that the =dmdas= has a much larger
+makespan compared to =lws=, probably because the delays caused by
+outliers worse the general progression of the application much more
+strongly.
 
 #+name: fig.trace3
 #+caption: Application workers behavior along time in the 3\times2 data distribution and using the =lws= and =dmdas= schedulers respectively.
