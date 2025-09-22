@@ -2129,8 +2129,11 @@ this processor grid to achieve balanced workload distribution. Figure
 [[fig:bc-new]] demonstrates a concrete example with six computing nodes to
 data partitioning a 16\times16 matrix. There are four different
 partitioning strategies (1\times6, 2\times3, 3\times2, and 6\times1) represented by the
-facets while the colors represent the six different nodes. The four
-strategies represent different communication boundaries trade-offs as
+facets while the colors represent the six different nodes. The BC distributions
+are defined by the $P\timesQ$ parameters, $P$ indicating the number of nodes per row
+and $Q$ per column. We can see this behavior in the 2\times3 strategy,
+where there are only two nodes per row distributed cyclically across it.
+The four strategies represent different communication boundaries trade-offs as
 communication operations occur between nearby processors in the grid
 according the tiled LU factorization. A significant limitation emerges
 when the number of available nodes is a prime number, as it becomes
