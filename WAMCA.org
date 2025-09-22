@@ -34,18 +34,18 @@ SCORE: 1 (weak accept)
 The paper experimentally studies the impact of data partitioning/distribution and schedulers on parallel LU factorisation. LU factorisation is an important linear algebra kernel that is known to expose potential imbalance when it comes to its computation in parallel, thus addressing this is a valuable goal. The presentation clearly states the objectives of the work and is aware of related studies/tools.
 I have a number of remarks that should be genuinely addressed in the final version of the paper if accepted:
 1. [X] The partitioning displayed in figure 1 should be literally explained, especially 2x3 and 3x2, the figure itself does not provide a sufficient illustration.
-2. [ ] You mention "communication", like in the second paragraph of section II ("different communication boundaries"). I wasn't expecting this in a multicore context. Please, clarify.
-3. [ ] In the same paragraph, you point out the fact that using a prime number for the set of processors yields some efficiency issues. I think that in such a case, the considered partition can still be applied as such except for the last processor who will handle a special volume or shape.
-4. [ ] The use of Chameleon does not seem to be worth mentioning as you only consider their basic LU implementation.
+# 2. [ ] You mention "communication", like in the second paragraph of section II ("different communication boundaries"). I wasn't expecting this in a multicore context. Please, clarify.
+# 3. [ ] In the same paragraph, you point out the fact that using a prime number for the set of processors yields some efficiency issues. I think that in such a case, the considered partition can still be applied as such except for the last processor who will handle a special volume or shape.
+# 4. [ ] The use of Chameleon does not seem to be worth mentioning as you only consider their basic LU implementation.
 5. [ ] It is important to complete the work with how its insights can be used to seek better efficiency. In the last paragraph of the introduction, the presentation of section IV could indicate that such analysis will be provided.
 6. [X] In section III.B,  you mention DGTRF-NOPIV, DTRSM, and DGEMM without explaining what they compute. I suggest to put a sentence alongside each of them to indicate what it computes.
 7. [X] You mention P and Q parameters without telling what they are.
 8. [X] In the last paragraph of III.C, please consider replacing "carried out in a post-mortem fashion" by something like "is carried out after execution"
 9. [X] The optimal tile size of 360 is only for your 14400 matrix. Please state it clearly and also say "square matrix of 14400 entries (is it the size or the number of elements ? Simple or double precision ?)"
-10. [ ] Why using such special forms for the points in figure 3, 4 ? X or a bullet is sufficient.
+# 10. [ ] Why using such special forms for the points in figure 3, 4 ? X or a bullet is sufficient.
 11. [X] "Surprisingly" -> "surprising"; "plays an important whole"->"plays an important role" (section III.C)
 12. [X] You say "it would be different if we had 625 MPI processes and a 25x25 ....". WHY ?
-13. [ ] In Section III.B, you seem to believe that the overhead of communication should be proportional to the number of communication calls. Why ? One communication does not equal another, the volume sent and the pair of processors involved are important. In addition, there might be some level of overlap.
+# 13. [ ] In Section III.B, you seem to believe that the overhead of communication should be proportional to the number of communication calls. Why ? One communication does not equal another, the volume sent and the pair of processors involved are important. In addition, there might be some level of overlap.
 14. [X] Figures 5, 6, and 7 are hard to read (and the legend does not help, no blue or red parts visible). There is no need to consider showing data for the 144 workers. Please, simplify them and make them readable.
 15. [ ] Consider adding a subsection to indicate how the insights provided by your work might be useful for, and how.
 
@@ -69,14 +69,14 @@ Strengths:
 Weaknesses:
 
 1.Introduction (Section I)
-- [ ] a)In the particular case of LU decomposition, aside from being a typical dense linear algebra operation, its sparse counterpart is also prevalent in some scientific fields (e.g., CFD [1]) and could also have been explored in the paper’s analysis.
+# - [ ] a)In the particular case of LU decomposition, aside from being a typical dense linear algebra operation, its sparse counterpart is also prevalent in some scientific fields (e.g., CFD [1]) and could also have been explored in the paper’s analysis.
 
 2.Methods and Materials (Section III)
-- [ ] a)The experimental setup only uses CPU clusters, although StarPU/StarPU-MPI also run on GPUs. A GPU cluster analysis would also be of interest, considering that most of the current supercomputing platforms are GPU-based, instead of CPU-based.
+# - [ ] a)The experimental setup only uses CPU clusters, although StarPU/StarPU-MPI also run on GPUs. A GPU cluster analysis would also be of interest, considering that most of the current supercomputing platforms are GPU-based, instead of CPU-based.
 - [X] b)The experiments are designed with a fixed matrix size (14400). Is this a representative size of the matrices that can be found on real-world applications? If not, the authors should have explored other matrix sizes to better understand the impact of data partitioning.
 
 3.Experimental Results & Discussion (Section IV)
-- [ ] a)There is no analysis to explain why 360x360 is the best block size out of the ten tested combinations.
+# - [ ] a)There is no analysis to explain why 360x360 is the best block size out of the ten tested combinations.
 
 4.General Comments
 
