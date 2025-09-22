@@ -2277,7 +2277,7 @@ depends on the P \times Q parameters and the number of available
 nodes. Based on these configurations, nodes receive tiles of the input
 matrix. In the Figure [[fig:bc-new]] we can visualize that while 1\times6,
 there is only one node per row, as in reverse of the 6\times1 distribution,
-there is only one node per column. For the 2\times4 and 4\times2 cases, the
+there is only one node per column. For the 2\times3 and 3\times2 cases, the
 distribution is cyclic.
 
 *** Hardware & Software configuration
@@ -2302,7 +2302,7 @@ by the Guix package manager, with a manifest file containing all software config
 |      | 2 x Intel(R) Xeon(R) Silver 4116 | DDR4  | Ethernet |
 |      | 2.10 GHz, 24 physical cores      |       |          |
 
-The data analysis is carried out in a post-mortem fashion by scripts
+The data analysis is carried out after execution by scripts
 written in the R language when using the StarVZ library framework
 cite:pinto2021providing.
 
@@ -2474,7 +2474,7 @@ very sophisticated scheduling heuristics that take into account
 evolving per-task performance models and data transfers into
 account. Despite their clear benefits for heterogeneous executions
 encompassing GPUs, the fact that they enable poorer makespan results
-than =lws= is a bit surprisingly. The difference between =dmdas= and =dmdas=
+than =lws= is a bit surprising. The difference between =dmdas= and =dmdas=
 is very small, no matter the data partitioning scheme, while the =lws=
 is the intra-node scheduler that enables the best execution
 time. Interestingly enough, we can see that the =lws= combined with
@@ -2503,7 +2503,7 @@ We can observe that in the start of the four
 executions, approximately until the time 10s, we can see a more dense
 behavior of =dgemm= tasks. In this time interval, the mean idle time of
 application workers is \approx1500ms for 1\times6 (the worst) and \approx800ms for 2\times3
-(the best), indicating that data partitioning plays an important whole
+(the best), indicating that data partitioning plays an important role
 as there are fewer synchronization tasks indeed. However even the best
 case here demonstrates significant OpenMPI delays in the part of the
 application where parallelism is maximum. We believe the main reason
@@ -2536,7 +2536,7 @@ therefore the optimistic makespan. We can see that it is \approx14605ms
 similar per-node ABE values for remaining nodes. This indicate that
 the 3\times2 data distribution has a slight difference between the two runs
 because, as expected, there is a natural variation of the cost of
-tasks. What is surprisingly is that the =dmdas= has a much larger
+tasks. What is surprising is that the =dmdas= has a much larger
 makespan compared to =lws=, probably because the delays caused by
 outliers worse the general progression of the application much more
 strongly. If we investigate further the trace to quantify the temporal
