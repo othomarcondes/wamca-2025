@@ -2250,8 +2250,10 @@ implementation of the LU factorization cite:lu2023. As shown in the Figure
 [[fig:LU-factor]], the LU factorization of a given matrix $A$ is defined
 as $A=LU$, where $L$ is a lower triangular matrix and $U$ is an upper
 triangular matrix. The LU algorithm relies on three different LAPACK
-kernels cite:anderson1999lapack: \verb|DGTRF-NOPIV|, \verb|DTRSM| and
-\verb|DGEMM|. This application has a tendency to be dominated by
+kernels cite:anderson1999lapack: \verb|DGTRF-NOPIV|(LU factorization of
+a matrix without pivoting), \verb|DTRSM| (triangular solve) and
+\verb|DGEMM| (general dense matrix-matrix multiplication).
+This application has a tendency to be dominated by
 \verb|DGEMM| kernels when $N$ is large.  The LU parallelization
 strategy of Chameleon is very similar to that of ScaLAPACK
 cite:blackford1997scalapack, following the task-based paradigm, with
