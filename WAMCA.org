@@ -18,7 +18,130 @@
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 #+LATEX_HEADER: \usepackage{booktabs}
 
-* Things to investigate                                            :noexport:
+
+* REVIEWS :noexport:
+
+** REVIEW 1
+----------------------- REVIEW 1 ---------------------
+
+SUBMISSION: 6
+TITLE: Impact of Data Distribution and Schedulers for the LU Factorization on Multi-Core Clusters
+AUTHORS: Otho José Sirtoli Marcondes, Philippe O. A. Navaux and Lucas Schnorr
+
+----------- Overall evaluation -----------
+SCORE: 1 (weak accept)
+----- TEXT:
+The paper experimentally studies the impact of data partitioning/distribution and schedulers on parallel LU factorisation. LU factorisation is an important linear algebra kernel that is known to expose potential imbalance when it comes to its computation in parallel, thus addressing this is a valuable goal. The presentation clearly states the objectives of the work and is aware of related studies/tools.
+I have a number of remarks that should be genuinely addressed in the final version of the paper if accepted:
+1. [X] The partitioning displayed in figure 1 should be literally explained, especially 2x3 and 3x2, the figure itself does not provide a sufficient illustration.
+2. [ ] You mention "communication", like in the second paragraph of section II ("different communication boundaries"). I wasn't expecting this in a multicore context. Please, clarify.
+3. [ ] In the same paragraph, you point out the fact that using a prime number for the set of processors yields some efficiency issues. I think that in such a case, the considered partition can still be applied as such except for the last processor who will handle a special volume or shape.
+4. [ ] The use of Chameleon does not seem to be worth mentioning as you only consider their basic LU implementation.
+5. [ ] It is important to complete the work with how its insights can be used to seek better efficiency. In the last paragraph of the introduction, the presentation of section IV could indicate that such analysis will be provided.
+6. [X] In section III.B,  you mention DGTRF-NOPIV, DTRSM, and DGEMM without explaining what they compute. I suggest to put a sentence alongside each of them to indicate what it computes.
+7. [X] You mention P and Q parameters without telling what they are.
+8. [X] In the last paragraph of III.C, please consider replacing "carried out in a post-mortem fashion" by something like "is carried out after execution"
+9. [X] The optimal tile size of 360 is only for your 14400 matrix. Please state it clearly and also say "square matrix of 14400 entries (is it the size or the number of elements ? Simple or double precision ?)"
+10. [ ] Why using such special forms for the points in figure 3, 4 ? X or a bullet is sufficient.
+11. [X] "Surprisingly" -> "surprising"; "plays an important whole"->"plays an important role" (section III.C)
+12. [X] You say "it would be different if we had 625 MPI processes and a 25x25 ....". WHY ?
+13. [ ] In Section III.B, you seem to believe that the overhead of communication should be proportional to the number of communication calls. Why ? One communication does not equal another, the volume sent and the pair of processors involved are important. In addition, there might be some level of overlap.
+14. [X] Figures 5, 6, and 7 are hard to read (and the legend does not help, no blue or red parts visible). There is no need to consider showing data for the 144 workers. Please, simplify them and make them readable.
+15. [ ] Consider adding a subsection to indicate how the insights provided by your work might be useful for, and how.
+
+** REVIEW 2
+----------------------- REVIEW 2 ---------------------
+
+SUBMISSION: 6
+TITLE: Impact of Data Distribution and Schedulers for the LU Factorization on Multi-Core Clusters
+AUTHORS: Otho José Sirtoli Marcondes, Philippe O. A. Navaux and Lucas Schnorr
+
+----------- Overall evaluation -----------
+SCORE: -1 (weak reject)
+----- TEXT:
+In this work, the authors study the impact of different block-cyclic (BC) data partitioning strategies to solve a LU decomposition in a multi-core cluster. To this end, the analysis focuses on matrix block size, schedulers, and data partitioning strategies to find the optimal way to compute a LU decomposition for large matrices.
+
+Strengths:
+
+1.LU decomposition is a core algorithm in diverse scientific fields, which warrants the need for an efficient implementation on multi-core systems.
+2.The algorithm’s analysis is thorough, ranging from schedulers to different data partitioning strategies across nodes and different block sizes.
+
+Weaknesses:
+
+1.Introduction (Section I)
+- [ ] a)In the particular case of LU decomposition, aside from being a typical dense linear algebra operation, its sparse counterpart is also prevalent in some scientific fields (e.g., CFD [1]) and could also have been explored in the paper’s analysis.
+
+2.Methods and Materials (Section III)
+- [ ] a)The experimental setup only uses CPU clusters, although StarPU/StarPU-MPI also run on GPUs. A GPU cluster analysis would also be of interest, considering that most of the current supercomputing platforms are GPU-based, instead of CPU-based.
+- [X] b)The experiments are designed with a fixed matrix size (14400). Is this a representative size of the matrices that can be found on real-world applications? If not, the authors should have explored other matrix sizes to better understand the impact of data partitioning.
+
+3.Experimental Results & Discussion (Section IV)
+- [ ] a)There is no analysis to explain why 360x360 is the best block size out of the ten tested combinations.
+
+4.General Comments
+
+This work proposes only an analysis of the different possibilities of scheduling/data partitioning of a block-cyclic LU decomposition. While the results are interesting, they are not general, considering that a single matrix size was tested, with a small cluster composed of the same CPU architectures, without testing other CPU architectures or even GPUs, which have become prevalent in current supercomputing platforms. Furthermore, some of the parameters (e.g., the 1x6, 2x3, 3x2, and 6x1 partitioning schemes) are dependent on the cluster’s number of nodes. Therefore, the impact of the conclusions is diminished, as it is only true for this particular experimental setup. Finally, a lot of work has been done to implement efficient distributed LU decompositions [2-4], which further impacts this work’s relevance.
+
+[1]Gaihre, Anil, Xiaoye Sherry Li, and Hang Liu. "Gsofa: Scalable sparse symbolic lu factorization on gpus." IEEE Transactions on Parallel and Distributed Systems 33.4 (2021): 1015-1026.
+[2]Wu, Rongteng, and Xiaohong Xie. "A heterogeneous parallel LU factorization algorithm based on a basic column block uniform allocation strategy." Mathematical Problems in Engineering 2019.1 (2019): 3720450.
+[3]Lu, Hao, et al. "Optimizing Communication in 2D Grid-Based MPI Applications at Exascale." Proceedings of the 30th European MPI Users' Group Meeting. 2023.
+[4]de Blas Cartón, Carlos, Arturo Gonzalez-Escribano, and Diego R. Llanos. "Effortless and efficient distributed data-partitioning in linear algebra." 2010 IEEE 12th International Conference on High Performance Computing and Communications (HPCC). IEEE, 2010.
+
+** REVIEW 3
+----------------------- REVIEW 3 ---------------------
+
+SUBMISSION: 6
+TITLE: Impact of Data Distribution and Schedulers for the LU Factorization on Multi-Core Clusters
+AUTHORS: Otho José Sirtoli Marcondes, Philippe O. A. Navaux and Lucas Schnorr
+
+----------- Overall evaluation -----------
+SCORE: 1 (weak accept)
+----- TEXT:
+The paper investigates the impact Schedulers and data distribution in the context of LU factorization.  The trade-offs of different block-cyclic (BC) data partitioning configurations and intra-node scheduling heuristics are investigated.
+The paper analyses the following scheduling heuristics: lws: locality
+work stealing; random; dmda: takes task execution performance models and data transfer time into account; dmdas: same as dmda, but also
+take into account task priorities and data buffer availability on
+the target device. Four inter-node static data partitioning strategies organized in different processor grid configurations are used:
+1×6, 2×3, 3×2, and 6×1.  Experiments were executed on a  144-core cluster using the CHAMELEON denselinear algebra library with StarPU-MPI runtime system examining how different scheduling heuristics influence overall execution time.
+
+
+Finally, the main contributions of the  paper are a) a preliminary investigation of the best tile size for the target architecture; b) an overview comparison correlating data partitioning strategies and scheduling heuristics c) a
+detailed analysis with the StarVZ [10] visualization framework
+using gathered traces from representative executions; and d) a
+methodological strategy that includes reproducible tools such
+as Guix.
+
+The paper is well written and well presented. The problem being addressed is clearly described and  the results presented in the paper are of interest to the WAMCA community.
+
+** REVIEW 4
+----------------------- REVIEW 4 ---------------------
+
+SUBMISSION: 6
+TITLE: Impact of Data Distribution and Schedulers for the LU Factorization on Multi-Core Clusters
+AUTHORS: Otho José Sirtoli Marcondes, Philippe O. A. Navaux and Lucas Schnorr
+
+----------- Overall evaluation -----------
+SCORE: 1 (weak accept)
+----- TEXT:
+This paper investigates a two-level approach for task scheduling on multi-core clusters. In the top level, tasks are statically assigned to cluster nodes, with dynamic task scheduling in the intra-node level.
+
+The study investigates the optimal tile sizes, four inter-node scheduling heuristics (lws, random, dmda, dmdas), and four intra-node data partitioning strategies for the LU factorization problem on a small cluster of 144 cores (2x12 cores per node). The experiments were developed using the Chameleon dense algebra library and the StarPU-MPI run time system. StarPU implements dynamic task scheduling within each compute node. The Chamaleon's kernel used for experiments is dgemm.
+
+As positive aspects, this paper:
+
+Investigates inter- and intra-node scheduling strategies for improving the performance of a relevant problem, specifically the LU factorization.
+
+Experiments show interesting results for the optimal tile size, and lws as the best inter-node strategy.
+
+Drawbacks and limitations:
+
+Regarding the intra-node scheduler, results show unexpected results where the data partitioning strategy that produces less communication operations not necessarily reduce the execution time. A more comprehensive performance evaluation (e.g., larger workloads, larger workloads per worker, larger number of workers, etc) could potentially help to identify the best schedulers in different scenarios.
+
+The benchmark consists of a matrix of 14400x14400 as the only test case. A more solid evaluation is necessary to identify where the bottlenecks are, for instance, varying not only the system size (i.e., matrix size), but also different amounts of work per worker (different communication to computation ratios), etc.
+
+ In summary, the study has good potential, but it seems to be in an initial development phase yet.
+
+* Things to investigate :noexport:
 ** Why task mean duration is higher in nmad when compared against openmpi
 
 I suppose is some experiment problem.
