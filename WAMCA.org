@@ -2323,7 +2323,9 @@ LU factorization on our target platform by systematically evaluating
 performance across a range of block dimensions. Using all six
 available computing nodes with the Locality Work Stealing (LWS)
 scheduler, we perform tiled LU
-factorization on a fixed input matrix of order 14400 (14.4K). We vary
+factorization on a fixed input double precision square matrix of order 14400 (14.4K).
+This is a representative size on real-world applications, but adjusted so
+the executions have a makespan of 20s to 50s approximately. We vary
 the tile size across ten different configurations: 128×128, 256×256,
 300×300, 320×320, 400×400, 420×420, 460×460, 512×512, 960×960, and
 1600×1600. This range encompasses both standard power-of-two
@@ -2346,7 +2348,8 @@ Our full-factorial experimental design systematically investigates the
 interaction effects between multiple factors influencing LU
 factorization performance by evaluating all possible combinations of
 two key variables. Using all six computing nodes, a fixed input
-matrix of order 14400 (14.4K), and a fixed block size (360\times360), we
+double precision square matrix of order 14400 (14.4K), and
+a fixed block size (360\times360), we
 manipulate two factors across their complete range of values. The
 first factor
 varies four intra-node scheduling heuristics available in StarPU-MPI:
@@ -2420,7 +2423,7 @@ execution traces obtained from the StarPU runtime.
 
 Figure [[fig.bs]] depicts the makespan of the LU factorization, when using
 the =LWS= for intra-node task scheduling and an
-input matrix of 14400 (14.4K), as a function of different block sizes.  We can see that the makespan is
+input double precision square matrix of 14400 (14.4K), as a function of different block sizes.  We can see that the makespan is
 constrained from \approx40s up to \approx62s depending on the block size with
 rather concentrated distributions demonstrating that our experiments
 have relatively low variability. We can also confirm that the block
