@@ -1897,6 +1897,141 @@ ggsave("img/block-size.pdf", width=6, height=5)
 #+end_src
 
 #+RESULTS:
+** 2025-09-24
+*** Read
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+library(starvz)
+library(arrow)
+library(tidyverse)
+library(fs)
+library(patchwork)
+tribble(~BASE, ~CSV,
+        "data-wamca-again/721304/", "openmpi_traces_experimental_project.csv") |>
+  separate(CSV, into=c("TRANSPORT", paste0("XX", 1:4)), remove=FALSE) |>
+  select(-starts_with("XX")) |>
+  mutate(KEY = basename(BASE)) |>
+  mutate(DATA = map(paste0(BASE, CSV), read_csv, show_col_types=FALSE, progress=FALSE)) |> unnest(DATA) |>
+  mutate(DIR = paste0(BASE, "output_", TRANSPORT, "_traces_", KEY, "/", Order)) |>
+  select(-BASE, -CSV, -KEY, -exp, -Order) |>
+  mutate(STARVZ = map(DIR, starvz_read, selective=FALSE)) |>
+  select(-DIR) -> df
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Some features are not enabled in this build of Arrow. Run `arrow_info()` for more information.
+
+Attaching package: ‘arrow’
+
+The following object is masked from ‘package:utils’:
+
+    timestamp
+── Attaching core tidyverse packages ────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ──────────────────────────────── tidyverse_conflicts() ──
+✖ lubridate::duration() masks arrow::duration()
+✖ dplyr::filter()       masks stats::filter()
+✖ dplyr::lag()          masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+#+end_example
+
+*** Reduce the info
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df |>
+  filter(TRANSPORT == "openmpi") |>
+  filter(scheduler == "lws") |>
+  filter(pq %in% c("3x2", "6x1")) |>
+  mutate(makespan = map_dbl(STARVZ, function(svz) { svz$Application |> pull(End) |> max() })) |>
+  mutate(STARVZ = map(STARVZ, function(svz) {
+    svz$Application |>
+      filter(Value != "dplgsy") -> svz$Application
+    svz
+  })) -> df2
+#+end_src
+
+#+RESULTS:
+: Scale for x is already present.
+: Adding another scale for x, which will replace the existing scale.
+: Scale for x is already present.
+: Adding another scale for x, which will replace the existing scale.
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+df2 |>
+  mutate(STARVZ = map(STARVZ, function(svz) {
+    svz$config$st$tasks$active <- TRUE
+    svz$config$st$tasks$list <- c("4_2939", "4_2940")
+    svz$config$st$tasks$levels <- 3
+    svz$config$limits$start <- 0 #2750
+    svz$config$st$alpha <- 0.1
+#    svz$config$limits$end <- 3000
+#    svz$config$base_size <- 20
+    svz$config$st$aggregation$step <- 100
+    svz$config$st$abe$active <- TRUE
+    svz$config$st$abe$size <- 10
+    svz$config$st$abe$label <- FALSE
+#    svz$config$st$idleness <- TRUE
+    svz$config$st$outliers <- TRUE
+    svz$config$st$labels <- "NODES_only"
+    svz$config$st$aggregation$active <- FALSE
+    svz$config$st$aggregation$method <- "nodes"
+    return(svz) })) |>
+  mutate(STARVZ = map(STARVZ, function(svz) {
+#    svz$Application |> filter(Node == 0) -> svz$Application
+#    svz$Application |> filter(!Outlier) -> svz$Application
+#    svz$Application |> mutate(Outlier = Duration > 90) -> svz$Application       
+    svz
+  })) |>
+  mutate(GC = map(STARVZ, panel_st)) |>
+#  mutate(GC = map2(GC, TRANSPORT, function(gc, tr) { gc + ggtitle(tr) })) |>
+  mutate(GC = map(GC, function(gc) { gc + xlim(0, 22700) })) |>
+  arrange(pq) |>
+  mutate(Label = paste0(scheduler, ", ", pq)) |>
+  mutate(GC = map2(GC, Label, function(gc, p) { gc + labs(y = paste0(p, "\nApplication Workers")) })) -> df.plots
+#df.plots$GC[[1]]
+df.plots$STARVZ[[1]]$Application |>
+#  filter(Start > 2800) |>
+#  filter(Node == 4) |>
+  select(JobId, everything()) |>
+  arrange(Start) |>
+  filter(Value == "dgemm") |>
+  print() |>
+#  distinct(Params)
+#  pull(Duration) |> summary()
+  ggplot(aes(x = Iteration, y = Duration, color=Iteration)) + geom_point()
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+# A tibble: 20,540 × 24
+   JobId  ResourceId Start   End Duration Depth Value    Size Params  
+   <chr>  <chr>      <dbl> <dbl>    <dbl> <dbl> <fct>   <int> <fct>   
+ 1 0_1813 0_CPU12     53.5  57.3     3.79     0 dgemm 3110400 M360x36…
+ 2 0_1817 0_CPU21     53.7  62.5     8.81     0 dgemm 3110400 M360x36…
+ 3 0_1714 0_CPU14     57.6 175.    117.       0 dgemm 3110400 M360x36…
+ 4 0_1760 0_CPU12     57.6  66.6     8.92     0 dgemm 3110400 M360x36…
+ 5 0_1712 0_CPU20     57.6  68.5    10.8      0 dgemm 3110400 M360x36…
+ 6 0_1718 0_CPU19     57.7 180.    122.       0 dgemm 3110400 M360x36…
+ 7 0_1720 0_CPU17     57.7  72.6    14.9      0 dgemm 3110400 M360x36…
+ 8 0_1719 0_CPU18     57.7  74.7    17.0      0 dgemm 3110400 M360x36…
+ 9 0_1762 0_CPU13     57.7  76.8    19.1      0 dgemm 3110400 M360x36…
+10 0_1949 0_CPU11     59.2  86.4    27.3      0 dgemm 3110400 M360x36…
+# ℹ 20,530 more rows
+# ℹ 15 more variables: Footprint <fct>, Tag <fct>, SubmitOrder <chr>,
+#   GFlop <dbl>, X <int>, Y <int>, Iteration <int>,
+#   Subiteration <int>, NumaNodes <chr>, Node <fct>, Resource <fct>,
+#   ResourceType <fct>, Outlier <lgl>, Height <dbl>, Position <dbl>
+# ℹ Use `print(n = ...)` to see more rows
+#+end_example
 
 * *Paper*                                                              :ignore:
 ** Frontpage                                                        :ignore:
