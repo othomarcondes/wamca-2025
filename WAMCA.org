@@ -1993,17 +1993,17 @@ df2 |>
   arrange(pq) |>
   mutate(Label = paste0(scheduler, ", ", pq)) |>
   mutate(GC = map2(GC, Label, function(gc, p) { gc + labs(y = paste0(p, "\nApplication Workers")) })) -> df.plots
-#df.plots$GC[[1]]
+df.plots$GC[[1]]
 df.plots$STARVZ[[1]]$Application |>
 #  filter(Start > 2800) |>
 #  filter(Node == 4) |>
   select(JobId, everything()) |>
   arrange(Start) |>
   filter(Value == "dgemm") |>
-  print() |>
+  print()# |>
 #  distinct(Params)
 #  pull(Duration) |> summary()
-  ggplot(aes(x = Iteration, y = Duration, color=Iteration)) + geom_point()
+#  ggplot(aes(x = Iteration, y = Duration, color=Iteration)) + geom_point()
 #+end_src
 
 #+RESULTS:
