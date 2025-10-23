@@ -1,0 +1,160 @@
+#+TITLE: LabBook
+#+AUTHOR: Lucas M. Schnorr
+#+STARTUP: overview indent
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+
+C-c C-v t
+
+* 2025-10-21
+** Leitura e viz básica
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+suppressMessages(library(tidyverse))
+suppressMessages(library(starvz))
+#starvz_read("./src/experiment-5/lws_5120_256_0_10_10/", selective=FALSE) -> svz
+#starvz_read("../../otho/wamca-2025/output_nmad_traces_721225/nmad_traces_360_dmdas_1/") -> svz
+#starvz_read("./meeting/traces/cei_724279/output_cei_724279/teste_lws_1x1_1/", selective=FALSE) -> svz
+#starvz_read("./meeting/cholesky/728705/output_teste_728705/cholesky_360_1", selective=FALSE) -> svz
+starvz_read("./meeting/cholesky_360_36000_1x6", selective=FALSE) -> svz
+#svz$config$st$idleness <- TRUE
+svz$config$st$outliers <- FALSE
+svz$config$st$labels <- "NODES_only"
+svz$config$st$aggregation$active <- FALSE
+svz$config$st$aggregation$step <- 1000
+svz$config$st$aggregation$method <- "nodes"
+svz$config$ready$step <- 1
+# taskdep
+#svz$config$st$tasks$active <- TRUE
+#svz$config$st$tasks$list <- c("637")
+#svz$config$st$tasks$levels <- 2
+# abe
+svz$config$st$abe$active <- TRUE
+# step to panel_ready
+svz$config$ready$step <- 1000
+panel_st(svz) /
+  panel_ready(svz)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+panel_st(svz)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+svz$Application |>
+  filter(grepl("^0_", ResourceId)) |>
+  select(ResourceId, Start, End, Value, JobId) |>
+  filter(Start >= 0) |>
+  group_by(ResourceId) |>
+  arrange(Start) |>
+  mutate(End.Anterior = lag(End)) |>
+  arrange(ResourceId) |>
+  mutate(Delay = Start - End.Anterior) |>
+  filter(Start > 10000) |>
+  arrange(-Delay) |>
+  slice(1) |>
+  print(n=100) |>
+  pull(JobId) -> svz$config$st$tasks$list
+
+svz$config$limits$start <- 24000
+svz$config$limits$end <- 24500
+#svz$config$limits <- NULL
+svz$config$limits$start <- 15000
+svz$config$limits$end <- 16500
+svz$config$limits <- NULL
+# taskdep
+svz$config$st$tasks$active <- FALSE
+svz$config$st$tasks$levels <- 1
+# step to panel_ready
+svz$config$ready$step <- 1000
+# abe
+svz$config$st$abe$active <- TRUE
+panel_st(svz) /
+  panel_ready(svz) #/
+#  panel_lackready(svz)
+#  panel_mpistate(svz) /
+#  panel_mpiconcurrent(svz)  
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 22 × 7
+# Groups:   ResourceId [22]
+   ResourceId   Start     End Value JobId   End.Anterior Delay
+   <chr>        <dbl>   <dbl> <fct> <chr>          <dbl> <dbl>
+ 1 0_CPU0     114968. 114980. dgemm 0_36140      108162. 6806.
+ 2 0_CPU1     114968. 114980. dgemm 0_36141      108210. 6758.
+ 3 0_CPU10    115228. 115346. dgemm 0_37564      109345. 5882.
+ 4 0_CPU11    115228. 115367. dgemm 0_37565      109406. 5822.
+ 5 0_CPU12    115228. 115237. dgemm 0_37566      109345. 5882.
+ 6 0_CPU13    115228. 115262. dgemm 0_37567      109347. 5880.
+ 7 0_CPU14    114968. 115046. dgemm 0_36132      107960. 7008.
+ 8 0_CPU15    114968. 115046. dgemm 0_36133      107960. 7008.
+ 9 0_CPU16    114968. 114974. dgemm 0_36134      108210. 6758.
+10 0_CPU17    114968. 114975. dgemm 0_36135      108130. 6838.
+11 0_CPU18    114968. 114976. dgemm 0_36136      108150. 6818.
+12 0_CPU19    114968. 114976. dgemm 0_36137      108085. 6883.
+13 0_CPU2     115133. 115194. dgemm 0_33021      108234. 6899.
+14 0_CPU20    114968. 114976. dgemm 0_36138      108085. 6883.
+15 0_CPU21    114968. 114980. dgemm 0_36139      108130. 6838.
+16 0_CPU3     115133. 115210. dgemm 0_33022      108214. 6919.
+17 0_CPU4     115133. 115162. dgemm 0_33023      108226. 6907.
+18 0_CPU5     115133. 115136. dgemm 0_33024      109390. 5743.
+19 0_CPU6     115133. 115136. dgemm 0_33025      109390. 5743.
+20 0_CPU7     115133. 115138. dgemm 0_33026      109344. 5789.
+21 0_CPU8     115133. 115138. dgemm 0_33027      109390. 5743.
+22 0_CPU9     115133. 115139. dgemm 0_33028      109344. 5789.
+#+end_example
+
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+svz$Comm_state |>
+#  filter(Start > 24200) |>
+  count(Value)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 10 × 2
+   Value                n
+   <fct>            <int>
+ 1 Callback            37
+ 2 Polling           3211
+ 3 Processing        5748
+ 4 ReceiveCompleted   820
+ 5 ReceiveSubmitted   820
+ 6 Sc                6798
+ 7 SendCompleted      820
+ 8 SendSubmitted      820
+ 9 Sleeping          1488
+10 Submitting task   1721
+#+end_example
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+svz$Link# |>
+#  count(Type)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 11,780 × 13
+   Container Type    Start   End Duration  Size Origin Dest  Key   Tag   MPIType
+   <fct>     <fct>   <dbl> <dbl>    <dbl> <int> <fct>  <fct> <fct> <fct> <fct>  
+ 1 0_program Work s… -169. -169.        0     0 0_CPU8 0_CP… stea… <NA>  <NA>   
+ 2 0_program Work s… -169. -169.        0     0 0_CPU9 0_CP… stea… <NA>  <NA>   
+ 3 0_program Work s… -168. -168.        0     0 0_CPU… 0_CP… stea… <NA>  <NA>   
+ 4 0_program Work s… -168. -168.        0     0 0_CPU… 0_CP… stea… <NA>  <NA>   
+ 5 0_program Work s… -168. -168.        0     0 0_CPU… 0_CP… stea… <NA>  <NA>   
+ 6 0_program Work s… -167. -167.        0     0 0_CPU… 0_CP… stea… <NA>  <NA>   
+ 7 0_program Work s… -167. -167.        0     0 0_CPU… 0_CP… stea… <NA>  <NA>   
+ 8 0_program Work s… -167. -167.        0     0 0_CPU… 0_CP… stea… <NA>  <NA>   
+ 9 0_program Work s… -167. -167.        0     0 0_CPU… 0_CP… stea… <NA>  <NA>   
+10 0_program Work s… -167. -167.        0     0 0_CPU2 0_CP… stea… <NA>  <NA>   
+# ℹ 11,770 more rows
+# ℹ 2 more variables: Priority <int>, Handle <fct>
+# ℹ Use `print(n = ...)` to see more rows
+#+end_example
