@@ -15,9 +15,10 @@ suppressMessages(library(tidyverse))
 suppressMessages(library(starvz))
 #starvz_read("./src/experiment-5/lws_5120_256_0_10_10/", selective=FALSE) -> svz
 #starvz_read("../../otho/wamca-2025/output_nmad_traces_721225/nmad_traces_360_dmdas_1/") -> svz
-starvz_read("./meeting/traces/cei_724279/output_cei_724279/teste_lws_1x1_1/", selective=FALSE) -> svz
+#starvz_read("./meeting/traces/cei_724279/output_cei_724279/teste_lws_1x1_1/", selective=FALSE) -> svz
 #starvz_read("./meeting/cholesky/728705/output_teste_728705/cholesky_360_1", selective=FALSE) -> svz
 #starvz_read("./meeting/cholesky_360_36000_1x6", selective=FALSE) -> svz
+starvz_read("./729242/output_teste_729242/cholesky_360_36000_2x1", selective=FALSE) -> svz
 #svz$config$st$idleness <- TRUE
 svz$config$st$outliers <- FALSE
 svz$config$st$labels <- "NODES_only"
@@ -170,7 +171,10 @@ suppressMessages(library(starvz))
 #starvz_read("../../otho/wamca-2025/output_nmad_traces_721225/nmad_traces_360_dmdas_1/") -> svz
 #starvz_read("./meeting/traces/cei_724279/output_cei_724279/teste_lws_1x1_1/", selective=FALSE) -> svz
 #starvz_read("./meeting/cholesky/728705/output_teste_728705/cholesky_360_1", selective=FALSE) -> svz
-starvz_read("./meeting/cholesky_360_36000_1x6", selective=FALSE) -> svz
+#starvz_read("./meeting/cholesky_360_36000_1x6", selective=FALSE) -> svz
+#starvz_read("./traces/729242/output_teste_729242/cholesky_360_36000_2x1", selective=FALSE) -> svz
+#starvz_read("./traces/729258/output_teste_729258/cholesky_360_36000_2x1", selective=FALSE) -> svz
+starvz_read("./traces/729259/output_teste_729259/cholesky_360_36000_2x1", selective=FALSE) -> svz
 #svz$config$st$idleness <- TRUE
 svz$config$st$outliers <- FALSE
 svz$config$st$labels <- "NODES_only"
