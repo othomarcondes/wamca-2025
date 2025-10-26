@@ -8,7 +8,7 @@
 #+TITLE: Impact of Data Distribution and Schedulers for the LU Factorization on Multi-Core Clusters
 
 #+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [12pt,xcolor=dvipsnames,presentation,aspectratio=169]
+#+LaTeX_CLASS_OPTIONS: [14pt,xcolor=dvipsnames,presentation,aspectratio=169]
 #+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t title:nil
 #+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
 #+LATEX_HEADER: \usepackage{ifthen,figlatex,amsmath,amstext,xspace}
