@@ -79,10 +79,21 @@ October 28th, 2025 -- Bonito, MS -- Brazil}
 
 #+END_EXPORT
 
-* Context
-- HPC is the backbone for groundbreaking research and innovation across numerous scientific and engineering disciplines.
-- Modern clusters have thousands of multi-core nodes.
-- Dense linear algebra (e.g., LU factorization) is a core workload.
+* High-Performance Computing (HPC) Context
+
+HPC is the backbone for groundbreaking research
+- Comp. physics, Climate modeling, Weather prediction @@latex:\pause@@
+- Another example: Precision Agriculture
+  - Need to interpolate several samples for decision-making
+  - How much (and which type) of fertilizer to put in the soil
+
+#+latex: \pause
+
+Dense linear algebra (e.g., LU factorization) is a core workload
+- Main compute-bound phase of many HPC iterative applications
+- Platform: large HPC clusters composed of many nodes
+
+# Modern clusters have thousands of multi-core nodes
 
 * Introduction and Motivation
 Load balancing across nodes is a critical challenge
