@@ -191,7 +191,7 @@ Square matrix size of 14.4K (double precision).
 - Fixed =lws= scheduler, varying data distributions.
 - More dense behavior of =dgemm= tasks until 10s.
   - 1×6 (worst): mean idle \approx1500 ms
-  - 2×3 (best): mean idle \apporx800 ms
+  - 2×3 (best): mean idle \approx800 ms
 - Bottleneck from network latency, not algorithmic imbalance.
 
 * Results: OpenMPI Delays 2/2
