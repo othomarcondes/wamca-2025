@@ -236,6 +236,26 @@ financed in part by the Coordenação de Aperfeiçoamento de Pessoal de
 Nível Superior - Brasil (CAPES) - Finance Code 001, the FAPERGS
 (16/354-8, 16/348-8), Petrobras (2020/00182-5).
 
+#+BEGIN_EXPORT latex
+\begin{figure}[h!]\centering
+  \begin{minipage}{0.10\textwidth}\centering
+    \includegraphics[width=\linewidth]{./logo/capes.png}
+  \end{minipage}
+  \begin{minipage}{0.19\textwidth}\centering
+    \includegraphics[width=\linewidth]{./logo/cnpq.png}
+  \end{minipage}
+  \begin{minipage}{0.19\textwidth}\centering
+    \includegraphics[width=\linewidth]{./logo/fapergs.jpg}
+  \end{minipage}
+  \begin{minipage}{0.19\textwidth}\centering
+    \includegraphics[width=\linewidth]{./logo/petrobras.jpeg}
+  \end{minipage}
+  \begin{minipage}{0.19\textwidth}\centering
+    \includegraphics[width=\linewidth]{./logo/ppgc.png}
+  \end{minipage}
+\end{figure}
+#+END_EXPORT
+
 * Contact
 
 #+begin_center
