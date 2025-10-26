@@ -5,7 +5,7 @@
 #+STARTUP: indent
 #+TAGS: noexport(n)
 
-#+TITLE: Impact of Data Distribution and Schedulers for the LU Factorization on Multi-Core Clusters
+#+TITLE: Impact of Data Distribution and Schedulers for the @@latex: \linebreak@@ LU Factorization on Multi-Core Clusters
 
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [14pt,xcolor=dvipsnames,presentation,aspectratio=169]
