@@ -85,25 +85,25 @@ October 28th, 2025 -- Bonito, MS -- Brazil}
 - Dense linear algebra (e.g., LU factorization) is a core workload.
 
 * Introduction and Motivation
-Load balancing across nodes is a critical challenge.
-- Static data distribution: excellent data locality but lacks adaptability.
-- Dynamic scheduling: great adaptability but incurs overhead.
-- Hybrid strategies aim to combine both efficiently (StarPU-MPI and CHAMELEON).
+Load balancing across nodes is a critical challenge
+- Static data distribution: excellent data locality but lacks adaptability
+- Dynamic scheduling: great adaptability but incurs overhead
+- Hybrid strategies aim to combine both efficiently (StarPU-MPI and CHAMELEON)
 Objective
-- Analyze how *data distribution* and *scheduling heuristics* affect LU factorization performance.
+- Analyze how *data distribution* and *scheduling heuristics* affect LU factorization performance
 
 * Related Work: Static Data Distribution
-- *Block-Cyclic (BC)* used in ScaLAPACK, HPL benchmark.
-- Balances computation and communication via P×Q grid.
-- Limitations with prime node counts or heterogeneous resources.
+- *Block-Cyclic (BC)* used in ScaLAPACK, HPL benchmark
+- Balances computation and communication via P×Q grid
+- Limitations with prime node counts or heterogeneous resources
 #+attr_latex: :center no :height 2.5cm
 [[../img/bc.pdf]]
 
 * Related Work: Task-Based Runtime Systems
-- Frameworks: StarPU, PaRSEC, OmpSs.
-- Express computations as task DAGs.
-- Adaptability and performance portability.
-- Schedulers dynamically assign tasks.
+- Frameworks: StarPU, PaRSEC, OmpSs
+- Express computations as task DAGs
+- Adaptability and performance portability
+- Schedulers dynamically assign tasks
 
 * Experimental Setup: Hardware Environment
 | Resource | Specification |
@@ -115,15 +115,15 @@ Objective
 | Network | 10G Ethernet (X540-AT2) |
 
 * Experimental Setup: Software Environment
-- CHAMELEON 1.3.0 for dense linear algebra.
-- StarPU-MPI 1.4.7 runtime system.
-- OpenMPI 4 transport layer.
-- GNU Guix for reproducible package management.
-- Data analysis in R suing StarVZ framework.
+- CHAMELEON 1.3.0 for dense linear algebra
+- StarPU-MPI 1.4.7 runtime system
+- OpenMPI 4 transport layer
+- GNU Guix for reproducible package management
+- Data analysis in R suing StarVZ framework
 
 * Methods 1/2
 ** Application: LU Factorization
-- Decomposes matrix A into L (lower) and U (upper).
+- Decomposes matrix A into L (lower) and U (upper)
 - Kernels used:
   - DGEMM – matrix multiplication
   - DTRSM – triangular solve
