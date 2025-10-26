@@ -195,7 +195,7 @@ Square matrix size of 14.4K (double precision).
 - Impact of data distribution and scheduler heuristics.
 - =dmda= and =dmdas= presented similar performances.
 - =lws= best performing scheduler.
-- Data partition (P\timesQ) had minimal impact on performance.
+- Data partition (P \times Q) had minimal impact on performance.
 - Scale experiments using SimGrid simulation.
 - Study repetitive network delays in StarPU-MPI.
 
