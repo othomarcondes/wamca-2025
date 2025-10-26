@@ -96,8 +96,8 @@
 {%\setbeamertemplate{footline}{} 
 
 \author{Otho José Sirtoli Marcondes, Lucas M. Schnorr, Philippe O. A. Navaux \newline Instituto de Informática, UFRGS}
-
-\date{October 28th, 2025 \\\smallskip}
+\date{16th Workshop on Applications for Multi-Core Architectures \\
+October 28th, 2025 -- Bonito, MS -- Brazil}
 
 \titlegraphic{\vspace{-.2cm
     \includegraphics[scale=0.12]{./logo/ppgc.png}\hspace{2cm}
