@@ -134,70 +134,70 @@ Objective
 
 * Methods 2/2
 ** Experimental Design
-Square matrix size of 14.4K (double precision).
+Square matrix size of 14.4K (double precision)
 1. *Phase 1*: Tile size tuning (128–1600)
 2. *Phase 2*: Full factorial 4×4 experiment
    - Schedulers: lws, random, dmda, dmdas
    - Distributions: 1×6, 2×3, 3×2, 6×1
 3. *Phase 3*: Detailed trace analysis with StarVZ
    - Fixed =lws= scheduler
-   - Varying PxQ (BC) parameters.
+   - Varying PxQ (BC) parameters
 
 * Results: Optimal Block Size
-- Tested 10 tile sizes with =lws= scheduler.
-- Best performance at *360×360* blocks.
+- Tested 10 tile sizes with =lws= scheduler
+- Best performance at *360×360* blocks
 
 #+ATTR_LATEX: :width 0.3\textwidth
 [[../img/block-size.pdf]]
 
 * Results: Scheduler and Data Partition Comparison
-- Varying data distribution and schedulers.
-- 1\times6 and 6\times1: \approx3900 MPI operations.
-- 2\times3 and 3\times2: \approx2300 MPI operations.
-- Similar makespans across different data distributions and schedulers.
+- Varying data distribution and schedulers
+- 1\times6 and 6\times1: \approx3900 MPI operations
+- 2\times3 and 3\times2: \approx2300 MPI operations
+- Similar makespans across different data distributions and schedulers
 
 #+ATTR_LATEX: :width 0.3\textwidth
 [[../img/distrib-scheduler.pdf]]
 
 * Results: OpenMPI Delays 1/2
-- Fixed =lws= scheduler, varying data distributions.
-- More dense behavior of =dgemm= tasks until 10s.
+- Fixed =lws= scheduler, varying data distributions
+- More dense behavior of =dgemm= tasks until 10s
   - 1×6 (worst): mean idle \approx1500 ms
   - 2×3 (best): mean idle \approx800 ms
-- Bottleneck from network latency, not algorithmic imbalance.
+- Bottleneck from network latency, not algorithmic imbalance
 
 * Results: OpenMPI Delays 2/2
 #+ATTR_LATEX: :width 0.3\textwidth
 [[../img/lws-all_pq-traces.pdf]]
 
 * Results: Schedulers Comparison
-- Fixed 3×2 distribution, =lws= and =dmdas= schedulers.
+- Fixed 3×2 distribution, =lws= and =dmdas= schedulers
 - Per-node optimistic makespan (ABE):
   - \approx14605 ms for =lws=
   - \approx15045 ms for =dmdas=
-- LWS temporal gaps between tasks \approx7841 ms; =dmdas= \approx9154 ms.
-- 200 more outlier tasks in =dmdas= explain longer runtime.
+- LWS temporal gaps between tasks \approx7841 ms; =dmdas= \approx9154 ms
+- 200 more outlier tasks in =dmdas= explain longer runtime
 
 #+ATTR_LATEX: :width 0.4\textwidth
 [[../img/lws-vs-dmdas-3x2-openmpi-traces.pdf]]
 
 * Results: Data Distribution Similarities
-- Makespan difference <3%.
+- Makespan difference <3%
 - ABE difference between nodes 1 and 2:
   - 3\times2: \approx2249 ms
   - 6\times1: \approx2194 ms
-- Similar load imbalance between the two.
+- Similar load imbalance between the two
 
 #+ATTR_LATEX: :width 0.45\textwidth
 [[../img/lws-3x2-versus-6x1-openmpi-traces.pdf]]
 
 * Conclusion and Future Work
-- Impact of data distribution and scheduler heuristics.
-- =dmda= and =dmdas= presented similar performances.
-- =lws= best performing scheduler.
-- Data partition (P \times Q) had minimal impact on performance.
-- Scale experiments using SimGrid simulation.
-- Study repetitive network delays in StarPU-MPI.
+- Impact of data distribution and scheduler heuristics
+- =dmda= and =dmdas= presented similar performances
+- =lws= best performing scheduler
+- Data partition (P \times Q) had minimal impact on performance
+- Scale experiments using SimGrid simulation
+- Study repetitive network delays in StarPU-MPI
 
 * Acknowledgements
 The experiments in this work used the PCAD infrastructure,
