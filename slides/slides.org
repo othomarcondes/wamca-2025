@@ -95,7 +95,7 @@
 #+BEGIN_EXPORT LaTeX
 {%\setbeamertemplate{footline}{} 
 
-\author{Otho José Sirtoli Marcondes, Lucas Mello Schnorr, Philippe Olivier Alexandre Navaux \newline Instituto de Informática, UFRGS}
+\author{Otho José Sirtoli Marcondes, Lucas M. Schnorr, Philippe O. A. Navaux \newline Instituto de Informática, UFRGS}
 
 \date{October 28th, 2025 \\\smallskip}
 
