@@ -36,6 +36,7 @@
 #+LATEX_HEADER:\end{center}
 #+LATEX_HEADER:}
 
+#+latex: \setbeamercolor{background canvas}{bg=white}
 #+latex: \setbeamerfont{title}{size=\large}
 #+latex: \setbeamerfont{subtitle}{size=\small}
 
