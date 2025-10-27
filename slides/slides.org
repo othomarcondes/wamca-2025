@@ -95,7 +95,7 @@ tribble(~P, ~Q,
         6, 1) |>
   mutate(KEY = paste0(P, "x", Q)) |>
   mutate(TOPO = map2(P, Q, def_node_topology)) |>
-  mutate(M = 16, N = 16) |>
+  mutate(M = 10, N = 10) |>
   mutate(MATR = map2(M, N, def_matrix_topology)) |>
   mutate(OUT2 = map2(TOPO, MATR, def_distribution)) -> df
 #+end_src
@@ -151,10 +151,11 @@ p.aux +
   guides(fill = guide_legend(nrow = 1, override.aes = list(alpha=1))) -> p.aux
 if(white) {
   p.aux + ggtitle("Matrix") -> p.aux
-  p.aux + xlab("X Tile Coordinate") + ylab("Y Tile Coordinate") -> p.aux
+  p.aux + xlab("X Block Coordinate") + ylab("Y Block Coordinate") -> p.aux
 }else{
   p.aux + ggtitle(key) -> p.aux
-  p.aux + xlab("") + ylab("") -> p.aux
+  p.aux + xlab("X Block Coordinate") + ylab("Y Block Coordinate") -> p.aux  
+#  p.aux + xlab("") + ylab("") -> p.aux
 }
 p.aux +
   theme(legend.position="none") +
@@ -172,7 +173,8 @@ library(patchwork)
 df |>
   print() |>
   arrange(KEY) |>
-  mutate(GG2 = map2(OUT2, KEY, do_the_d, white=FALSE)) |>
+  mutate(TITLE = paste0("P=", P, " x Q=", Q)) |>
+  mutate(GG2 = map2(OUT2, TITLE, do_the_d, white=FALSE)) |>
   mutate(FILENAME = paste0("img/bc-", P, ".pdf")) |>
   mutate(SAVE = map2(FILENAME, GG2, ggsave, width=5, height=5)) -> df.aux
 #(df.aux$GG1[[1]] / df.aux$GG2) +
@@ -182,12 +184,12 @@ df |>
 
 #+RESULTS:
 : # A tibble: 4 × 8
-:       P     Q KEY   TOPO                 M     N MATR               OUT2              
-:   <dbl> <dbl> <chr> <list>           <dbl> <dbl> <list>             <list>            
-: 1     2     3 2x3   <tibble [6 × 3]>    16    16 <tibble [256 × 2]> <tibble [256 × 5]>
-: 2     3     2 3x2   <tibble [6 × 3]>    16    16 <tibble [256 × 2]> <tibble [256 × 5]>
-: 3     1     6 1x6   <tibble [6 × 3]>    16    16 <tibble [256 × 2]> <tibble [256 × 5]>
-: 4     6     1 6x1   <tibble [6 × 3]>    16    16 <tibble [256 × 2]> <tibble [256 × 5]>
+:       P     Q KEY   TOPO                 M     N MATR               OUT2    
+:   <dbl> <dbl> <chr> <list>           <dbl> <dbl> <list>             <list>  
+: 1     2     3 2x3   <tibble [6 × 3]>    16    16 <tibble [256 × 2]> <tibble>
+: 2     3     2 3x2   <tibble [6 × 3]>    16    16 <tibble [256 × 2]> <tibble>
+: 3     1     6 1x6   <tibble [6 × 3]>    16    16 <tibble [256 × 2]> <tibble>
+: 4     6     1 6x1   <tibble [6 × 3]>    16    16 <tibble [256 × 2]> <tibble>
 
 *** White Matrix
 
@@ -221,7 +223,7 @@ Dense linear algebra (e.g., LU factorization) is a core workload
 * Load balancing across nodes is a critical challenge 1/2
 
 Static data distribution, where the common method is the *Block-Cyclic*
-- Balances computation cost using a P \times Q grid; with 6 nodes, we have:
+- Method: for 10\times10 blocks, using a P \times Q grid and 6 nodes, we have:
 
 #+latex: \bigskip
 
