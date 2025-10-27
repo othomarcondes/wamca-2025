@@ -388,15 +388,21 @@ GNU Guix for reproducible package management
 #+ATTR_LATEX: :width 0.3\textwidth
 [[../img/distrib-scheduler.pdf]]
 
-* Results: OpenMPI Delays 1/2
+* Results: OpenMPI Delays
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.7
+:END:
 - Fixed =lws= scheduler, varying data distributions
 - More dense behavior of =dgemm= tasks until 10s
   - 1×6 (worst): mean idle \approx1500 ms
   - 2×3 (best): mean idle \approx800 ms
 - Bottleneck from network latency, not algorithmic imbalance
-
-* Results: OpenMPI Delays 2/2
-#+ATTR_LATEX: :width 0.3\textwidth
+** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+#+ATTR_LATEX: :width \linewidth
 [[../img/lws-all_pq-traces.pdf]]
 
 * Results: Schedulers Comparison
