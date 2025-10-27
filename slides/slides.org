@@ -144,7 +144,7 @@ df |>
 if(white) {
   p.aux + geom_rect(color="black", fill="NA") -> p.aux
 }else{
-  p.aux + geom_rect() -> p.aux
+  p.aux + geom_rect(color="black") -> p.aux
 }
 p.aux +
   default_theme() + #base_size=18) +
@@ -218,66 +218,159 @@ Dense linear algebra (e.g., LU factorization) is a core workload
 - Main compute-bound phase of many HPC iterative applications
 - Platform: large HPC clusters composed of many nodes
 
-# Modern clusters have thousands of multi-core nodes
+* Load balancing across nodes is a critical challenge 1/2
 
-* Introduction and Motivation
-Load balancing across nodes is a critical challenge
-- Static data distribution: excellent data locality but lacks adaptability
+Static data distribution, where the common method is the *Block-Cyclic*
+- Balances computation cost using a P \times Q grid; with 6 nodes, we have:
+
+#+latex: \bigskip
+
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+#+begin_export latex
+\only<1>{\includegraphics[width=\linewidth]{./img/bc-0.pdf}}
+\only<2>{\includegraphics[width=\linewidth]{./img/bc-6.pdf}}
+\only<3>{\includegraphics[width=\linewidth]{./img/bc-2.pdf}}
+\only<4>{\includegraphics[width=\linewidth]{./img/bc-3.pdf}}
+\only<5->{\includegraphics[width=\linewidth]{./img/bc-1.pdf}}
+#+end_export
+
+#+begin_export latex
+%\only<1->{\includegraphics[width=0.193\linewidth]{./img/bc-0.pdf}}
+%\only<2->{\includegraphics[width=0.193\linewidth]{./img/bc-6.pdf}}
+%\only<3->{\includegraphics[width=0.193\linewidth]{./img/bc-2.pdf}}
+%\only<4->{\includegraphics[width=0.193\linewidth]{./img/bc-3.pdf}}
+%\only<5->{\includegraphics[width=0.193\linewidth]{./img/bc-1.pdf}}
+#+end_export
+
+** Right
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+latex: \only<6->{
+
+Excellent data locality
+
+Lacks adaptability
+
+Well-known limitations
+- Prime node counts or
+- Heterogeneous resources
+
+#+latex: \vspace{.5cm}
+
+ScaLAPACK
+
+HPL benchmark (the Top500 list)
+
+#+latex: }
+
+
+* Load balancing across nodes is a critical challenge 2/2
+
 - Dynamic scheduling: great adaptability but incurs overhead
-- Hybrid strategies aim to combine both efficiently (StarPU-MPI and CHAMELEON)
-Objective
-- Analyze how *data distribution* and *scheduling heuristics* affect LU factorization performance
+  - Usually does not scale well for many nodes
+  - Increased complexity for higher node counts (hierarchical sched.)
 
-* Related Work: Static Data Distribution
-- *Block-Cyclic (BC)* used in ScaLAPACK, HPL benchmark
-- Balances computation and communication via P×Q grid
-- Limitations with prime node counts or heterogeneous resources
-#+attr_latex: :center no :height 2.5cm
-[[../img/bc.pdf]]
+#+latex: \pause\vfill
 
-* Related Work: Task-Based Runtime Systems
-- Frameworks: StarPU, PaRSEC, OmpSs
-- Express computations as task DAGs
-- Adaptability and performance portability
-- Schedulers dynamically assign tasks
+- Hybrid strategies aim to combine both methods efficiently
+  - Static data partitioning across nodes (the Block-Cyclic method)
+  - Dynamic scheduling for intra-node (among CPUs and GPUs)
+
+#+latex: \pause\vfill
+
+** Environments employing the hybrid strategy                      :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+- The StarPU--MPI runtime
+  - Adaptable
+  - Performance portability
+- The Chameleon framework
+  - Dense linear algebra
+
+* How the hybrid strategy (static/dynamic) method works
+
+#+latex: \vspace{.1cm}
+
+Developer express computations as a DAG
+
+#+ATTR_LATEX: :width 0.4\textwidth
+[[./img/dag-color-qr-dense-facto.pdf]]
+
+#+latex: \pause\vfill
+
+Developer decides static placement to nodes on task submission
+
+#+latex: \pause\vspace{.2cm}
+
+The runtime dynamically assign tasks to CPU/GPU workers on each node \\
+Many scheduling heuristics possible (=lws=, =dmdas=, =eager=, ...) \\
+#+latex: \pause  
+Inter-node communication is transparent \to provides enormous flexibility
+
+* Objective
+
+#+begin_center
+Analyze how
+
+*data distribution* (P \times Q) and
+
+*scheduling* *heuristics* (=lws=, =dmdas=, etc)
+
+affect LU factorization performance
+
+on a multi-code cluster
+#+end_center
+
+* Methodology 1/2
+** Application: LU Factorization, decomposes A into L and U
+
+#+latex: \smallskip
+Doubled-precision blocked algorithm with tiles of order NB
+#+attr_latex: :width .8\textwidth :center nil
+[[../LU-factor.png]]  
+
+=GEMM= (matrix mult.), =TRSM= (triang. solve), =GETRF_NOPIV= (LU no pivoting)
+
+* Methodology 2/2
+** Experimental Design for a square matrix (14.4K)
+
+#+latex: \smallskip
+*Phase 1*: Block size tuning (128 -- 1600) using one node
+
+#+latex: \pause
+
+*Phase 2*: Full factorial 4×4 experiment (the main part)
+- Schedulers: lws, random, dmda, dmdas
+- Distributions: 1×6, 2×3, 3×2, 6×1 (6 multi-code nodes)
+
+#+latex: \pause
+
+*Phase 3*: Detailed trace analysis with StarVZ
+- Fixed =lws= scheduler
+- Varying PxQ (BC) parameters
 
 * Experimental Setup: Hardware Environment
-| Resource | Specification |
-|-----------+---------------|
-| Cluster | PCAD @ INF/UFRGS |
-| Nodes | 6 |
-| Cores per node | 24 (2×12 Xeon Silver 4116) |
-| Memory per node | 96 GB DDR4 |
-| Network | 10G Ethernet (X540-AT2) |
+| Resource        | Specification                               |
+|-----------------+---------------------------------------------|
+| Cluster         | PCAD @ INF/UFRGS                            |
+| Nodes           | 6                                           |
+| Cores per node  | 24 (2\times Xeon Silver 4116 with 12 cores each) |
+| Memory per node | 96 GB DDR4                                  |
+| Network         | 10G Ethernet (X540-AT2)                     |
 
 * Experimental Setup: Software Environment
+GNU Guix for reproducible package management
 - CHAMELEON 1.3.0 for dense linear algebra
 - StarPU-MPI 1.4.7 runtime system
 - OpenMPI 4 transport layer
-- GNU Guix for reproducible package management
-- Data analysis in R suing StarVZ framework
-
-* Methods 1/2
-** Application: LU Factorization
-- Decomposes matrix A into L (lower) and U (upper)
-- Kernels used:
-  - DGEMM – matrix multiplication
-  - DTRSM – triangular solve
-  - DGETRF_NOPIV – LU without pivoting
-- Hybrid execution:
-  - Static inter-node block distribution
-  - Dynamic intra-node scheduling via StarPU
-
-* Methods 2/2
-** Experimental Design
-Square matrix size of 14.4K (double precision)
-1. *Phase 1*: Tile size tuning (128–1600)
-2. *Phase 2*: Full factorial 4×4 experiment
-   - Schedulers: lws, random, dmda, dmdas
-   - Distributions: 1×6, 2×3, 3×2, 6×1
-3. *Phase 3*: Detailed trace analysis with StarVZ
-   - Fixed =lws= scheduler
-   - Varying PxQ (BC) parameters
+- Data analysis in R using the StarVZ framework
 
 * Results: Optimal Block Size
 - Tested 10 tile sizes with =lws= scheduler
