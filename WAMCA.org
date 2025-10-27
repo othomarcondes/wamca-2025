@@ -1486,6 +1486,18 @@ Removed 1 row containing missing values or values outside the scale range
 (`geom_rect()`).
 #+end_example
 
+*** Plot just one for the WAMCA presentation
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+l.plots[[2]] + theme(legend.position="top") -> p
+ggsave("img/only_dmdas-3x2-openmpi-traces.pdf", width=12, height=6)
+#+end_src
+
+#+RESULTS:
+: Warning message:
+: Removed 1 row containing missing values or values outside the scale range
+: (`geom_rect()`).
+
 *** Idle time before 10s of execution
 
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
