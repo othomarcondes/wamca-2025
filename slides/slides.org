@@ -354,38 +354,71 @@ Doubled-precision blocked algorithm with tiles of order NB
 
 *Phase 3*: Detailed trace analysis with StarVZ
 - Fixed =lws= scheduler
-- Varying PxQ (BC) parameters
+- Varying PxQ parameters
 
-* Experimental Setup: Hardware Environment
-| Resource        | Specification                               |
-|-----------------+---------------------------------------------|
-| Cluster         | PCAD @ INF/UFRGS                            |
+* Experimental Setup
+
+** Hardware: Local Cluster Environment                             :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+#+attr_latex: :center nil
 | Nodes           | 6                                           |
 | Cores per node  | 24 (2\times Xeon Silver 4116 with 12 cores each) |
 | Memory per node | 96 GB DDR4                                  |
 | Network         | 10G Ethernet (X540-AT2)                     |
 
-* Experimental Setup: Software Environment
-GNU Guix for reproducible package management
+#+latex: \vspace{0.5cm}
+
+** Software: GNU Guix for reproducible package management          :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
 - CHAMELEON 1.3.0 for dense linear algebra
 - StarPU-MPI 1.4.7 runtime system
 - OpenMPI 4 transport layer
 - Data analysis in R using the StarVZ framework
 
-* Results: Optimal Block Size
-- Tested 10 tile sizes with =lws= scheduler
-- Best performance at *360×360* blocks
+* Results: Optimal block size investigation
 
-#+ATTR_LATEX: :width 0.3\textwidth
+Eval. with 10 different block sizes with =lws= scheduler using a single node
+
+
+#+ATTR_LATEX: :width 0.47\textwidth :center nil
 [[../img/block-size.pdf]]
 
-* Results: Scheduler and Data Partition Comparison
-- Varying data distribution and schedulers
-- 1\times6 and 6\times1: \approx3900 MPI operations
-- 2\times3 and 3\times2: \approx2300 MPI operations
-- Similar makespans across different data distributions and schedulers
+Obvervation: best performance with blocks of order 360
 
-#+ATTR_LATEX: :width 0.3\textwidth
+* Results: Scheduler and Data Partition Comparison
+
+Eval. with four schedulers and four static data partitioning schemes
+
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+
+Initial expectation: schemes 2\times3 or 3\times2 better than the other two
+
+#+latex: \bigskip
+
+1\times6 and 6\times1: \approx3900 MPI operations \\
+2\times3 and 3\times2: \approx2300 MPI operations
+
+#+latex: \bigskip
+
+Observation: similar makespans across different data distributions and schedulers
+
+** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+
+#+latex: \bigskip
+
+#+ATTR_LATEX: :width \linewidth :center nil
 [[../img/distrib-scheduler.pdf]]
 
 * Results: OpenMPI Delays
