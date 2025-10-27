@@ -384,7 +384,7 @@ Doubled-precision blocked algorithm with tiles of order NB
 
 * Results: Optimal block size investigation
 
-Eval. with 10 different block sizes with =lws= scheduler using a single node
+Eval. with different block sizes with =lws= scheduler using a single node
 
 
 #+ATTR_LATEX: :width 0.47\textwidth :center nil
