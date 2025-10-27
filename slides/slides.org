@@ -66,7 +66,7 @@
 * High-Performance Computing (HPC) Context
 
 HPC is the backbone for groundbreaking research
-- Comp. physics, Climate modeling, Weather prediction @@latex:\pause@@
+- Computational physics, Climate modeling, Weather prediction @@latex:\pause@@
 - Another example: Precision Agriculture
   - Need to interpolate several samples for decision-making
   - How much (and which type) of fertilizer to put in the soil
