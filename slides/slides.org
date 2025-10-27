@@ -268,7 +268,6 @@ HPL benchmark (the Top500 list)
 
 #+latex: }
 
-
 * Load balancing across nodes is a critical challenge 2/2
 
 - Dynamic scheduling: great adaptability but incurs overhead
@@ -421,24 +420,45 @@ Observation: similar makespans across different data distributions and scheduler
 #+ATTR_LATEX: :width \linewidth :center nil
 [[../img/distrib-scheduler.pdf]]
 
+* Space-time view using the StarVZ framework
+
+Understanding the elements of this trace visualization
+
+#+attr_latex: :center nil :width \linewidth
+[[../img/only_dmdas-3x2-openmpi-traces.pdf]]
+
 * Results: OpenMPI Delays
 ** Left                                                              :BMCOL:
 :PROPERTIES:
-:BEAMER_col: 0.7
+:BEAMER_col: 0.63
 :END:
-- Fixed =lws= scheduler, varying data distributions
-- More dense behavior of =dgemm= tasks until 10s
-  - 1×6 (worst): mean idle \approx1500 ms
-  - 2×3 (best): mean idle \approx800 ms
-- Bottleneck from network latency, not algorithmic imbalance
+
+#+latex: \onslide<1->{
+Fixed =lws= scheduler, varying data distributions
+
+#+latex: }\vspace{1cm}\onslide<2->{
+
+More dense behavior of =dgemm= tasks until 10s
+- 1×6 (worst): mean idle \approx1500 ms
+- 2×3 (best): mean idle \approx800 ms
+
+#+latex: }\vspace{1cm}\onslide<3->{
+
+Observation: bottleneck from network latency
+
+#+latex: }
 ** Right                                                             :BMCOL:
 :PROPERTIES:
-:BEAMER_col: 0.3
+:BEAMER_col: 0.38
 :END:
-#+ATTR_LATEX: :width \linewidth
-[[../img/lws-all_pq-traces.pdf]]
 
-* Results: Schedulers Comparison
+#+begin_export latex
+\vspace{-1.2cm}\onslide<1->{
+\includegraphics[width=\linewidth]{../img/lws-all_pq-traces.pdf}
+}
+#+end_export
+
+* Results: Schedulers Comparison                                   :noexport:
 - Fixed 3×2 distribution, =lws= and =dmdas= schedulers
 - Per-node optimistic makespan (ABE):
   - \approx14605 ms for =lws=
@@ -449,7 +469,7 @@ Observation: similar makespans across different data distributions and scheduler
 #+ATTR_LATEX: :width 0.4\textwidth
 [[../img/lws-vs-dmdas-3x2-openmpi-traces.pdf]]
 
-* Results: Data Distribution Similarities
+* Results: Data Distribution Similarities                          :noexport:
 - Makespan difference <3%
 - ABE difference between nodes 1 and 2:
   - 3\times2: \approx2249 ms
@@ -460,10 +480,17 @@ Observation: similar makespans across different data distributions and scheduler
 [[../img/lws-3x2-versus-6x1-openmpi-traces.pdf]]
 
 * Conclusion and Future Work
+
+Conclusion
 - Impact of data distribution and scheduler heuristics
-- =dmda= and =dmdas= presented similar performances
-- =lws= best performing scheduler
-- Data partition (P \times Q) had minimal impact on performance
+  - =lws= best performing scheduler
+  - Data partition (P \times Q) had minimal impact on performance
+- Reason for that might be related to OpenMPI delays
+  - Current investigation using alternative transport layers
+    
+#+latex: \vfill\pause
+
+Future Work
 - Scale experiments using SimGrid simulation
 - Study repetitive network delays in StarPU-MPI
 
