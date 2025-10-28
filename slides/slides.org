@@ -23,18 +23,35 @@
 #+LATEX_HEADER: \usepackage[font=scriptsize,labelfont=bf]{caption}
 #+LATEX_HEADER: \usepackage[absolute,overlay]{textpos}
 
-#+LATEX_HEADER: \institute{Institute of Informatics, Federal University of Rio Grande do Sul (UFRGS), Brazil \\
-#+LATEX_HEADER:\begin{center}
-#+LATEX_HEADER:\includegraphics[width=.12\textwidth]{img/UFRGS.pdf}%
-#+LATEX_HEADER:\hspace{.5 cm}%
-#+LATEX_HEADER:\includegraphics[width=.12\textwidth]{img/ppgc.png}%
-#+LATEX_HEADER:\hspace{.5 cm}%
-#+LATEX_HEADER:\raisebox{0.5\height}{\includegraphics[width=.12\textwidth]{img/cnpq.png}}%
-#+LATEX_HEADER:\hspace{.5 cm}%
-#+LATEX_HEADER:\raisebox{0.2\height}{\includegraphics[width=.12\textwidth]{img/capes.png}}%
-#+LATEX_HEADER:\hspace{3cm}~
-#+LATEX_HEADER:\end{center}
-#+LATEX_HEADER:}
+#+begin_export latex
+\institute{Institute of Informatics, Federal University of Rio Grande do Sul (UFRGS), Brazil \\
+\includegraphics[width=.12\textwidth]{img/UFRGS.pdf}%
+\hspace{.5 cm}%
+\includegraphics[width=.12\linewidth]{./logo/ppgc.png}%
+\hspace{.5 cm}%
+\raisebox{0.2\height}{\includegraphics[width=.06\linewidth]{./logo/capes.png}}%
+\hspace{.5 cm}%
+\raisebox{0.5\height}{\includegraphics[width=.12\linewidth]{./logo/cnpq.png}}%
+\hspace{.5 cm}%
+\includegraphics[width=.12\linewidth]{./logo/fapergs.jpg}%
+\hspace{.5 cm}%
+\includegraphics[width=.12\linewidth]{./logo/petrobras.jpg}%
+\hspace{.5 cm}%
+}
+#+end_export
+
+#+LATEX_HEADER:%\institute{Institute of Informatics, Federal University of Rio Grande do Sul (UFRGS), Brazil \\
+#+LATEX_HEADER:%\begin{center}
+#+LATEX_HEADER:%\includegraphics[width=.12\textwidth]{img/UFRGS.pdf}%
+#+LATEX_HEADER:%\hspace{.5 cm}%
+#+LATEX_HEADER:%\includegraphics[width=.12\textwidth]{img/ppgc.png}%
+#+LATEX_HEADER:%\hspace{.5 cm}%
+#+LATEX_HEADER:%\raisebox{0.5\height}{\includegraphics[width=.12\textwidth]{img/cnpq.png}}%
+#+LATEX_HEADER:%\hspace{.5 cm}%
+#+LATEX_HEADER:%\raisebox{0.2\height}{\includegraphics[width=.12\textwidth]{img/capes.png}}%
+#+LATEX_HEADER:%\hspace{3cm}~
+#+LATEX_HEADER:%\end{center}
+#+LATEX_HEADER:%}
 
 #+latex: \setbeamercolor{background canvas}{bg=white}
 #+latex: \setbeamerfont{title}{size=\large}
@@ -522,32 +539,28 @@ Future Work
 - Study repetitive network delays in StarPU-MPI
 
 * Acknowledgements
-The experiments in this work used the PCAD infrastructure,
-http://gppd-hpc.inf.ufrgs.br, at INF/UFRGS.  We also acknowledge the
-Brazilian National Council for Scientific Technological Development
-(CNPq) for their financial scholarship support. This study was
-financed in part by the Coordenação de Aperfeiçoamento de Pessoal de
-Nível Superior - Brasil (CAPES) - Finance Code 001, the FAPERGS
-(16/354-8, 16/348-8), Petrobras (2020/00182-5).
+
+The experiments in this work used the PCAD infrastructure, at
+INF/UFRGS.  We also acknowledge the Brazilian National Council for
+Scientific Technological Development (CNPq) for their financial
+scholarship support. This study was financed in part by the
+Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil
+(CAPES) - Finance Code 001, the FAPERGS (16/354-8, 16/348-8),
+Petrobras (2020/00182-5).
 
 #+BEGIN_EXPORT latex
-\begin{figure}[h!]\centering
-  \begin{minipage}{0.10\textwidth}\centering
-    \includegraphics[width=\linewidth]{./logo/capes.png}
-  \end{minipage}
-  \begin{minipage}{0.19\textwidth}\centering
-    \includegraphics[width=\linewidth]{./logo/cnpq.png}
-  \end{minipage}
-  \begin{minipage}{0.19\textwidth}\centering
-    \includegraphics[width=\linewidth]{./logo/fapergs.jpg}
-  \end{minipage}
-  \begin{minipage}{0.19\textwidth}\centering
-    \includegraphics[width=\linewidth]{./logo/petrobras.jpeg}
-  \end{minipage}
-  \begin{minipage}{0.19\textwidth}\centering
-    \includegraphics[width=\linewidth]{./logo/ppgc.png}
-  \end{minipage}
-\end{figure}
+\vfill
+\includegraphics[width=.12\textwidth]{img/UFRGS.pdf}%
+\hspace{.5 cm}%
+\includegraphics[width=.12\linewidth]{./logo/ppgc.png}%
+\hspace{.5 cm}%
+\raisebox{0.2\height}{\includegraphics[width=.06\linewidth]{./logo/capes.png}}%
+\hspace{.5 cm}%
+\raisebox{0.5\height}{\includegraphics[width=.12\linewidth]{./logo/cnpq.png}}%
+\hspace{.5 cm}%
+\includegraphics[width=.12\linewidth]{./logo/fapergs.jpg}%
+\hspace{.5 cm}%
+\includegraphics[width=.12\linewidth]{./logo/petrobras.jpg}%
 #+END_EXPORT
 
 * Contact
