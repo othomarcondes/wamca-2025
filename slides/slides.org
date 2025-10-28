@@ -40,19 +40,6 @@
 }
 #+end_export
 
-#+LATEX_HEADER:%\institute{Institute of Informatics, Federal University of Rio Grande do Sul (UFRGS), Brazil \\
-#+LATEX_HEADER:%\begin{center}
-#+LATEX_HEADER:%\includegraphics[width=.12\textwidth]{img/UFRGS.pdf}%
-#+LATEX_HEADER:%\hspace{.5 cm}%
-#+LATEX_HEADER:%\includegraphics[width=.12\textwidth]{img/ppgc.png}%
-#+LATEX_HEADER:%\hspace{.5 cm}%
-#+LATEX_HEADER:%\raisebox{0.5\height}{\includegraphics[width=.12\textwidth]{img/cnpq.png}}%
-#+LATEX_HEADER:%\hspace{.5 cm}%
-#+LATEX_HEADER:%\raisebox{0.2\height}{\includegraphics[width=.12\textwidth]{img/capes.png}}%
-#+LATEX_HEADER:%\hspace{3cm}~
-#+LATEX_HEADER:%\end{center}
-#+LATEX_HEADER:%}
-
 #+latex: \setbeamercolor{background canvas}{bg=white}
 #+latex: \setbeamerfont{title}{size=\large}
 #+latex: \setbeamerfont{subtitle}{size=\small}
